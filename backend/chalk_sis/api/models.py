@@ -11,7 +11,7 @@ USER_ROLES = (
 
 
 class Profession(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
@@ -38,6 +38,9 @@ class UserData(models.Model):
     enrollment_date = models.DateField(null=True, blank=True, auto_now=True)
     profession = models.OneToOneField(Profession, on_delete=models.CASCADE, null=True, blank=True)
     subjects = models.ManyToManyField(Subject, blank=True)
+    lives_in_dorm = models.BooleanField(default=False)
+    dorm_name = models.CharField(max_length=255, null=True, blank=True)
+    is_first_login = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.for_user.username} ({self.role})"
@@ -45,6 +48,8 @@ class UserData(models.Model):
 
 class Grade(models.Model):
     value = models.IntegerField(default=1)
+    note = models.CharField(max_length=255, null=True, blank=True)
+    date = models.DateField(auto_now=True)
     student = models.OneToOneField(User, on_delete=models.CASCADE)
     subject = models.OneToOneField(Subject, on_delete=models.CASCADE)
 
