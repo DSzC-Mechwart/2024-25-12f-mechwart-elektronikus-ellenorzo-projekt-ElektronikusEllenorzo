@@ -4,5 +4,6 @@ from authentication import response
 urlpatterns = [
     path('login', response.login, name='login'),
     path('logout', response.logout, name='logout'),
+    path('add_user', response.add_user, name='add_user'),
     path('no_login', response.no_login, name='no_login'),
 ]
