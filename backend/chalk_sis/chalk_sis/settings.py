@@ -10,7 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import dotenv
+import os
 from pathlib import Path
+
+if not os.path.exists('.env'):
+    raise RuntimeError(".env file not found")
+
+dotenv.load_dotenv('.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +30,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n0du*2z=wqn=(sh6=)bmo9-*1pt7mjdr2j-nz46unjbl!m8ef6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+LOGIN_URL = "/api/no_login"
 
 # Application definition
 
@@ -37,7 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
+    'authentication.apps.AuthenticationConfig',
+    'student.apps.StudentConfig'
 ]
 
 MIDDLEWARE = [
