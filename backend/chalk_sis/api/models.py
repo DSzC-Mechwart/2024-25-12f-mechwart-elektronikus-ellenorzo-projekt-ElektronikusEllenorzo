@@ -28,9 +28,9 @@ class Subject(models.Model):
 class UserData(models.Model):
     for_user = models.ForeignKey(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=255, choices=USER_ROLES)
+    name = models.CharField(max_length=255)
     student_class = models.CharField(max_length=8, null=True, blank=True)
     grade = models.IntegerField(default=None, null=True, blank=True)
-    name = models.CharField(max_length=255)
     mothers_name = models.CharField(max_length=255, null=True, blank=True)
     place_of_birth = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
