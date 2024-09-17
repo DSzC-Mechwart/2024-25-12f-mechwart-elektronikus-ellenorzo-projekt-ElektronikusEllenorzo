@@ -3,9 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 .idea
+*/.idea
+**/.idea
 .venv
 */.venv
-**/.vevv
+**/.venv
 */migrations
 **/migrations
 */db.sqlite3
