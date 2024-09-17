@@ -38,6 +38,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = "/api/no_login"
 
+CSRF_TRUSTED_ORIGINS = ['*']
+
 # Application definition
 
 INSTALLED_APPS = [
