@@ -12,6 +12,9 @@
 **/db.sqlite3
 */.env
 **/.env
+*.docx
+*/*.docx
+**/*.docx
 # User-specific files
 *.rsuser
 *.suo
