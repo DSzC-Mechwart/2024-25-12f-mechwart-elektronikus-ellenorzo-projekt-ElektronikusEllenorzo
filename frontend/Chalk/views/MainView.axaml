@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Chalk.viewmodels"
+             xmlns:chalk="clr-namespace:Chalk"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Chalk.views.MainView"
+             x:DataType="vm:MainViewModel">
+
+    <UserControl.DataContext>
+        <vm:MainViewModel />
+    </UserControl.DataContext>
+
+    <Grid ColumnDefinitions="160,*">
+        <Border BorderThickness="0 0 1 0" BorderBrush="#22ffffff">
+            <StackPanel Orientation="Vertical" Spacing="6" Margin="6">
+                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
+                    Home
+                </Button>
+                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
+                    Home
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPageModel}">
+            <ContentControl.DataTemplates>
+                <chalk:ViewLocator />
+            </ContentControl.DataTemplates>
+        </ContentControl>
+    </Grid>
+
+
+</UserControl>
