@@ -15,7 +15,12 @@ from modules import string_operations
 
 @login_required
 def manage_student(request: WSGIRequest) -> JsonResponse:
-    user_data = UserData.objects.get(user=request.user)
+    user_data: UserData
+    try:
+        user_data = UserData.objects.get(for_user=request.user)
+        print(user_data)
+    except:
+        return JsonResponse({'error': 'UserData not found'}, status=404)
 
     try:
         body: dict = json.loads(request.body)
@@ -56,3 +61,5 @@ def manage_student(request: WSGIRequest) -> JsonResponse:
                 "password": new_password,
                 "username": new_username
             }}, status=201)
+    else:
+        return JsonResponse({'error': 'You do not have enough permissions'}, status=403)
