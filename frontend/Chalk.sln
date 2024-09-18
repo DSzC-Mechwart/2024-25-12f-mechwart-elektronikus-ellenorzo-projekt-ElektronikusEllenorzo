@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chalk.iOS", "Chalk.iOS\Chal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chalk.Browser", "Chalk.Browser\Chalk.Browser.csproj", "{EE812001-0309-449B-865B-60AA321453CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaUtils", "AvaUtils\AvaUtils.csproj", "{D23488A0-470D-4C41-A3AA-0D41D5FA1320}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,5 +42,9 @@ Global
 		{EE812001-0309-449B-865B-60AA321453CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE812001-0309-449B-865B-60AA321453CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE812001-0309-449B-865B-60AA321453CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

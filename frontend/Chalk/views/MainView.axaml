@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Chalk.viewmodels"
-             xmlns:chalk="clr-namespace:Chalk"
+             xmlns:avaUtils="clr-namespace:AvaUtils;assembly=AvaUtils"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Chalk.views.MainView"
              x:DataType="vm:MainViewModel">
@@ -24,11 +24,7 @@
             </StackPanel>
         </Border>
 
-        <ContentControl Grid.Column="1" Content="{Binding CurrentPageModel}">
-            <ContentControl.DataTemplates>
-                <chalk:ViewLocator />
-            </ContentControl.DataTemplates>
-        </ContentControl>
+        <avaUtils:SimpleNavControl Grid.Column="1" Key="main" />
     </Grid>
 
 
