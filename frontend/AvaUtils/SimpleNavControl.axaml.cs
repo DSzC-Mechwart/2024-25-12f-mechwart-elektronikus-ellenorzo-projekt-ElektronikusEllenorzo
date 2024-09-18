@@ -20,6 +20,7 @@ public partial class SimpleNavControl : UserControl {
                     page => ((SimpleNavVM)this.DataContext!).CurrentVM = page,
                     DefaultPage
                 );
+                hasRegistered = true;
             }
         }
     }
