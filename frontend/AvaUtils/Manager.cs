@@ -8,8 +8,8 @@ public static class Manager {
     private static readonly Dictionary<string, Optional<ObservableObject>> _navCurrentPages = new();
 
     public static void RegisterNav(string key, Action<ObservableObject> setter, ObservableObject? currentPage) {
-        _navSetters.Add(key, setter);
-        if (currentPage != null) _navCurrentPages.Add(key, currentPage);
+        _navSetters[key] = setter;
+        if (currentPage != null) _navCurrentPages[key] = currentPage;
     }
 
     public static void SetCurrentPage(string key, ObservableObject currentPage) {

@@ -15,6 +15,7 @@ public partial class SimpleNavControl : UserControl {
         set {
             SetValue(KeyProperty, value);
             if (!hasRegistered) {
+                Console.WriteLine($"Value changed to {value}, registered: {hasRegistered}");
                 Manager.RegisterNav(
                     Key,
                     page => ((SimpleNavVM)this.DataContext!).CurrentVM = page,

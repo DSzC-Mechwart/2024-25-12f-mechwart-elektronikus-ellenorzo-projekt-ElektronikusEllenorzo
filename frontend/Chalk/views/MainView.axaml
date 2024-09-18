@@ -12,20 +12,10 @@
         <vm:MainViewModel />
     </UserControl.DataContext>
 
-    <Grid ColumnDefinitions="160,*">
-        <Border BorderThickness="0 0 1 0" BorderBrush="#22ffffff">
-            <StackPanel Orientation="Vertical" Spacing="6" Margin="6">
-                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
-                    Home
-                </Button>
-                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
-                    Home
-                </Button>
-            </StackPanel>
-        </Border>
-
-        <avaUtils:SimpleNavControl Grid.Column="1" Key="main" />
-    </Grid>
-
+    <avaUtils:SimpleNavControl Key="root">
+        <avaUtils:SimpleNavControl.DefaultPage>
+            <vm:LoginViewModel />
+        </avaUtils:SimpleNavControl.DefaultPage>
+    </avaUtils:SimpleNavControl>
 
 </UserControl>
