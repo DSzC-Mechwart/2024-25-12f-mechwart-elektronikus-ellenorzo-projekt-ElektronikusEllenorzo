@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chalk.Browser", "Chalk.Brow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaUtils", "AvaUtils\AvaUtils.csproj", "{D23488A0-470D-4C41-A3AA-0D41D5FA1320}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{43BE5D37-FB62-4069-89C5-A7EB96926AA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,5 +48,9 @@ Global
 		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D23488A0-470D-4C41-A3AA-0D41D5FA1320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43BE5D37-FB62-4069-89C5-A7EB96926AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BE5D37-FB62-4069-89C5-A7EB96926AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BE5D37-FB62-4069-89C5-A7EB96926AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BE5D37-FB62-4069-89C5-A7EB96926AA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

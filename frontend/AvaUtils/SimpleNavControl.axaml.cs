@@ -14,15 +14,13 @@ public partial class SimpleNavControl : UserControl {
         get => GetValue(KeyProperty);
         set {
             SetValue(KeyProperty, value);
-            if (!hasRegistered) {
-                Console.WriteLine($"Value changed to {value}, registered: {hasRegistered}");
-                Manager.RegisterNav(
-                    Key,
-                    page => ((SimpleNavVM)this.DataContext!).CurrentVM = page,
-                    DefaultPage
-                );
-                hasRegistered = true;
-            }
+            if (hasRegistered) return;
+            Manager.RegisterNav(
+                Key,
+                page => ((SimpleNavVM)this.DataContext!).CurrentVM = page,
+                DefaultPage
+            );
+            hasRegistered = true;
         }
     }
 

@@ -18,7 +18,6 @@ def manage_student(request: WSGIRequest) -> JsonResponse:
     user_data: UserData
     try:
         user_data = UserData.objects.get(for_user=request.user)
-        print(user_data)
     except:
         return JsonResponse({'error': 'UserData not found'}, status=404)
 
