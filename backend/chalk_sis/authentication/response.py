@@ -17,7 +17,11 @@ def login(request: WSGIRequest) -> JsonResponse:
     user = authenticate(request, username=request.POST.get("username"), password=request.POST.get("password"))
     if user is not None:
         auth_login(request, user)
-        return JsonResponse({"status": "Ok"}, status=200)
+        user_data = UserData.objects.get(for_user=user)
+        return JsonResponse({
+            "status": "Ok", 
+            "user_data": json.dumps(user_data)
+        }, status=200)
 
     return JsonResponse({"status": "Invalid username or password"}, status=401)
 
