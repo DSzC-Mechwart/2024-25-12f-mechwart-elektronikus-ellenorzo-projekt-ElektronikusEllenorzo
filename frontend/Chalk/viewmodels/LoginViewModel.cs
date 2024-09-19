@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using API;
 using Chalk.views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,13 +17,19 @@ public partial class LoginViewModel : ObservableObject {
 
     [ObservableProperty]
     private bool _hasErrored;
+    
+    [ObservableProperty]
+    private string _errorMessage = "";
 
     public ICommand SubmitCommand => new RelayCommand(async () => {
-        var success = await ChalkAPI.Instance.Login(Username, Password);
-        if (success) {
+        var (res, data, error) = await ChalkAPI.Instance.Auth.Login(Username, Password);
+        Console.WriteLine($"User data: {data}");
+        if (res.IsSuccessStatusCode) {
             AvaUtils.Manager.SetCurrentPage("root", new FrameViewModel());
         }
 
-        HasErrored = !success;
+        HasErrored = !res.IsSuccessStatusCode;
+        ErrorMessage = error ?? "";
+        
     });
 }

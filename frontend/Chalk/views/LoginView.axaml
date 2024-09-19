@@ -57,7 +57,7 @@
                 Background="#0dff0000">
             <StackPanel Spacing="6">
                 <TextBlock FontWeight="Medium" Foreground="#ccffffff">Something went wrong :(</TextBlock>
-                <TextBlock TextWrapping="Wrap" Foreground="#77ffffff" FontSize="12"><Run>Please try again, or contact us if the issue persists.</Run></TextBlock>
+                <TextBlock TextWrapping="Wrap" Foreground="#77ffffff" FontSize="12" Text="{Binding ErrorMessage}"></TextBlock>
             </StackPanel>
         </Border>
 
