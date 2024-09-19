@@ -1,0 +1,83 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodels="clr-namespace:Chalk.viewmodels"
+             xmlns:components="clr-namespace:Chalk.components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Chalk.views.LoginView"
+             x:DataType="viewmodels:LoginViewModel">
+
+    <UserControl.DataContext>
+        <viewmodels:LoginViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="BorderBrush" Value="#18ffffff" />
+            <Setter Property="CornerRadius" Value="8" />
+
+            <Style Selector="^:pointerover">
+                <Style Selector="^ /template/ Border#PART_BorderElement">
+                    <Setter Property="BorderBrush" Value="#33ffffff" />
+                </Style>
+            </Style>
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#026fc7" />
+            <Setter Property="CornerRadius" Value="8" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Setter Property="Background" Value="#027ee3"></Setter>
+            </Style>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="*,2*">
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="#18ffffff" Margin="12" Padding="24" CornerRadius="12"
+                Background="#0dffffff">
+            <StackPanel VerticalAlignment="Center" Spacing="8">
+                <TextBlock HorizontalAlignment="Center" FontWeight="Regular" Foreground="#77ffffff" LetterSpacing="2"
+                           FontSize="20" Margin="0 0 0 8">
+                    LOGIN
+                </TextBlock>
+                <TextBox Text="{Binding Username}" Watermark="Username"></TextBox>
+                <TextBox Text="{Binding Password}" Watermark="Password" PasswordChar="•"></TextBox>
+                <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                        Command="{Binding SubmitCommand}" HotKey="Enter">
+                    Submit
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="#33ff0000" Margin="24" VerticalAlignment="Bottom" IsVisible="{Binding HasErrored}"                         
+                Padding="12" CornerRadius="8"
+                Background="#0dff0000">
+            <StackPanel Spacing="6">
+                <TextBlock FontWeight="Medium" Foreground="#ccffffff">Something went wrong :(</TextBlock>
+                <TextBlock TextWrapping="Wrap" Foreground="#77ffffff" FontSize="12" Text="{Binding ErrorMessage}"></TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.OpacityMask>
+                <RadialGradientBrush RadiusX="100%" RadiusY="90%" Center="100%,0%">
+                    <GradientStop Color="Black" Offset="0" />
+                    <GradientStop Color="Transparent" Offset="1" />
+                </RadialGradientBrush>
+            </Grid.OpacityMask>
+
+            <components:BackgroundGrid GridSize="45" GridLineBrush="#99026fc7" OffsetX="0" OffsetY="20" />
+        </Grid>
+
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="42"
+                    VerticalAlignment="Bottom">
+            <TextBlock FontSize="64" LetterSpacing="2" FontWeight="SemiBold">Chalk</TextBlock>
+            <TextBlock FontSize="18" FontWeight="Regular">Student Information System</TextBlock>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

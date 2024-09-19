@@ -36,9 +36,9 @@ ALLOWED_HOSTS = ['*']
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-LOGIN_URL = "/api/no_login"
+LOGIN_URL = "/api/auth/no_login"
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'http://*']
 
 # Application definition
 

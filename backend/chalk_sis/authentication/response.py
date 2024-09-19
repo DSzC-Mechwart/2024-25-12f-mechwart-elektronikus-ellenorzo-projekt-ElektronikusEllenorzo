@@ -1,4 +1,5 @@
 from django.db import IntegrityError
+from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
@@ -14,12 +15,17 @@ from modules import string_operations
 
 def login(request: WSGIRequest) -> JsonResponse:
     request.session.clear_expired()
-    user = authenticate(request, username=request.POST.get("username"), password=request.POST.get("password"))
+    try:
+        body: dict = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)    
+    user = authenticate(request, username=body.get("username"), password=body.get("password"))
     if user is not None:
         auth_login(request, user)
-        return JsonResponse({"status": "Ok"}, status=200)
+        user_data = UserData.objects.get(for_user=user)
+        return JsonResponse(model_to_dict(user_data), status=200)
 
-    return JsonResponse({"status": "Invalid username or password"}, status=401)
+    return JsonResponse({"error": "Invalid username or password"}, status=401)
 
 
 def logout(request: WSGIRequest) -> JsonResponse:
@@ -34,7 +40,7 @@ def add_user(request: WSGIRequest) -> JsonResponse:
     try:
         body: dict = json.loads(request.body)
     except json.JSONDecodeError:
-        return JsonResponse({"status": "Invalid JSON"}, status=400)
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
 
     if body["role"] == "student":
         return JsonResponse({"error": "Do not use this endpoint to create students"}, status=400)
@@ -67,4 +73,4 @@ def get_available_roles(request: WSGIRequest) -> JsonResponse:
 
 
 def no_login(request: WSGIRequest) -> JsonResponse:
-    return JsonResponse({"status": "Unauthorized"}, status=401)
+    return JsonResponse({"error": "Unauthorized"}, status=401)

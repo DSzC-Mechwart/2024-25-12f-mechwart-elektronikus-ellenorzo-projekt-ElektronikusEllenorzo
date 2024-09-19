@@ -1,9 +1,8 @@
-using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Chalk;
+namespace AvaUtils;
 
 public class ViewLocator : IDataTemplate {
     public Control? Build(object? data) {
@@ -13,7 +12,11 @@ public class ViewLocator : IDataTemplate {
         var name = data.GetType().FullName!.Replace("viewmodels", "views", StringComparison.Ordinal);
         name = name.Replace("ViewModel", "View", StringComparison.Ordinal);
         var type = Type.GetType(name);
-        
+
+        if (Attribute.IsDefined(data.GetType(), typeof(ForViewAttribute))) {
+            var forView = Attribute.GetCustomAttribute(data.GetType(), typeof(ForViewAttribute)) as ForViewAttribute;
+            type = forView?.GetViewType();
+        }
 
         if (type != null) {
             return (Control)Activator.CreateInstance(type)!;

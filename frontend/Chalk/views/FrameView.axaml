@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avaUtils="clr-namespace:AvaUtils;assembly=AvaUtils"
+             xmlns:viewmodels="clr-namespace:Chalk.viewmodels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Chalk.views.FrameView"
+             x:DataType="viewmodels:FrameViewModel">
+
+    <UserControl.DataContext>
+        <viewmodels:FrameViewModel />
+    </UserControl.DataContext>
+
+    <Grid ColumnDefinitions="160,*">
+        <Border BorderThickness="0 0 1 0" BorderBrush="#22ffffff">
+            <StackPanel Orientation="Vertical" Spacing="6" Margin="6">
+                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
+                    Home
+                </Button>
+                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
+                    Home
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <avaUtils:SimpleNavControl Grid.Column="1" Key="main">
+            <avaUtils:SimpleNavControl.DefaultPage>
+                <viewmodels:HomeViewModel />
+            </avaUtils:SimpleNavControl.DefaultPage>
+        </avaUtils:SimpleNavControl>
+    </Grid>
+</UserControl>
