@@ -84,7 +84,7 @@ def add_user(request: WSGIRequest) -> JsonResponse:
 @login_required
 @wrappers.require_role(["admin"])
 def get_available_roles(request: WSGIRequest) -> JsonResponse:
-    ...
+    return JsonResponse({"roles": dict(USER_ROLES)}, status=200)
 
 
 def no_login(request: WSGIRequest) -> JsonResponse:
