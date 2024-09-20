@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 import string, random
 from django.db import IntegrityError
+from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.handlers.wsgi import WSGIRequest
@@ -10,6 +11,8 @@ from authentication import wrappers
 from api.models import UserData, Profession, Class
 from django.contrib.auth.models import User
 from modules import string_operations
+from django.db.models import Count, F
+from django.db.models.functions import ExtractYear
 
 # Create your views here.
 
@@ -80,7 +83,6 @@ def generate_ids(request: WSGIRequest) -> JsonResponse:
             student.student_number = number + 1
             student.student_id = f'{number + 1}/{student.enrollment_date.year}'
             student.save()
-            continue_at = number + 2
         last_number = UserData.objects.filter(student_class=i).order_by("name")[-1].student_number
         continue_at = last_number + 1 if last_number else len(UserData.objects.filter(student_class=i)) + 1
         for student in UserData.objects.filter(
@@ -92,3 +94,33 @@ def generate_ids(request: WSGIRequest) -> JsonResponse:
             continue_at += 1
 
     return JsonResponse({"status": "Ok"}, status=200)
+
+
+@login_required
+@wrappers.require_role(['admin'])
+def all_student(request: WSGIRequest) -> JsonResponse:
+    return JsonResponse({"students": [model_to_dict(i) for i in UserData.objects.filter(role="student")]}, status=200)
+
+
+@login_required
+@wrappers.require_role(["admin"])
+def statistics(request: WSGIRequest) -> JsonResponse:
+    lives_in_dorm = UserData.objects.filter(~Q(dorm_name=None), role="student").count()
+    lives_in_debrecen = UserData.objects.filter(address__icontains="debrecen", role="student").count()
+    travels_to_school = UserData.objects.filter(role="student").count() - lives_in_debrecen - lives_in_dorm
+
+    profession_enrollments_per_year = (
+        UserData.objects
+        .filter(enrollment_date__isnull=False, profession__isnull=False, role="student")
+        .annotate(year=ExtractYear('enrollment_date'))  # Extract year from enrollment_date
+        .values('year', 'profession__name')  # Group by year and profession name
+        .annotate(total_students=Count('id'))  # Count the number of students
+        .order_by('year', 'profession__name')  # Order by year and profession name
+    )
+
+    return JsonResponse({
+        "lives_in_dorm": lives_in_dorm,
+        "lives_in_debrecen": lives_in_debrecen,
+        "travels_to_school": travels_to_school,
+        "profession_enrollments_per_year": profession_enrollments_per_year,
+    }, status=200)
