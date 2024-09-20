@@ -17,19 +17,18 @@ public partial class LoginViewModel : ObservableObject {
 
     [ObservableProperty]
     private bool _hasErrored;
-    
+
     [ObservableProperty]
     private string _errorMessage = "";
 
     public ICommand SubmitCommand => new RelayCommand(async () => {
-        var (res, data, error) = await ChalkAPI.Instance.Auth.Login(Username, Password);
-        Console.WriteLine($"User data: {data}");
-        if (res.IsSuccessStatusCode) {
+        var res = await ChalkAPI.Instance.Auth.Login(Username, Password);
+        if (res.Ok) {
+            Console.WriteLine($"User data: {res.Data}");
             AvaUtils.Manager.SetCurrentPage("root", new FrameViewModel());
         }
 
-        HasErrored = !res.IsSuccessStatusCode;
-        ErrorMessage = error ?? "";
-        
+        HasErrored = !res.Ok;
+        ErrorMessage = res.Error ?? "Unknown Error";
     });
 }
