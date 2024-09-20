@@ -1,8 +1,18 @@
 ﻿using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace API;
+
+public record APIRequest {
+    public required string Endpoint { get; set; }
+    public HttpMethod Method { get; set; } = HttpMethod.Get;
+    public object? Body { get; set; }
+    public Dictionary<string, string>? Headers { get; set; }
+    public Dictionary<string, string>? Query { get; set; }
+}
 
 public class ChalkAPI {
     private static readonly Lazy<ChalkAPI> _instance = new Lazy<ChalkAPI>(() => new ChalkAPI());
@@ -29,41 +39,70 @@ public class ChalkAPI {
         return url + query.ToString().TrimEnd('&', '?');
     }
 
-    public async Task<(HttpResponseMessage res, object? data, string? error)> MakeRequest(
-        string endpoint,
-        HttpMethod? method = null,
-        object? body = null,
-        Dictionary<string, string>? headers = null,
-        Dictionary<string, string>? query = null
-    ) {
-        method ??= HttpMethod.Get;
-
-        var url = $"{Constants.SERVER_URL}/api{endpoint}";
-        if (query != null) {
-            url = AddQueryParamsToUrl(url, query);
+    private Task<HttpResponseMessage> DoHttpRequest(APIRequest requestParams) {
+        var url = $"{Constants.SERVER_URL}/api{requestParams.Endpoint}";
+        if (requestParams.Query != null) {
+            url = AddQueryParamsToUrl(url, requestParams.Query);
         }
 
-        var req = new HttpRequestMessage(method, url);
+        var req = new HttpRequestMessage(requestParams.Method, url);
 
-        if (headers != null) {
-            foreach (var header in headers) {
+        if (requestParams.Headers != null) {
+            foreach (var header in requestParams.Headers) {
                 req.Headers.Add(header.Key, header.Value);
             }
         }
 
-        if (body != null) {
-            var json = JsonSerializer.Serialize(body);
+        if (requestParams.Body != null) {
+            var json = JsonConvert.SerializeObject(requestParams.Body);
             req.Content = new StringContent(json, Encoding.UTF8, "application/json");
         }
 
-        var res = await _httpClient.SendAsync(req);
-        var content = await res.Content.ReadAsStringAsync();
-        var data = JsonDocument.Parse(content).RootElement;
-        string? error = data.TryGetProperty("error", out var _error) ? _error.GetString() : null;
-        if (error == null && !res.IsSuccessStatusCode) {
-            error = $"Unknown error: {res.StatusCode.ToString()}";
-        }
+        var res = _httpClient.SendAsync(req);
+        return res;
+    }
 
-        return (res, data.Deserialize<dynamic>(), error);
+    public async Task<APIResponse> MakeRequest(APIRequest requestParams) {
+        var res = await DoHttpRequest(requestParams);
+        return new APIResponse(res);
+    }
+
+    public async Task<APIResponse<T>> MakeRequest<T>(APIRequest requestParams) {
+        var res = await DoHttpRequest(requestParams);
+        return new APIResponse<T>(res);
+    }
+}
+
+public class APIResponse {
+    private readonly HttpResponseMessage HttpResponse;
+
+    public APIResponse(HttpResponseMessage res) {
+        this.HttpResponse = res;
+
+        var ms = new MemoryStream();
+        res.Content.ReadAsStream().CopyTo(ms);
+        Data = JsonConvert.DeserializeObject<JObject>(Encoding.UTF8.GetString(ms.ToArray()));
+
+        Error = Data?.GetValue("error")?.Value<string>();
+        if (Error == null && !res.IsSuccessStatusCode) {
+            Error = $"Unknown error: {res.StatusCode.ToString()}";
+        }
+    }
+
+    public HttpStatusCode StatusCode => HttpResponse.StatusCode;
+    public HttpResponseHeaders Headers => HttpResponse.Headers;
+    public HttpRequestMessage? Request => HttpResponse.RequestMessage;
+    public bool Ok => HttpResponse.IsSuccessStatusCode;
+    public JObject? Data;
+    public string? Error;
+}
+
+public class APIResponse<T> : APIResponse {
+    public new T? Data;
+
+    public APIResponse(HttpResponseMessage res) : base(res) {
+        if (base.Data != null) {
+            Data = base.Data.ToObject<T>();
+        }
     }
 }
