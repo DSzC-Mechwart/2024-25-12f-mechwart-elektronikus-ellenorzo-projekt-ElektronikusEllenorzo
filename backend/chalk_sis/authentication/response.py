@@ -28,6 +28,21 @@ def login(request: WSGIRequest) -> JsonResponse:
     return JsonResponse({"error": "Invalid username or password"}, status=401)
 
 
+@login_required
+def change_password(request: WSGIRequest) -> JsonResponse:
+    try:
+        body: dict = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    user_data = UserData.objects.get(for_user=request.user)
+    user_data.is_first_login = False
+    user_data.save()
+
+    request.user.set_password(body["password"])
+
+    return JsonResponse({"success": True}, status=200)
+
+
 def logout(request: WSGIRequest) -> JsonResponse:
     request.session.clear_expired()
     auth_logout(request)
