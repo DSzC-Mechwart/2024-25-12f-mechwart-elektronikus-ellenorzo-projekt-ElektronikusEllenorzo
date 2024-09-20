@@ -38,7 +38,6 @@ class UserData(models.Model):
     enrollment_date = models.DateField(null=True, blank=True, auto_now=True)
     profession = models.OneToOneField(Profession, on_delete=models.CASCADE, null=True, blank=True)
     subjects = models.ManyToManyField(Subject, blank=True)
-    lives_in_dorm = models.BooleanField(default=False)
     dorm_name = models.CharField(max_length=255, null=True, blank=True)
     is_first_login = models.BooleanField(default=True)
 
