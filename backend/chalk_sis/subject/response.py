@@ -58,3 +58,10 @@ def manage(request: WSGIRequest, subject_id=None) -> JsonResponse:
         subject_object.save()
 
         return JsonResponse({"status": "Ok"}, status=200)
+    elif request.method == "DELETE":
+        try:
+            Subject.objects.get(id=subject_id).delete()
+        except Subject.DoesNotExist:
+            return JsonResponse({"error": "Subject does not exist"}, status=400)
+        return JsonResponse({"status": "Ok"}, status=200)
+
