@@ -18,7 +18,7 @@ def manage_student(request: WSGIRequest) -> JsonResponse:
     user_data: UserData
     try:
         user_data = UserData.objects.get(for_user=request.user)
-    except:
+    except UserData.DoesNotExist:
         return JsonResponse({'error': 'UserData not found'}, status=404)
 
     try:
@@ -50,7 +50,6 @@ def manage_student(request: WSGIRequest) -> JsonResponse:
                 date_of_birth=datetime.strptime(body["date_of_birth"], '%Y-%m-%d'),
                 address=body["address"],
                 profession=Profession.objects.get(name=body["profession"]) if "profession" in body.keys() else None,
-                lives_in_dorm=body["lives_in_dorm"],
                 dorm_name=body["dorm_name"] if "dorm_name" in body.keys() else None,
             )
             new_user_data.save()
@@ -60,5 +59,8 @@ def manage_student(request: WSGIRequest) -> JsonResponse:
                 "password": new_password,
                 "username": new_username
             }}, status=201)
+        else:
+            return JsonResponse({'error': 'Do not use this endpoint to create regular users'}, status=400)
+
     else:
         return JsonResponse({'error': 'You do not have enough permissions'}, status=403)
