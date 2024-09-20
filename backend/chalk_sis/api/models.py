@@ -25,21 +25,29 @@ class Subject(models.Model):
         return self.name
 
 
+class Class(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class UserData(models.Model):
-    for_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    for_user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=255, choices=USER_ROLES)
     name = models.CharField(max_length=255)
-    student_class = models.CharField(max_length=8, null=True, blank=True)
-    grade = models.IntegerField(default=None, null=True, blank=True)
+    student_class = models.ForeignKey(to=Class, on_delete=models.CASCADE, blank=True, null=True)
     mothers_name = models.CharField(max_length=255, null=True, blank=True)
     place_of_birth = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     enrollment_date = models.DateField(null=True, blank=True, auto_now=True)
-    profession = models.OneToOneField(Profession, on_delete=models.CASCADE, null=True, blank=True)
+    profession = models.ForeignKey(to=Profession, on_delete=models.CASCADE, null=True, blank=True)
     subjects = models.ManyToManyField(Subject, blank=True)
     dorm_name = models.CharField(max_length=255, null=True, blank=True)
     is_first_login = models.BooleanField(default=True)
+    student_number = models.IntegerField(null=True, blank=True)
+    student_id = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return f"{self.for_user.username} ({self.role})"

@@ -5,8 +5,9 @@ from django.db import IntegrityError
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.handlers.wsgi import WSGIRequest
+from django.db.models import Q
 from authentication import wrappers
-from api.models import UserData, Profession
+from api.models import UserData, Profession, Class
 from django.contrib.auth.models import User
 from modules import string_operations
 
@@ -64,3 +65,30 @@ def manage_student(request: WSGIRequest) -> JsonResponse:
 
     else:
         return JsonResponse({'error': 'You do not have enough permissions'}, status=403)
+
+
+@login_required
+@wrappers.require_role(['admin'])
+def generate_ids(request: WSGIRequest) -> JsonResponse:
+    all_classes = Class.objects.all()
+
+    for i in all_classes:
+        for number, student in enumerate(UserData.objects.filter(
+                enrollment_date__lt=datetime.fromisoformat(f'{datetime.year}-09-01'),
+                enrollment_date__gt=datetime.fromisoformat(f'{datetime.year}-06-15'),
+                student_class=i).order_by("name")):
+            student.student_number = number + 1
+            student.student_id = f'{number + 1}/{student.enrollment_date.year}'
+            student.save()
+            continue_at = number + 2
+        last_number = UserData.objects.filter(student_class=i).order_by("name")[-1].student_number
+        continue_at = last_number + 1 if last_number else len(UserData.objects.filter(student_class=i)) + 1
+        for student in UserData.objects.filter(
+            student_number=None,
+            student_id=None,
+        ):
+            student.student_id = f'{continue_at}/{student.enrollment_date.year}'
+            student.student_number = continue_at
+            continue_at += 1
+
+    return JsonResponse({"status": "Ok"}, status=200)
