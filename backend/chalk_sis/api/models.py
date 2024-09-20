@@ -20,16 +20,20 @@ class Profession(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=255)
     is_professional = models.BooleanField(default=False)
+    grade = models.IntegerField(default=9)
+    count_per_week = models.IntegerField(default=0)
+    count_per_year = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({str(self.grade)})"
 
 
 class Class(models.Model):
-    name = models.CharField(max_length=255)
+    grade = models.IntegerField()
+    letter = models.CharField(max_length=8)
 
     def __str__(self):
-        return self.name
+        return f"{self.grade}.{self.letter}"
 
 
 class UserData(models.Model):
@@ -57,8 +61,8 @@ class Grade(models.Model):
     value = models.IntegerField(default=1)
     note = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField(auto_now=True)
-    student = models.OneToOneField(User, on_delete=models.CASCADE)
-    subject = models.OneToOneField(Subject, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name="grades")
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="grades")
 
     def __str__(self):
         return f"{self.student} - {self.value} ({self.subject})"
