@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import Q
 from authentication import wrappers
-from api.models import UserData, Profession, Class
+from api.models import UserData, Profession, Class, Subject
 from django.contrib.auth.models import User
 from modules import string_operations
 from django.db.models import Count, F
@@ -124,3 +124,14 @@ def statistics(request: WSGIRequest) -> JsonResponse:
         "travels_to_school": travels_to_school,
         "profession_enrollments_per_year": profession_enrollments_per_year,
     }, status=200)
+
+
+@login_required
+@wrappers.require_role(["admin"])
+def add_subject(request: WSGIRequest, student_id=None, subject_id=None) -> JsonResponse:
+    if student_id is None or subject_id is None:
+        return JsonResponse({"error": "You must provide both student and subject ids"}, status=400)
+    if not UserData.objects.filter(student_id=student_id, role="student").exists() and not Subject.objects.filter(id=subject_id).exists():
+        return JsonResponse({"error": "Subject or Student does not exist"}, status=400)
+    UserData.objects.get(student_id=student_id, role="student").subjects.add(Subject.objects.get(id=subject_id))
+    return JsonResponse({"status": "Ok"}, status=200)
