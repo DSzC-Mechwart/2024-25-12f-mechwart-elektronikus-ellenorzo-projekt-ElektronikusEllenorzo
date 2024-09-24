@@ -1,2 +1,2 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/WneGiUjN)
 # ElektronikusEllenorzo
+## Notion oldal: https://peterkov06.notion.site/Elektronikus-ellen-rz-104ef938e1fd8061a6c9d877a7026560?pvs=4
