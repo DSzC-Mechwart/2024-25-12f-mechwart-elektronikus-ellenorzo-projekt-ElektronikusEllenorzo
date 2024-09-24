@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using API;
-using Avalonia.Media;
 using Chalk.views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -21,8 +20,6 @@ public partial class LoginViewModel : ObservableObject {
 
     [ObservableProperty]
     private string _errorMessage = "";
-
-    public Brush AccentColor => AvaUtils.Manager.accentBrush;
 
     public ICommand SubmitCommand => new RelayCommand(async () => {
         var res = await ChalkAPI.Instance.Auth.Login(Username, Password);
