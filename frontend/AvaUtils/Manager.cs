@@ -1,4 +1,6 @@
-﻿using Avalonia.Data;
+﻿using Avalonia.Controls;
+using Avalonia.Data;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AvaUtils;
@@ -6,6 +8,8 @@ namespace AvaUtils;
 public static class Manager {
     private static readonly Dictionary<string, Action<ObservableObject>> _navSetters = new();
     private static readonly Dictionary<string, Optional<ObservableObject>> _navCurrentPages = new();
+
+    public static Brush accentBrush = new SolidColorBrush(Color.Parse("#026fc7"));
 
     public static void RegisterNav(string key, Action<ObservableObject> setter, ObservableObject? currentPage) {
         _navSetters[key] = setter;
