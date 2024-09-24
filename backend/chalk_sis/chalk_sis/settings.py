@@ -38,7 +38,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = "/api/auth/no_login"
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'http://*']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 # Application definition
 
