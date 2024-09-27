@@ -2,7 +2,7 @@ using API.models;
 
 namespace API;
 
-public abstract record GetAllSubjectsResponse {
+public record GetAllSubjectsResponse {
     public SubjectJSON[]? subjects { get; set; }
 }
 
