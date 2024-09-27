@@ -21,6 +21,7 @@ public class ChalkAPI {
     private readonly HttpClient _httpClient;
 
     public AuthAPI Auth => new AuthAPI(this);
+    public SubjectAPI Subject => new SubjectAPI(this);
 
     private ChalkAPI() {
         var handler = new HttpClientHandler() {
