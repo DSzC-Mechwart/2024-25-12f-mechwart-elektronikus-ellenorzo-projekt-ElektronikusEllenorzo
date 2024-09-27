@@ -20,6 +20,7 @@ class Profession(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=255)
     is_professional = models.BooleanField(default=False)
+    for_professions = models.ManyToManyField(Profession, blank=True)
     grade = models.IntegerField(default=9)
     count_per_week = models.IntegerField(default=0)
     count_per_year = models.IntegerField(default=0)
