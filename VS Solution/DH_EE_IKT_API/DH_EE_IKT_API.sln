@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DH_EE_IKT_API", "DH_EE_IKT_API.csproj", "{6083B009-3692-4440-9A9E-E4F656C1AA4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6083B009-3692-4440-9A9E-E4F656C1AA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6083B009-3692-4440-9A9E-E4F656C1AA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6083B009-3692-4440-9A9E-E4F656C1AA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6083B009-3692-4440-9A9E-E4F656C1AA4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72E468C3-E609-4F1D-99FF-1D22CA657173}
+	EndGlobalSection
+EndGlobal
