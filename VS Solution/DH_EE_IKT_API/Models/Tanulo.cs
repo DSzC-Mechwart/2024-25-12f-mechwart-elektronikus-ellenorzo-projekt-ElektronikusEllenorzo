@@ -18,7 +18,7 @@ namespace DH_EE_IKT_API.Models
 
         public string? Koli { get; set; }
         [Required]
-        public required int Osztaly_ID { get; set; }
+        public required string Osztaly_ID { get; set; }
         [Required]
         public required int Torzslapszam { get; set; }
         [Required]

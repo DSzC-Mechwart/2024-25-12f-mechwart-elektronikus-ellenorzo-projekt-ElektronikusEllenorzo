@@ -10,7 +10,7 @@ namespace DH_EE_IKT_API.Models
         [Required]
         public required string Nev { get; set; }
         [Required]
-        public required int Osztaly_ID { get; set; }
+        public required string Osztaly_ID { get; set; }
         [Required]
         public required bool Szakmai_e { get; set; }
         [Required]
