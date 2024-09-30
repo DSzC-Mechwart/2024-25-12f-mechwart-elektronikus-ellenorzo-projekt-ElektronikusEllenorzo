@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DH_EE_IKT_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240929142500_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20240930174516_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
