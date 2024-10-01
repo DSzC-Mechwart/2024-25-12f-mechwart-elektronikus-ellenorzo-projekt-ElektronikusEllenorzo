@@ -103,7 +103,13 @@ public class APIResponse<T> : APIResponse {
 
     public APIResponse(HttpResponseMessage res) : base(res) {
         if (base.Data != null) {
-            Data = base.Data.ToObject<T>();
+            try {
+                Data = base.Data.ToObject<T>();
+
+            }
+            catch (Exception ex) {
+                Console.WriteLine($"Generic apiresponse data could not be converted to T: {ex}");
+            }
         }
     }
 }

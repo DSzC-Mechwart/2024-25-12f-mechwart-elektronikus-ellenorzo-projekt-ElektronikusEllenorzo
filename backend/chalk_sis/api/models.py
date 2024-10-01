@@ -1,5 +1,11 @@
+import json
+import json_fix
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import model_to_dict
+
+# Mentioning json_fix so it's not unused
+json_fix.__name__
 
 USER_ROLES = (
     ("admin", "Admin"),
@@ -15,6 +21,9 @@ class Profession(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def __json__(self):
+        return model_to_dict(self)
 
 
 class Subject(models.Model):
