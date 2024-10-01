@@ -18,8 +18,8 @@
                 <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
                     Home
                 </Button>
-                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToHomeCommand}">
-                    Home
+                <Button HorizontalAlignment="Stretch" Command="{Binding NavigateToAdminSubjectsCommand}">
+                    Subjects
                 </Button>
             </StackPanel>
         </Border>

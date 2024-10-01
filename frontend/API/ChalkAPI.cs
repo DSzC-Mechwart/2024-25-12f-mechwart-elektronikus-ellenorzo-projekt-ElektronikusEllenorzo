@@ -21,6 +21,7 @@ public class ChalkAPI {
     private readonly HttpClient _httpClient;
 
     public AuthAPI Auth => new AuthAPI(this);
+    public SubjectAPI Subject => new SubjectAPI(this);
 
     private ChalkAPI() {
         var handler = new HttpClientHandler() {
@@ -102,7 +103,13 @@ public class APIResponse<T> : APIResponse {
 
     public APIResponse(HttpResponseMessage res) : base(res) {
         if (base.Data != null) {
-            Data = base.Data.ToObject<T>();
+            try {
+                Data = base.Data.ToObject<T>();
+
+            }
+            catch (Exception ex) {
+                Console.WriteLine($"Generic apiresponse data could not be converted to T: {ex}");
+            }
         }
     }
 }
