@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using IKT_II_Derecske_Holding_EE.Ablakok.Login;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace IKT_II_Derecske_Holding_EE
         public MainWindow()
         {
             InitializeComponent();
+            OurWindow.Content = new LoginPanel();
         }
     }
 }
