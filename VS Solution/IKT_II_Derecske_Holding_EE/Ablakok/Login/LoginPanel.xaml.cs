@@ -38,10 +38,18 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
 
         private async void GetTanulok()
         {
-            var response = await client.GetStringAsync("api/Tanulo");
-            var tanulok = JsonConvert.DeserializeObject<List<Tanulo_Obj>>(response);
-            MessageBox.Show($"{tanulok.Count()}");
-            TestGrid.ItemsSource = tanulok;
+            try
+            {
+                var response = await client.GetStringAsync("api/Tanulo");
+                var tanulok = JsonConvert.DeserializeObject<List<Tanulo_Obj>>(response);
+                MessageBox.Show($"{tanulok.Count()}");
+                TestGrid.ItemsSource = tanulok;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
         }
     }
 }

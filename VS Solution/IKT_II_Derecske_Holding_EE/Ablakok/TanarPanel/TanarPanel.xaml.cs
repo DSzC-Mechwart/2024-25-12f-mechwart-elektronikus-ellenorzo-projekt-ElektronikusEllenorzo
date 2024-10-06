@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IKT_II_Derecske_Holding_EE.API_Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
     /// </summary>
     public partial class TanarPanel : UserControl
     {
+        SzerverAdatok szerverAdatok = new();
+
         public TanarPanel()
         {
             InitializeComponent();

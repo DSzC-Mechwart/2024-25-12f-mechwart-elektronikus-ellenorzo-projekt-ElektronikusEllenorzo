@@ -20,7 +20,7 @@ namespace DH_EE_IKT_API.Models
         [Required]
         public required string Osztaly_ID { get; set; }
         [Required]
-        public required int Torzslapszam { get; set; }
+        public required string Torzslapszam { get; set; }
         [Required]
         public required string P_Salt { get; set; }
         [Required]

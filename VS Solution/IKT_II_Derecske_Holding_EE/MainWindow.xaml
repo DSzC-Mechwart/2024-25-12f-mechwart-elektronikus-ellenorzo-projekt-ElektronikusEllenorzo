@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ContentControl x:Name="OurWindow"></ContentControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ContentControl x:Name="OurWindow" Grid.Row="0"></ContentControl>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Margin="6" Content="Login oldal" x:Name="LoginBtn"></Button>
+            <Button Margin="6" Grid.Column="1" Content="Tanulo oldal" x:Name="TanuloBtn"></Button>
+            <Button Margin="6" Grid.Column="2" Content="Tanar oldal" x:Name="TanarBtn"></Button>
+        </Grid>
     </Grid>
 </Window>

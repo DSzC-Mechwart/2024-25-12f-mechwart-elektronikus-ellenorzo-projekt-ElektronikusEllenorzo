@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IKT_II_Derecske_Holding_EE.API_Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanulo
     /// </summary>
     public partial class TanuloPanel : UserControl
     {
+        SzerverAdatok szerverAdatok = new();
         public TanuloPanel()
         {
             InitializeComponent();

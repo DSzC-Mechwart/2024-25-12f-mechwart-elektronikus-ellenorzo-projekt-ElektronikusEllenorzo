@@ -1,4 +1,6 @@
 ﻿using IKT_II_Derecske_Holding_EE.Ablakok.Login;
+using IKT_II_Derecske_Holding_EE.Ablakok.Tanar;
+using IKT_II_Derecske_Holding_EE.Ablakok.Tanulo;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +22,22 @@ namespace IKT_II_Derecske_Holding_EE
         public MainWindow()
         {
             InitializeComponent();
-            OurWindow.Content = new LoginPanel();
+
+            LoginBtn.Click += (sender,e) => 
+            {
+                OurWindow.Content = new LoginPanel();
+            };
+
+            TanarBtn.Click += (sender, e) =>
+            {
+                OurWindow.Content = new TanarPanel();
+            };
+
+            TanuloBtn.Click += (sender, e) =>
+            {
+                OurWindow.Content = new TanuloPanel();
+            };
+
         }
     }
 }
