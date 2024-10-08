@@ -18,28 +18,5 @@ namespace IKT_II_Derecske_Holding_EE.Models
         public int? Hetedik_Tanora_ID { get; set; }
         public int? Nyolcadik_Tanora_ID { get; set; }
 
-        [ForeignKey("Elso_Tanora_ID")]
-        public Tanora? Elso_Ora { get; set; }
-
-        [ForeignKey("Masodik_Tanora_ID")]
-        public Tanora? Masodik_Ora { get; set; }
-
-        [ForeignKey("Harmadik_Tanora_ID")]
-        public Tanora? Harmadik_Ora { get; set; }
-
-        [ForeignKey("Negyedik_Tanora_ID")]
-        public Tanora? Negyedik_Ora { get; set; }
-
-        [ForeignKey("Otodik_Tanora_ID")]
-        public Tanora? Otodik_Ora { get; set; }
-
-        [ForeignKey("Hatodik_Tanora_ID")]
-        public Tanora? Hatodik_Ora { get; set; }
-
-        [ForeignKey("Hetedik_Tanora_ID")]
-        public Tanora? Hetedik_Ora { get; set; }
-
-        [ForeignKey("Nyolcadik_Tanora_ID")]
-        public Tanora? Nyolcadik_Ora { get; set; }
     }
 }

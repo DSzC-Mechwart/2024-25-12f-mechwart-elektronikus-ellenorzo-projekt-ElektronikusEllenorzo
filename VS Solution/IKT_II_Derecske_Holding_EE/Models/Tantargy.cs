@@ -16,10 +16,5 @@ namespace IKT_II_Derecske_Holding_EE.Models
         [Required]
         public required int Tanar_ID { get; set; }
 
-        [ForeignKey("Osztaly_ID")]
-        public required Osztaly Osztaly { get; set; }
-
-        [ForeignKey("Tanar_ID")]
-        public required Tanar Tanar { get; set; }
     }
 }

@@ -20,13 +20,5 @@ namespace IKT_II_Derecske_Holding_EE.Models
         [Required]
         public required int Tanar_ID { get; set; }
 
-        [ForeignKey(nameof(Tantargy_ID))]
-        public required Tantargy Tantargy { get; set; }
-
-        [ForeignKey(nameof(Tanulo_ID))]
-        public required Tanulo_Obj Tanulo { get; set; }
-
-        [ForeignKey(nameof(Tanar_ID))]
-        public required Tanar Tanar { get; set; }
     }
 }

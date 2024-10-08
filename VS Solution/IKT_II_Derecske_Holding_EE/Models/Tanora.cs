@@ -12,7 +12,5 @@ namespace IKT_II_Derecske_Holding_EE.Models
         [Required]
         public required int Tantargy_ID { get; set; }
 
-        [ForeignKey("Tantargy_ID")]
-        public required Tantargy Targy { get; set; }
     }
 }

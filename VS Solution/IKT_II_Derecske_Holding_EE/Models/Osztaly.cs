@@ -14,10 +14,5 @@ namespace IKT_II_Derecske_Holding_EE.Models
         [Required]
         public required int Szak_ID { get; set; }
 
-        [ForeignKey(nameof(Ofo_ID))]
-        public Tanar? Osztalyfonok { get; set; }
-
-        [ForeignKey(nameof(Szak_ID))]
-        public Szak? Szak { get; set; }
     }
 }
