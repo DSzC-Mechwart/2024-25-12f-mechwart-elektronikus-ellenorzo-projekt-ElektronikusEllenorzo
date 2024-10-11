@@ -11,6 +11,24 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Margin="20" x:Name="TestGrid"></DataGrid>
+        <DataGrid Margin="20" x:Name="TestGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Születési hely" Binding="{Binding Szul_Hely}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Születési idő" Binding="{Binding Szul_Ido}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Anyja Neve" Binding="{Binding Anya_Nev}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lakcím" Binding="{Binding Lakcim}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Osztály" Binding="{Binding Osztaly_ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kollégium" Binding="{Binding Koli}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Torzslapszam}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button >Törlés</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

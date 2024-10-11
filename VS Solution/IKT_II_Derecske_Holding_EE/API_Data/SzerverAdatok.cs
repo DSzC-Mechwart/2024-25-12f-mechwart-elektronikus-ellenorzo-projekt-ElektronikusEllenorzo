@@ -104,6 +104,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Tanulo");
                 var tanulok = JsonConvert.DeserializeObject<List<Tanulo_Obj>>(response);
+                Tanulok = tanulok.ToList();
             }
             catch (Exception)
             {
@@ -118,6 +119,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Szakok");
                 var szakok = JsonConvert.DeserializeObject<List<Szak>>(response);
+                Szakok = szakok.ToList();
             }
             catch (Exception)
             {
@@ -132,6 +134,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Osztaly");
                 var osztalyok = JsonConvert.DeserializeObject<List<Osztaly>>(response);
+                Osztalyok = osztalyok.ToList();
             }
             catch (Exception)
             {
@@ -146,6 +149,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Tanarok");
                 var tanarok = JsonConvert.DeserializeObject<List<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
+                Tanarok = tanarok.ToList();
             }
             catch (Exception)
             {
@@ -160,6 +164,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Jegyek");
                 var jegyek = JsonConvert.DeserializeObject<List<Jegy>>(response);
+                Jegyek = jegyek.ToList();
             }
             catch (Exception)
             {
@@ -174,6 +179,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Tantargyak");
                 var tantargyak = JsonConvert.DeserializeObject<List<Tantargy>>(response);
+                Tantargyak = tantargyak.ToList();
             }
             catch (Exception)
             {
@@ -188,6 +194,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Tanorak");
                 var tanorak = JsonConvert.DeserializeObject<List<Tanora>>(response);
+                Tanorak = tanorak.ToList();
             }
             catch (Exception)
             {
@@ -202,6 +209,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Orarendek/osszes");
                 var orarendek = JsonConvert.DeserializeObject<List<Orarend>>(response);
+                Orarendek = orarendek.ToList();
             }
             catch (Exception)
             {

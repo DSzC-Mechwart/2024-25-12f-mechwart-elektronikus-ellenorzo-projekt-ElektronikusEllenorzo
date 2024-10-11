@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using IKT_II_Derecske_Holding_EE.Models;
+using IKT_II_Derecske_Holding_EE.API_Data;
+using IKT_II_Derecske_Holding_EE.Ablakok.Stilus;
 
 namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
 {
@@ -23,10 +25,11 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
     /// </summary>
     public partial class LoginPanel : UserControl
     {
+        SzerverAdatok SzerverAdatok = new();
         public LoginPanel()
         {
-
             InitializeComponent();
+            TestGrid.ItemsSource = SzerverAdatok.Tanulok;
         }
 
     }
