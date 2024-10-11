@@ -21,12 +21,12 @@ namespace DH_EE_IKT_API.Models
         public required int Tanar_ID { get; set; }
 
         [ForeignKey(nameof(Tantargy_ID))]
-        public required Tantargy Tantargy { get; set; }
+        public Tantargy? Tantargy { get; set; }
 
         [ForeignKey(nameof(Tanulo_ID))]
-        public required Tanulo Tanulo { get; set; }
+        public Tanulo? Tanulo { get; set; }
 
         [ForeignKey(nameof(Tanar_ID))]
-        public required Tanar Tanar { get; set; }
+        public Tanar? Tanar { get; set; }
     }
 }

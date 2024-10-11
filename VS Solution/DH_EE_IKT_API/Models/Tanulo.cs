@@ -27,6 +27,6 @@ namespace DH_EE_IKT_API.Models
         public required string P_Hash { get; set; }
 
         [ForeignKey(nameof(Osztaly_ID))]
-        public required Osztaly Osztaly { get; set; }
+        public Osztaly? Osztaly { get; set; }
     }
 }

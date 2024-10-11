@@ -17,5 +17,13 @@ namespace DH_EE_IKT_API.Controllers
         {
             return _context.Tanulok;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTanulo([FromBody] Tanulo tanulo) 
+        {
+            _context.Tanulok.Add(tanulo);
+            await _context.SaveChangesAsync();
+            return Created();
+        }
     }
 }

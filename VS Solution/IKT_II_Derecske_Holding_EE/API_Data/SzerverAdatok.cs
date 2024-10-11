@@ -1,9 +1,12 @@
 ﻿using IKT_II_Derecske_Holding_EE.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace IKT_II_Derecske_Holding_EE.API_Data
 {
@@ -44,9 +47,15 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         /// Az osztályonkénti órarendek.
         /// </summary>
         public List<Orarend> Orarendek;
+        HttpClient client = new();
 
         public SzerverAdatok()
         {
+            client.BaseAddress = new Uri("https://localhost:7181/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
+                );
             Tanulok = new();
             Osztalyok = new();
             Jegyek = new();
@@ -85,6 +94,119 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
             Szakok.Add(s1);
             Szakok.Add(s2);
+
+        }
+
+
+        private async void GetTanulok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Tanulo");
+                var tanulok = JsonConvert.DeserializeObject<List<Tanulo_Obj>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetSzakok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Szakok");
+                var szakok = JsonConvert.DeserializeObject<List<Szak>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetOsztalyok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Osztaly");
+                var osztalyok = JsonConvert.DeserializeObject<List<Osztaly>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetTanarok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Tanarok");
+                var tanarok = JsonConvert.DeserializeObject<List<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetJegyek()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Jegyek");
+                var jegyek = JsonConvert.DeserializeObject<List<Jegy>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetTantargyak()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Tantargyak");
+                var tantargyak = JsonConvert.DeserializeObject<List<Tantargy>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetTanorak()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Tanorak");
+                var tanorak = JsonConvert.DeserializeObject<List<Tanora>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetOrarend()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Orarendek/osszes");
+                var orarendek = JsonConvert.DeserializeObject<List<Orarend>>(response);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
 
         }
     }

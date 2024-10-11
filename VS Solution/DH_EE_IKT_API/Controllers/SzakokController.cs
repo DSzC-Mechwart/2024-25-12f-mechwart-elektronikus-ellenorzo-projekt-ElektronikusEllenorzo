@@ -16,5 +16,13 @@ namespace DH_EE_IKT_API.Controllers
         {
             return _context.Szakok;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddSzak([FromBody] Szak szak)
+        {
+            _context.Szakok.Add(szak);
+            await _context.SaveChangesAsync();
+            return Created();
+        }
     }
 }

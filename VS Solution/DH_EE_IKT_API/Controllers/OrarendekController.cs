@@ -17,7 +17,7 @@ namespace DH_EE_IKT_API.Controllers
             return _context.Orarendek;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public Orarend? GetOrarend(string id)
         {
             try
@@ -28,6 +28,14 @@ namespace DH_EE_IKT_API.Controllers
             {
                 return null;
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddOrarend([FromBody] Orarend orarend)
+        {
+            _context.Orarendek.Add(orarend);
+            await _context.SaveChangesAsync();
+            return Created();
         }
     }
 }

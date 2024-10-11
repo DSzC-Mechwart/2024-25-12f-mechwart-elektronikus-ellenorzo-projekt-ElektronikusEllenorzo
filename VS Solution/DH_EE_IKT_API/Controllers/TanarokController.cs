@@ -16,5 +16,13 @@ namespace DH_EE_IKT_API.Controllers
         {
             return _context.Tanarok;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTanar([FromBody] Tanar tanar)
+        {
+            _context.Tanarok.Add(tanar);
+            await _context.SaveChangesAsync();
+            return Created();
+        }
     }
 }

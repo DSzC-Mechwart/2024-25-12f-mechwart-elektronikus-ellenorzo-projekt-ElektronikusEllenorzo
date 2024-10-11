@@ -16,5 +16,13 @@ namespace DH_EE_IKT_API.Controllers
         {
             return _context.Tantargyak;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTantargy([FromBody] Tantargy tantargy)
+        {
+            _context.Tantargyak.Add(tantargy);
+            await _context.SaveChangesAsync();
+            return Created();
+        }
     }
 }

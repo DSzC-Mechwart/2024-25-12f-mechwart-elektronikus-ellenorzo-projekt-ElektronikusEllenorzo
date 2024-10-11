@@ -17,5 +17,13 @@ namespace DH_EE_IKT_API.Controllers
         {
             return _context.Osztalyok;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddOsztaly([FromBody] Osztaly osztaly)
+        {
+            _context.Osztalyok.Add(osztaly);
+            await _context.SaveChangesAsync();
+            return Created();
+        }
     }
 }

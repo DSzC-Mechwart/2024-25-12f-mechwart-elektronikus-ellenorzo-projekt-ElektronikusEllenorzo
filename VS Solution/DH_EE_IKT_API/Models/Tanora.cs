@@ -13,6 +13,6 @@ namespace DH_EE_IKT_API.Models
         public required int Tantargy_ID { get; set; }
 
         [ForeignKey("Tantargy_ID")]
-        public required Tantargy Targy { get; set; }
+        public Tantargy? Targy { get; set; }
     }
 }

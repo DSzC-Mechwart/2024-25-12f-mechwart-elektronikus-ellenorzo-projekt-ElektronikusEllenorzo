@@ -15,9 +15,9 @@ namespace DH_EE_IKT_API.Models
         public required int Szak_ID { get; set; }
 
         [ForeignKey(nameof(Ofo_ID))]
-        public required Tanar Osztalyfonok { get; set; }
+        public Tanar? Osztalyfonok { get; set; }
 
         [ForeignKey(nameof(Szak_ID))]
-        public required Szak Szak { get; set; }
+        public Szak? Szak { get; set; }
     }
 }

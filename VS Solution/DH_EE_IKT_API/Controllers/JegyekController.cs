@@ -16,5 +16,19 @@ namespace DH_EE_IKT_API.Controllers
         {
             return _context.Jegyek;
         }
+
+        [HttpGet("{id}")]
+        public IEnumerable<Jegy> GetJegyek(int id)
+        {
+            return _context.Jegyek.Where(x => x.Tanulo_ID == id );
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddJegy([FromBody] Jegy jegy)
+        {
+            _context.Jegyek.Add(jegy);
+            await _context.SaveChangesAsync();
+            return Created();
+        }
     }
 }

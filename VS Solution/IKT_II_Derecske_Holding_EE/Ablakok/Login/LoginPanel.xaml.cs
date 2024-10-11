@@ -23,33 +23,11 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
     /// </summary>
     public partial class LoginPanel : UserControl
     {
-        HttpClient client = new();
         public LoginPanel()
         {
-            client.BaseAddress = new Uri("https://localhost:7181/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
-                );
 
             InitializeComponent();
-            GetTanulok();
         }
 
-        private async void GetTanulok()
-        {
-            try
-            {
-                var response = await client.GetStringAsync("api/Tanulo");
-                var tanulok = JsonConvert.DeserializeObject<List<Tanulo_Obj>>(response);
-                MessageBox.Show($"{tanulok.Count()}");
-                TestGrid.ItemsSource = tanulok;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Nem található a szerver");
-            }
-
-        }
     }
 }
