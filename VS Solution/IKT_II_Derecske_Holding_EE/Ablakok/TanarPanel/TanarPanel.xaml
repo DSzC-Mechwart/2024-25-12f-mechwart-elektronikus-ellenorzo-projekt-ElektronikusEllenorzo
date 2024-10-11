@@ -7,6 +7,74 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1">
+                    <Ellipse Height="50" Stroke="Black" Width="48"/>
+                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <Label Content="Label" Height="29" Width="150" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <StackPanel Grid.Row="1"/>
+
+        </Grid>
+        <Grid>
+            <TabControl TabStripPlacement="right">
+                <TabItem Header="General">
+                    <Grid>
+                        
+                        
+                        
+                        <Grid >
+                            <TabControl TabStripPlacement="Bottom">
+            <TabItem Header="Jegyek Bevitele">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="10*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="1">
+                                            <ComboBox Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                        </StackPanel>
+                                        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                                    </Grid>
+            </TabItem>
+            <TabItem Header="Összes Adat" />
+             
+        </TabControl>
+                        </Grid>
+                        
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Security" />
+                <TabItem Header="Details" />
+            </TabControl>
+        </Grid>
+       
+        
+
     </Grid>
 </UserControl>
