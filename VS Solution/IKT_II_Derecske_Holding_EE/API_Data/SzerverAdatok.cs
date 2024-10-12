@@ -95,6 +95,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Szakok.Add(s1);
             Szakok.Add(s2);
 
+            Jegy jegy = new() { Datum= new(), ID = 5, Jegy_Ertek = 4, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború" };
+            Jegyek.Add(jegy);
+
         }
 
 

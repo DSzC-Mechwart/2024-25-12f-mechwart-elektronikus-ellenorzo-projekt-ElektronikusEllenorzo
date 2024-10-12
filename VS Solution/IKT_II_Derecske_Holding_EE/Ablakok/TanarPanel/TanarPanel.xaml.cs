@@ -26,6 +26,8 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         public TanarPanel()
         {
             InitializeComponent();
+            TanuloAdatokGrid.ItemsSource = szerverAdatok.Tanulok;
+            TanuloJegyekGrid.ItemsSource = szerverAdatok.Jegyek;
         }
     }
 }

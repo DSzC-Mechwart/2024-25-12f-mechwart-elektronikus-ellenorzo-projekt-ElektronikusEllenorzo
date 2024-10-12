@@ -44,9 +44,6 @@
             <TabControl TabStripPlacement="right">
                 <TabItem Header="General">
                     <Grid>
-                        
-                        
-                        
                         <Grid >
                             <TabControl TabStripPlacement="Bottom">
             <TabItem Header="Jegyek Bevitele">
@@ -59,12 +56,37 @@
                                         <StackPanel Grid.Row="1">
                                             <ComboBox Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                                         </StackPanel>
-                                        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                                        <DataGrid Margin="20" x:Name="TanuloJegyekGrid" AutoGenerateColumns="False" Grid.Row="1">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Név" Binding="{Binding Tanulo_ID}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Jegy" Binding="{Binding Jegy_Ertek}"></DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                                     </Grid>
             </TabItem>
-            <TabItem Header="Összes Adat" />
-             
-        </TabControl>
+            <TabItem Header="Összes Adat">
+                                    <DataGrid Margin="20" x:Name="TanuloAdatokGrid" AutoGenerateColumns="False" Grid.Row="1">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Születési hely" Binding="{Binding Szul_Hely}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Születési idő" Binding="{Binding Szul_Ido}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Anyja Neve" Binding="{Binding Anya_Nev}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Lakcím" Binding="{Binding Lakcim}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Osztály" Binding="{Binding Osztaly_ID}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Kollégium" Binding="{Binding Koli}"></DataGridTextColumn>
+                                            <DataGridTextColumn Binding="{Binding Torzslapszam}"></DataGridTextColumn>
+                                            <DataGridTemplateColumn>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button>Törlés</Button>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+
+                            </TabControl>
                         </Grid>
                         
                     </Grid>
