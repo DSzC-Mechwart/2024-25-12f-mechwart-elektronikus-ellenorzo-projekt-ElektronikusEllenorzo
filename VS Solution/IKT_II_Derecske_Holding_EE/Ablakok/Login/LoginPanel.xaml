@@ -8,8 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <DataGrid Margin="20" x:Name="TestGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -30,5 +31,21 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TabControl Grid.Column="1" Margin="5" x:Name="tabs">
+            <TabItem>
+                <DataGrid x:Name="JegyekGrid" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                    </DataGrid.Columns>
+                    
+                </DataGrid>
+            </TabItem>
+            <TabItem>
+                <Label>LONG LIVE THE ANIMAL FARM</Label>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Column="2">
+            <Button Content="Elso tab" Margin="10" x:Name="elsoBtn"></Button>
+            <Button Content="Masodik tab" Margin="10" x:Name="masodikBtn"></Button>
+        </StackPanel>
     </Grid>
 </UserControl>

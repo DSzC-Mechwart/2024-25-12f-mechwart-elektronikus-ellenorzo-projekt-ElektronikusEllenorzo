@@ -18,6 +18,12 @@ namespace DH_EE_IKT_API.Controllers
             return _context.Tanulok;
         }
 
+        [HttpGet("{osztalyId}")]
+        public IEnumerable<Tanulo> GetOsztalyTanulok(string osztalyId)
+        {
+            return _context.Tanulok.Where( x => x.Osztaly_ID == osztalyId);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddTanulo([FromBody] Tanulo tanulo) 
         {

@@ -1,6 +1,7 @@
 ﻿using DH_EE_IKT_API.Data;
 using DH_EE_IKT_API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.ObjectModel;
 
 namespace DH_EE_IKT_API.Controllers
 {
@@ -21,6 +22,12 @@ namespace DH_EE_IKT_API.Controllers
         public IEnumerable<Jegy> GetJegyek(int id)
         {
             return _context.Jegyek.Where(x => x.Tanulo_ID == id );
+        }
+
+        [HttpGet("osztalyok/{osztaly}")]
+        public IEnumerable<Jegy> GetOsztalyJegyek(string osztaly)
+        {
+            return _context.Jegyek.Where(x => x.Osztaly_ID.ToLower() == osztaly.ToLower());
         }
 
         [HttpPost]

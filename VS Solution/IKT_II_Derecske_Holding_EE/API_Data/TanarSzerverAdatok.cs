@@ -8,21 +8,23 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static IKT_II_Derecske_Holding_EE.API_Data.SzerverAdatok;
 
 namespace IKT_II_Derecske_Holding_EE.API_Data
 {
-    /// <summary>
-    /// A szervertől kapott adatokat tároló objektum, az adatok a listákban vannak.
-    /// </summary>
-    public class SzerverAdatok
+    public class TanarSzerverAdatok
     {
-        public delegate void AdatokLekerdezveD();
-        public event AdatokLekerdezveD AdatokLekerdezve;
-        public event AdatokLekerdezveD JegyekLekerdezve;
+        public event AdatokLekerdezveD TanulokLekerdezve;
+        public event AdatokLekerdezveD OsztalyJegyekLekerdezve;
+
         /// <summary>
-        /// Az összes jegy listája.
+        /// A tanulók teljes listája.
         /// </summary>
-        public ObservableCollection<Jegy> Jegyek;
+        public ObservableCollection<Tanulo_Obj> Tanulok;
+        /// <summary>
+        /// Az összes osztály listája.
+        /// </summary>
+        public ObservableCollection<Osztaly> Osztalyok;
         /// <summary>
         /// A tantárgyak listája.
         /// </summary>
@@ -43,62 +45,46 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         /// Az osztályonkénti órarendek.
         /// </summary>
         public ObservableCollection<Orarend> Orarendek;
+        public ObservableCollection<Jegy> OsztalyJegyek;
+
         HttpClient client = new();
 
-        public SzerverAdatok()
+        public TanarSzerverAdatok()
         {
             client.BaseAddress = new Uri("https://localhost:7181/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
                 );
-            Jegyek = new();
             Tantargyak = new();
             Tanarok = new();
             Szakok = new();
             Tanorak = new();
             Orarendek = new();
-            /*
-            Tanulo_Obj t1 = new() { ID = 1, Nev = "Szabó Balázs", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Nagy-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.F", Torzslapszam = "58965" };
-            Tanulo_Obj t2 = new() { ID = 2, Nev = "Szabó Balázs2", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Nagy-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.F", Torzslapszam = "58936" };
-            Tanulo_Obj t3 = new() { ID = 3, Nev = "Szabó Balázs3", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Kis-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.E", Torzslapszam = "52636" };
+            Tanulok = new();
+            Osztalyok = new();
 
-            Tanulok.Add(t1);
-            Tanulok.Add(t2);
-            Tanulok.Add(t3);*/
+            Osztaly o1 = new() { ID = "12.F", Evfolyam = 12, Ofo_ID = 1, Szak_ID = 1 };
+            Osztaly o2 = new() { ID = "12.E", Evfolyam = 12, Ofo_ID = 2, Szak_ID = 1 };
+            Osztaly o3 = new() { ID = "12.D", Evfolyam = 12, Ofo_ID = 3, Szak_ID = 2 };
 
-            Tanar tr1 = new() { ID = 1, Nev = "Jancsika" };
-            Tanar tr2 = new() { ID = 2, Nev = "Pista" };
-            Tanar tr3 = new() { ID = 3, Nev = "Bela" };
+            Osztalyok.Add(o1);
+            Osztalyok.Add(o2);
+            Osztalyok.Add(o3);
 
-            Tanarok.Add(tr1);
-            Tanarok.Add(tr2);
-            Tanarok.Add(tr3);
-
-            Szak s1 = new() { ID = 1, Szak_Nev = "Szoftverfejlesztő" };
-            Szak s2 = new() { ID = 2, Szak_Nev = "Vezérkari tiszt" };
-
-            Szakok.Add(s1);
-            Szakok.Add(s2);
-
-            /*Jegy jegy = new() { Datum= new(), ID = 1, Jegy_Ertek = 4, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború" };
-            Jegy jegy2 = new() { Datum= new(), ID = 2, Jegy_Ertek = 5, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború" };
-            Jegy jegy3 = new() { Datum= new(), ID = 3, Jegy_Ertek = 2, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 3, Tema = "2.világháború" };
-            Jegy jegy4 = new() { Datum= new(), ID = 1, Jegy_Ertek = 3, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 4, Tema = "2.világháború" };
-            Jegyek.Add(jegy);
-            Jegyek.Add(jegy2);
-            Jegyek.Add(jegy3);
-            Jegyek.Add(jegy4);*/
-            GetTanuloJegyek(2);
+            OsztalyJegyek = new();
+            GetTanulok("12.F");
+            GetOsztalyJegyek("12.F");
         }
 
-        private async void GetSzakok()
+        private async void GetOsszesTanulok()
         {
             try
             {
-                var response = await client.GetStringAsync("api/Szakok");
-                var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
-                Szakok = szakok;
+                var response = await client.GetStringAsync("api/Tanulo");
+                var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
+                Tanulok = tanulok;
+                TanulokLekerdezve.Invoke();
             }
             catch (Exception)
             {
@@ -107,13 +93,14 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
         }
 
-        private async void GetTanarok()
+        private async void GetTanulok(string id)
         {
             try
             {
-                var response = await client.GetStringAsync("api/Tanarok");
-                var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
-                Tanarok = tanarok;
+                var response = await client.GetStringAsync($"api/Tanulo/{id}");
+                var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
+                Tanulok = tanulok;
+                TanulokLekerdezve?.Invoke();
             }
             catch (Exception)
             {
@@ -122,14 +109,15 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
         }
 
-        private async void GetJegyek()
+        private async void GetOsztalyJegyek(string id)
         {
             try
             {
-                var response = await client.GetStringAsync("api/Jegyek");
+                OsztalyJegyek.Clear();
+                var response = await client.GetStringAsync($"api/Jegyek/osztalyok/{id}");
                 var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                Jegyek = jegyek;
-                JegyekLekerdezve?.Invoke();
+                OsztalyJegyek = jegyek;
+                OsztalyJegyekLekerdezve.Invoke();
             }
             catch (Exception)
             {
@@ -138,15 +126,13 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
         }
 
-        private async void GetTanuloJegyek(int id)
+        private async void GetOsztalyok()
         {
             try
             {
-                var response = await client.GetStringAsync($"api/Jegyek/{id}");
-                var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                MessageBox.Show($"{jegyek.Count}");
-                Jegyek = jegyek;
-                JegyekLekerdezve?.Invoke();
+                var response = await client.GetStringAsync("api/Osztaly");
+                var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
+                Osztalyok = osztalyok;
             }
             catch (Exception)
             {
@@ -199,5 +185,36 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             }
 
         }
+
+        private async void GetSzakok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Szakok");
+                var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
+                Szakok = szakok;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
+        private async void GetTanarok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Tanarok");
+                var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
+                Tanarok = tanarok;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
+        }
+
     }
 }

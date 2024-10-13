@@ -19,6 +19,8 @@ namespace DH_EE_IKT_API.Models
         public required int Tanulo_ID { get; set; }
         [Required]
         public required int Tanar_ID { get; set; }
+        [Required]
+        public required string Osztaly_ID { get; set; }
 
         [ForeignKey(nameof(Tantargy_ID))]
         public Tantargy? Tantargy { get; set; }

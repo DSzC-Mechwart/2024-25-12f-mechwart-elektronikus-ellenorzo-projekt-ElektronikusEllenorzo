@@ -21,13 +21,13 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
     /// </summary>
     public partial class TanarPanel : UserControl
     {
-        SzerverAdatok szerverAdatok = new();
+        TanarSzerverAdatok szerverAdatok = new();
 
         public TanarPanel()
         {
             InitializeComponent();
             TanuloAdatokGrid.ItemsSource = szerverAdatok.Tanulok;
-            TanuloJegyekGrid.ItemsSource = szerverAdatok.Jegyek;
+            //TanuloJegyekGrid.ItemsSource = szerverAdatok.Jegyek;
         }
     }
 }

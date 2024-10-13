@@ -25,11 +25,19 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
     /// </summary>
     public partial class LoginPanel : UserControl
     {
-        SzerverAdatok SzerverAdatok = new();
+        SzerverAdatok SzerverAdatok;
+        TanarSzerverAdatok TanarSzerverAdatok;
         public LoginPanel()
         {
+            SzerverAdatok = new SzerverAdatok();
+            TanarSzerverAdatok = new TanarSzerverAdatok();
             InitializeComponent();
-            TestGrid.ItemsSource = SzerverAdatok.Tanulok;
+            elsoBtn.Click += (s, e) => { tabs.SelectedIndex = 0; };
+            masodikBtn.Click += (s, e) => { tabs.SelectedIndex = 1; };
+            TanarSzerverAdatok.OsztalyJegyekLekerdezve += () => {
+                JegyekGrid.ItemsSource = TanarSzerverAdatok.OsztalyJegyek;
+            };
+            TanarSzerverAdatok.TanulokLekerdezve += () => { TestGrid.ItemsSource = TanarSzerverAdatok.Tanulok; };
         }
 
     }

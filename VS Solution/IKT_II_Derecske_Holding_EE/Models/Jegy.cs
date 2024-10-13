@@ -19,6 +19,8 @@ namespace IKT_II_Derecske_Holding_EE.Models
         public required int Tanulo_ID { get; set; }
         [Required]
         public required int Tanar_ID { get; set; }
+        [Required]
+        public required string Osztaly_ID { get; set; }
 
     }
 }
