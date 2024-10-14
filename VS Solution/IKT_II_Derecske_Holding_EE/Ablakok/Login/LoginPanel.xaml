@@ -33,11 +33,37 @@
         </DataGrid>
         <TabControl Grid.Column="1" Margin="5" x:Name="tabs">
             <TabItem>
-                <DataGrid x:Name="JegyekGrid" CanUserAddRows="False">
-                    <DataGrid.Columns>
-                    </DataGrid.Columns>
-                    
-                </DataGrid>
+                <ListView x:Name="JegyekGrid">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Tanulo">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding TanuloNev}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Oktober">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding Oktober}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"></StackPanel>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Jegy_Ertek}" ToolTip="{Binding Tema}" Margin="0 0 2 0"></TextBlock>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
             <TabItem>
                 <Label>LONG LIVE THE ANIMAL FARM</Label>

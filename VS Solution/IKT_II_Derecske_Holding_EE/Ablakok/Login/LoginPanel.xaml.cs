@@ -34,10 +34,16 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
             InitializeComponent();
             elsoBtn.Click += (s, e) => { tabs.SelectedIndex = 0; };
             masodikBtn.Click += (s, e) => { tabs.SelectedIndex = 1; };
-            TanarSzerverAdatok.OsztalyJegyekLekerdezve += () => {
-                JegyekGrid.ItemsSource = TanarSzerverAdatok.OsztalyJegyek;
-            };
             TanarSzerverAdatok.TanulokLekerdezve += () => { TestGrid.ItemsSource = TanarSzerverAdatok.Tanulok; };
+            TanarSzerverAdatok.OsztalyJegyekLekerdezve += () => {
+                List<TanuloJegyek> haviJegyek = new List<TanuloJegyek>();
+                foreach (var tanulo in TanarSzerverAdatok.Tanulok)
+                {
+                    List<Jegy> jegyei = TanarSzerverAdatok.OsztalyJegyek.Where(x => x.Tanulo_ID == tanulo.ID).ToList();
+                    haviJegyek.Add(new() { TanuloNev = tanulo.Nev, Oktober = new(jegyei) });
+                }
+                JegyekGrid.ItemsSource = haviJegyek;
+            };
         }
 
     }

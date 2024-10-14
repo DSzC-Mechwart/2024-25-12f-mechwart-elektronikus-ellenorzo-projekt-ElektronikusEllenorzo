@@ -81,15 +81,15 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Szakok.Add(s1);
             Szakok.Add(s2);
 
-            /*Jegy jegy = new() { Datum= new(), ID = 1, Jegy_Ertek = 4, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború" };
-            Jegy jegy2 = new() { Datum= new(), ID = 2, Jegy_Ertek = 5, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború" };
-            Jegy jegy3 = new() { Datum= new(), ID = 3, Jegy_Ertek = 2, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 3, Tema = "2.világháború" };
-            Jegy jegy4 = new() { Datum= new(), ID = 1, Jegy_Ertek = 3, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 4, Tema = "2.világháború" };
+            Jegy jegy = new() { Datum= new(), ID = 1, Jegy_Ertek = 4, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború", Osztaly_ID = "12.F" };
+            Jegy jegy2 = new() { Datum= new(), ID = 2, Jegy_Ertek = 5, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 2, Tema = "2.világháború", Osztaly_ID = "12.F" };
+            Jegy jegy3 = new() { Datum= new(), ID = 3, Jegy_Ertek = 2, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 3, Tema = "2.világháború", Osztaly_ID = "12.F" };
+            Jegy jegy4 = new() { Datum= new(), ID = 1, Jegy_Ertek = 3, Tanar_ID = 1, Tantargy_ID = 1, Tanulo_ID = 4, Tema = "2.világháború", Osztaly_ID = "12.F" };
             Jegyek.Add(jegy);
             Jegyek.Add(jegy2);
             Jegyek.Add(jegy3);
-            Jegyek.Add(jegy4);*/
-            GetTanuloJegyek(2);
+            Jegyek.Add(jegy4);
+            //GetTanuloJegyek(2);
         }
 
         private async void GetSzakok()
@@ -144,7 +144,6 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync($"api/Jegyek/{id}");
                 var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                MessageBox.Show($"{jegyek.Count}");
                 Jegyek = jegyek;
                 JegyekLekerdezve?.Invoke();
             }

@@ -72,6 +72,14 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Osztalyok.Add(o2);
             Osztalyok.Add(o3);
 
+            Tanulo_Obj t1 = new() { ID = 1, Nev = "Szabó Balázs", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Nagy-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.F", Torzslapszam = "58965" };
+            Tanulo_Obj t2 = new() { ID = 2, Nev = "Szabó Balázs2", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Nagy-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.F", Torzslapszam = "58936" };
+            Tanulo_Obj t3 = new() { ID = 3, Nev = "Szabó Balázs3", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Kis-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.E", Torzslapszam = "52636" };
+
+            Tanulok.Add(t1);
+            Tanulok.Add(t2);
+            Tanulok.Add(t3);
+
             OsztalyJegyek = new();
             GetTanulok("12.F");
             GetOsztalyJegyek("12.F");
@@ -117,7 +125,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var response = await client.GetStringAsync($"api/Jegyek/osztalyok/{id}");
                 var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
                 OsztalyJegyek = jegyek;
-                OsztalyJegyekLekerdezve.Invoke();
+                OsztalyJegyekLekerdezve?.Invoke();
             }
             catch (Exception)
             {
