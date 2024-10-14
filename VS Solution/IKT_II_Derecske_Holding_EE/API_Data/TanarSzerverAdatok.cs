@@ -81,8 +81,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Tanulok.Add(t3);
 
             OsztalyJegyek = new();
-            GetTanulok("12.F");
-            GetOsztalyJegyek("12.F");
+            /*GetTanulok("12.F");
+            GetOsztalyJegyek("12.F");*/
         }
 
         private async void GetOsszesTanulok()
