@@ -50,11 +50,41 @@
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition></RowDefinition>
-                                            <RowDefinition Height="8*"></RowDefinition>
+                                            <RowDefinition Height="7*"></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <StackPanel>
-                                            <ComboBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" />
-                                        </StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <Label Content="12.F" FontSize="26"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <ListBox Height="49"/>
+                                              
+                                            </StackPanel>
+                                            <StackPanel>
+
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="4">
+                                                <TextBox TextWrapping="Wrap" Text="TextBox" Width="70"/>
+                                                <TextBox TextWrapping="Wrap" Text="TextBox" Width="70"/>
+                                                <ComboBox Width="70" Height="13"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="5">
+                                                <Button Content="Button"/>
+                                                <ComboBox Width="70"/>
+                                            </StackPanel>
+
+
+                                        </Grid>
+                                        
                                         <DataGrid Margin="20" x:Name="TanuloJegyekGrid" AutoGenerateColumns="False" Grid.Row="1">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Név" Binding="{Binding Tanulo_ID}"></DataGridTextColumn>
