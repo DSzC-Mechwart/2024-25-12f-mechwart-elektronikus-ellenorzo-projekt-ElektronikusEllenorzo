@@ -12,6 +12,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="5*"/>
@@ -37,20 +38,36 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <StackPanel Grid.Row="1"/>
+            <StackPanel Grid.Row="1">
+                <Button Content="Osztályok" Height="50" Margin="0 15 15 15" Click="OsztalyFulGomb"></Button>
+                <Button Content="Órarend" Height="50" Margin="0 15 15 15" Click="OrarendFulGomb"></Button>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1">
+                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0" Click="KilepesGomb"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Name="LiveTimeLabel" Content="%TIME%"  HorizontalAlignment="Center" Margin="0,15,0,0" Width="70"/>
+                </StackPanel>
+            </Grid>
+                
 
-        </Grid>
+            </Grid>
         <Grid>
-            <TabControl TabStripPlacement="right">
-                <TabItem Header="Osztályok">
+            <TabControl x:Name="TabKonroll" TabStripPlacement="right">
+                <TabItem>
                     <Grid>
                         <Grid >
                             <TabControl TabStripPlacement="Bottom">
                                 <TabItem Header="Jegyek Bevitele">
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition Height="7*"></RowDefinition>
+                                            <RowDefinition Height="2*"></RowDefinition>
+                                            <RowDefinition Height="8*"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -65,26 +82,29 @@
                                             <StackPanel>
                                                 <Label Content="12.F" FontSize="26"/>
                                             </StackPanel>
-                                            <StackPanel Grid.Column="1">
-                                                <ListBox Height="49"/>
-                                              
-                                            </StackPanel>
-                                            <StackPanel>
+                                            <UserControl Grid.Column="1" Content="">
+                                                
 
-                                            </StackPanel>
+                                            </UserControl>
+
                                             <StackPanel Grid.Column="4">
-                                                <TextBox TextWrapping="Wrap" Text="TextBox" Width="70"/>
-                                                <TextBox TextWrapping="Wrap" Text="TextBox" Width="70"/>
-                                                <ComboBox Width="70" Height="13"/>
+                                                <TextBox TextWrapping="Wrap" Text="" Width="70"/>
+                                                <TextBox TextWrapping="Wrap" Text="" Width="70" Margin="0,10,0,0"/>
+                                                <ComboBox Height="13" Width="70" Margin="0,12,0,0"/>
                                             </StackPanel>
                                             <StackPanel Grid.Column="5">
-                                                <Button Content="Button"/>
-                                                <ComboBox Width="70"/>
+                                                <Button Content="Új jegy " Width="70" Height="30"/>
+                                                <ComboBox Width="70" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="3">
+                                                <Label Content="Jegy dátum:" Height="25" FontSize="10"/>
+                                                <Label Content="Jegy téma" Height="25" FontSize="10"/>
+                                                <Label Content="Tantárgy" Height="25" FontSize="10"/>
                                             </StackPanel>
 
 
                                         </Grid>
-                                        
+
                                         <DataGrid Margin="20" x:Name="TanuloJegyekGrid" AutoGenerateColumns="False" Grid.Row="1">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Név" Binding="{Binding Tanulo_ID}"></DataGridTextColumn>
@@ -92,7 +112,7 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
 
-                                        
+
                                     </Grid>
                                 </TabItem>
                                 <TabItem Header="Összes Adat">
@@ -129,7 +149,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="Órarend" />
+                <TabItem  />
 
             </TabControl>
         </Grid>
