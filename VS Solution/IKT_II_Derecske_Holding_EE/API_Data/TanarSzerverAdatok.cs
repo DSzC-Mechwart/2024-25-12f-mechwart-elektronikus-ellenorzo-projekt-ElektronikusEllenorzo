@@ -1,14 +1,18 @@
 ﻿using IKT_II_Derecske_Holding_EE.Models;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using Newtonsoft.Json.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using static IKT_II_Derecske_Holding_EE.API_Data.SzerverAdatok;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using System.Dynamic;
 
 namespace IKT_II_Derecske_Holding_EE.API_Data
 {
@@ -47,6 +51,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         public ObservableCollection<Orarend> Orarendek;
         public ObservableCollection<Jegy> OsztalyJegyek;
 
+        public dynamic TesztJegy { get; set; }
+
         HttpClient client = new();
 
         public TanarSzerverAdatok()
@@ -81,8 +87,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Tanulok.Add(t3);
 
             OsztalyJegyek = new();
-            /*GetTanulok("12.F");
-            GetOsztalyJegyek("12.F");*/
+            GetTanulok("12.F");
+            GetOsztalyJegyek2("12.F");
         }
 
         private async void GetOsszesTanulok()
@@ -90,8 +96,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tanulo");
-                var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
-                Tanulok = tanulok;
+                //var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
+                //Tanulok = tanulok;
                 TanulokLekerdezve.Invoke();
             }
             catch (Exception)
@@ -106,8 +112,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync($"api/Tanulo/{id}");
-                var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
-                Tanulok = tanulok;
+                //var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
+                //Tanulok = tanulok;
                 TanulokLekerdezve?.Invoke();
             }
             catch (Exception)
@@ -123,13 +129,42 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 OsztalyJegyek.Clear();
                 var response = await client.GetStringAsync($"api/Jegyek/osztalyok/{id}");
-                var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                OsztalyJegyek = jegyek;
+                MessageBox.Show($"{response}");
+                //var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
+                //OsztalyJegyek = jegyek;
                 OsztalyJegyekLekerdezve?.Invoke();
             }
             catch (Exception)
             {
-                MessageBox.Show("ERROR: Nem található a szerver");
+                MessageBox.Show("ERROR: Nem található a szerver (Jegyek)");
+                throw;
+            }
+
+        }
+
+        private async void GetOsztalyJegyek2(string id)
+        {
+            try
+            {
+                OsztalyJegyek.Clear();
+                var response = await client.GetStringAsync($"api/Jegyek/osztalyok/vmi/{id}");
+                dynamic des = JsonConvert.DeserializeObject(response);
+                foreach (dynamic item in des)
+                {
+                    foreach (dynamic item2 in item.jegyek["10"])
+                    {
+                        item.newJegy += $"{item2.jegy_Ertek} ";
+                    }
+                }
+                TesztJegy = des;
+                /*var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
+                OsztalyJegyek = jegyek;*/
+                OsztalyJegyekLekerdezve?.Invoke();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver (Jegyek)");
+                throw;
             }
 
         }
@@ -139,8 +174,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Osztaly");
-                var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
-                Osztalyok = osztalyok;
+                //var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
+                //Osztalyok = osztalyok;
             }
             catch (Exception)
             {
@@ -154,8 +189,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tantargyak");
-                var tantargyak = JsonConvert.DeserializeObject<ObservableCollection<Tantargy>>(response);
-                Tantargyak = tantargyak;
+                //var tantargyak = JsonConvert.DeserializeObject<ObservableCollection<Tantargy>>(response);
+                //Tantargyak = tantargyak;
             }
             catch (Exception)
             {
@@ -169,8 +204,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tanorak");
-                var tanorak = JsonConvert.DeserializeObject<ObservableCollection<Tanora>>(response);
-                Tanorak = tanorak;
+                //var tanorak = JsonConvert.DeserializeObject<ObservableCollection<Tanora>>(response);
+                //Tanorak = tanorak;
             }
             catch (Exception)
             {
@@ -184,8 +219,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Orarendek/osszes");
-                var orarendek = JsonConvert.DeserializeObject<ObservableCollection<Orarend>>(response);
-                Orarendek = orarendek;
+                //var orarendek = JsonConvert.DeserializeObject<ObservableCollection<Orarend>>(response);
+                //Orarendek = orarendek;
             }
             catch (Exception)
             {
@@ -199,8 +234,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Szakok");
-                var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
-                Szakok = szakok;
+                //var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
+                //Szakok = szakok;
             }
             catch (Exception)
             {
@@ -214,8 +249,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tanarok");
-                var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
-                Tanarok = tanarok;
+                //var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
+                //Tanarok = tanarok;
             }
             catch (Exception)
             {
