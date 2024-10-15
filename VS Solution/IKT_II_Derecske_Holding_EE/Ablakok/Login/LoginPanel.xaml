@@ -86,11 +86,19 @@
                 </ListView>
             </TabItem>
             <TabItem>
-                <DataGrid x:Name="jegyekNew" AutoGenerateColumns="False">
+                <DataGrid x:Name="jegyekNew" AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding nev}"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding jegyek}"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding newJegy}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Név" Binding="{Binding nev}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Szeptember" Binding="{Binding honapok[9]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Október" Binding="{Binding honapok[10]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="November" Binding="{Binding honapok[11]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="December" Binding="{Binding honapok[12]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Január" Binding="{Binding honapok[1]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Február" Binding="{Binding honapok[2]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Március" Binding="{Binding honapok[3]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Április" Binding="{Binding honapok[4]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Május" Binding="{Binding honapok[5]}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Június" Binding="{Binding honapok[6]}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

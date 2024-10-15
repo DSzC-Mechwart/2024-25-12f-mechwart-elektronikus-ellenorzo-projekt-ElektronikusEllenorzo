@@ -13,6 +13,7 @@ using static IKT_II_Derecske_Holding_EE.API_Data.SzerverAdatok;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.Dynamic;
+using Newtonsoft.Json.Linq;
 
 namespace IKT_II_Derecske_Holding_EE.API_Data
 {
@@ -87,8 +88,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Tanulok.Add(t3);
 
             OsztalyJegyek = new();
-            GetTanulok("12.F");
-            GetOsztalyJegyek2("12.F");
+            /*GetTanulok("12.F");
+            GetOsztalyJegyek2("12.F");*/
         }
 
         private async void GetOsszesTanulok()
@@ -149,12 +150,25 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 OsztalyJegyek.Clear();
                 var response = await client.GetStringAsync($"api/Jegyek/osztalyok/vmi/{id}");
                 dynamic des = JsonConvert.DeserializeObject(response);
-                foreach (dynamic item in des)
+                foreach (dynamic tanulo in des)
                 {
-                    foreach (dynamic item2 in item.jegyek["10"])
+                    JObject honapLista = new ();
+                    for (int i = 1; i < 13; i++)
                     {
-                        item.newJegy += $"{item2.jegy_Ertek} ";
+                        if (i != 7 || i != 8)
+                        {
+                            string honap = "";
+                            if (tanulo.jegyek[$"{i}"] != null)
+                            {
+                                foreach (dynamic jegy in tanulo.jegyek[$"{i}"])
+                                {
+                                    honap += $"{jegy.jegy_Ertek} ";
+                                }
+                            }
+                            honapLista[$"{i}"] = honap;
+                        }
                     }
+                    tanulo.honapok = honapLista;
                 }
                 TesztJegy = des;
                 /*var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
