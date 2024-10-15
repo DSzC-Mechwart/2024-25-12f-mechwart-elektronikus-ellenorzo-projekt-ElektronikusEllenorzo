@@ -48,7 +48,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1">
-                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0"/>
+                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0" Click="KilepesGomb"/>
                 </StackPanel>
                 <StackPanel>
                     <Label Name="LiveTimeLabel" Content="%TIME%"  HorizontalAlignment="Center" Margin="0,15,0,0" Width="70"/>
@@ -82,10 +82,10 @@
                                             <StackPanel>
                                                 <Label Content="12.F" FontSize="26"/>
                                             </StackPanel>
-                                            <StackPanel Grid.Column="1">
+                                            <UserControl Grid.Column="1" Content="">
                                                 
 
-                                            </StackPanel>
+                                            </UserControl>
 
                                             <StackPanel Grid.Column="4">
                                                 <TextBox TextWrapping="Wrap" Text="" Width="70"/>

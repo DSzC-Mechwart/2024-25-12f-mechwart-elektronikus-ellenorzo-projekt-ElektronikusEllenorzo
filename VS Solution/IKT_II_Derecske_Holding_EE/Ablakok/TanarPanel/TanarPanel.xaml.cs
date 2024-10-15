@@ -51,5 +51,12 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         {
             LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm:ss");
         }
+
+        private void KilepesGomb(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        
     }
 }
