@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,8 @@ namespace Chalk
         public MainWindow()
         {
             InitializeComponent();
-            
+            BeirIdo.DisplayDate = DateTime.Now;
+
         }
 
         public void Kesz(object sender, RoutedEventArgs e) {
@@ -37,8 +39,58 @@ namespace Chalk
             bool kollis = Kollis.IsChecked == true;
             string kolliHely = KolliHely.Text;
 
-            Tanulok.Add(new Tanulo(nev, szulHely, szulIdo, anyja, lakcim, beirIdo, szak, osztaly, kollis, kolliHely));
 
+            //string sorszam = "";
+            //int sor = 0;
+            //DateOnly comparisonDate = new DateOnly(DateTime.Now.Year, 9, 1);
+            //List<string> nevek = new List<string>();
+
+            //for (int i = 0; i < Tanulok.Count; i++)
+            //{
+
+            //    if (Tanulok[i].Osztaly == osztaly) {
+            //        if (Tanulok[i].BeiratIdo < comparisonDate) {
+
+            //            nevek.Add(Tanulok[i].Nev);
+            //        }
+
+            //    }
+
+            //}
+            //if (beirIdo < comparisonDate) {
+
+            //    nevek.Add(nev);
+            //    var sortedNevek = nevek.OrderBy(x => x).ToList();
+            //    for (int i = 0; i < sortedNevek.Count; i++)
+            //    {
+            //        if (sortedNevek[i] == nev) {
+            //            sor = i;
+            //            break;
+            //        }
+            //    }
+            //}
+            if (kolliHely =="") {
+                kolliHely = "Nincs";
+            }
+
+
+            Tanulok.Add(new Tanulo( nev, szulHely, szulIdo, anyja, lakcim, beirIdo, szak, osztaly, kollis, kolliHely));
+
+
+
+            try
+            {
+                using (StreamWriter sw = new StreamWriter("Tanulok.txt", true))
+                {
+                    sw.WriteLine($"{nev};{szulHely};{szulIdo};{anyja};{lakcim};{beirIdo};{szak};{osztaly};{kollis};{kolliHely}");
+                }
+                MessageBox.Show("Sikeres adat bevitel");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
         }
@@ -55,6 +107,13 @@ namespace Chalk
             }
 
 
+        }
+
+        public void Adatbazis(object sender, RoutedEventArgs e) {
+
+            Window adat = new AdatTabla();
+            adat.Show();
+            this.Close();
         }
     }
 }

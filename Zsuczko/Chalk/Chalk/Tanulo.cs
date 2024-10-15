@@ -21,6 +21,7 @@ namespace Chalk
 
         public Tanulo(string nev, string szulHely, DateOnly szulIdo, string anyja, string lakcim, DateOnly beiratIdo, string szak, string osztaly, bool kolis, string koliHely)
         {
+            
             Nev = nev;
             SzulHely = szulHely;
             SzulIdo = szulIdo;

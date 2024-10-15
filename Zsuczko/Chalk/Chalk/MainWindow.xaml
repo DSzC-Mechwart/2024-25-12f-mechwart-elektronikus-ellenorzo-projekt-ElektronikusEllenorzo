@@ -151,6 +151,13 @@
             FontSize="20">
             Kész
         </Button>
+        <Button
+            Grid.Row="13"
+            Grid.Column="4"
+            Click="Adatbazis"
+            FontSize="20">
+            Adatbázis
+        </Button>
 
     </Grid>
 </Window>
