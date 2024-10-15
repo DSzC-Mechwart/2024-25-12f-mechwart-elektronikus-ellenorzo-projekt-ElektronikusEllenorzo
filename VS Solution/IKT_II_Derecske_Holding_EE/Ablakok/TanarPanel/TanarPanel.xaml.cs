@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
 {
@@ -28,6 +29,27 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             InitializeComponent();
             TanuloAdatokGrid.ItemsSource = szerverAdatok.Tanulok;
             //TanuloJegyekGrid.ItemsSource = szerverAdatok.Jegyek;
+            DispatcherTimer LiveTime = new DispatcherTimer();
+            LiveTime.Interval = TimeSpan.FromSeconds(1);
+            LiveTime.Tick += timer_Tick;
+            LiveTime.Start();
+        }
+
+        private void OsztalyFulGomb(object sender, RoutedEventArgs e)
+        {
+            TabKonroll.SelectedIndex = 0;
+        }
+
+        private void OrarendFulGomb(object sender, RoutedEventArgs e)
+        {
+            TabKonroll.SelectedIndex = 1;
+
+        }
+        
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }
