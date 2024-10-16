@@ -38,9 +38,9 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <StackPanel Grid.Row="1">
-                <Button Content="Osztályok" Height="50" Margin="0 15 15 15" Click="OsztalyFulGomb"></Button>
-                <Button Content="Órarend" Height="50" Margin="0 15 15 15" Click="OrarendFulGomb"></Button>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Button x:Name="OsztalyokBtn" Content="Osztályok" Height="50" Margin="0 0 15 0" Click="OsztalyFulGomb"></Button>
+                <Button x:Name="OrarendBtn" Content="Órarend" Height="50" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
             </StackPanel>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -58,71 +58,84 @@
 
             </Grid>
         <Grid>
-            <TabControl x:Name="TabKonroll" TabStripPlacement="right">
-                <TabItem>
+            <TabControl x:Name="TabKonroll" TabStripPlacement="right" Margin="0 0 -15 0" Grid.Row="1">
+                <TabItem Visibility="Hidden">
                     <Grid>
-                        <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" MinWidth="50"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <Label Content="12.F" FontSize="26" Width="65"/>
+                            </StackPanel>
+                            <UserControl Grid.Column="1" x:Name="StatisztikaPanel">
+                            </UserControl>
+
+                            <StackPanel Grid.Column="4">
+                                <DatePicker>
+                                </DatePicker>
+                                <TextBox TextWrapping="Wrap" Text="" Margin="0,10,0,0" MinHeight="20"/>
+                                <ComboBox Height="13" Margin="0,12,0,0" x:Name="TantargyBox" DisplayMemberPath="Nev" MinHeight="20" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="5">
+                                <Button Content="Új jegy" x:Name="UjJegyBtn" Width="70" Height="30" Click="UjJegy" Margin="0 0 0 10"/>
+                                <Button Content="Mégse" x:Name="MegseJegyBtn" Width="70" Height="20" Click="MegseJegy" Margin="0 0 0 10" Visibility="Hidden"/>
+                                <Button Content="Mentés" x:Name="JegyekMenteseBtn" Width="70" Height="20" Click="JegyekMentese" Visibility="Hidden"/>
+
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <Label Content="Jegy dátum:" Height="30" FontSize="15"/>
+                                <Label Content="Jegy téma" Height="30" FontSize="15"/>
+                                <Label Content="Tantárgy" Height="30" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1" >
                             <TabControl TabStripPlacement="Bottom">
                                 <TabItem Header="Jegyek Bevitele">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="2*"></RowDefinition>
-                                            <RowDefinition Height="8*"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="1*"/>
 
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel>
-                                                <Label Content="12.F" FontSize="26"/>
-                                            </StackPanel>
-                                            <UserControl Grid.Column="1" Content="">
-                                                
-
-                                            </UserControl>
-
-                                            <StackPanel Grid.Column="4">
-                                                <TextBox TextWrapping="Wrap" Text="" Width="70"/>
-                                                <TextBox TextWrapping="Wrap" Text="" Width="70" Margin="0,10,0,0"/>
-                                                <ComboBox Height="13" Width="70" Margin="0,12,0,0"/>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="5">
-                                                <Button Content="Új jegy " Width="70" Height="30"/>
-                                                <ComboBox Width="70" Margin="0,5,0,0"/>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="3">
-                                                <Label Content="Jegy dátum:" Height="25" FontSize="10"/>
-                                                <Label Content="Jegy téma" Height="25" FontSize="10"/>
-                                                <Label Content="Tantárgy" Height="25" FontSize="10"/>
-                                            </StackPanel>
-
-
-                                        </Grid>
-
-                                        <DataGrid Margin="20" x:Name="TanuloJegyekGrid" AutoGenerateColumns="False" Grid.Row="1">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Név" Binding="{Binding Tanulo_ID}"></DataGridTextColumn>
-                                                <DataGridTextColumn Header="Jegy" Binding="{Binding Jegy_Ertek}"></DataGridTextColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-
-
-                                    </Grid>
+                                    <DataGrid x:Name="JegyekGrid" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Margin="5">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Név" Binding="{Binding nev}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Szeptember" Binding="{Binding honapok[9]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Október" Binding="{Binding honapok[10]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="November" Binding="{Binding honapok[11]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="December" Binding="{Binding honapok[12]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Január" Binding="{Binding honapok[1]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Február" Binding="{Binding honapok[2]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Március" Binding="{Binding honapok[3]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Április" Binding="{Binding honapok[4]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Május" Binding="{Binding honapok[5]}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Június" Binding="{Binding honapok[6]}"></DataGridTextColumn>
+                                            <DataGridTemplateColumn Header="Új jegy" Visibility="Hidden" x:Name="UjJegyOszlop">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Button x:Name="Egyes" Content="1" Margin="2" Padding="4"></Button>
+                                                            <Button x:Name="Kettes" Content="2" Margin="2" Padding="4"></Button>
+                                                            <Button x:Name="Harmas" Content="3" Margin="2" Padding="4"></Button>
+                                                            <Button x:Name="Negyes" Content="4" Margin="2" Padding="4"></Button>
+                                                            <Button x:Name="Otos" Content="5" Margin="2" Padding="4"></Button>
+                                                            <Button x:Name="NemIrt" Content="-" Margin="2" Padding="4"></Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
                                 </TabItem>
                                 <TabItem Header="Összes Adat">
                                     <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition Height="10*"/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <DataGrid Margin="20" x:Name="TanuloAdatokGrid" AutoGenerateColumns="False" Grid.Row="1">
+                                        <DataGrid Margin="5" x:Name="TanuloAdatokGrid" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
                                                 <DataGridTextColumn Header="Születési hely" Binding="{Binding Szul_Hely}"></DataGridTextColumn>
@@ -149,7 +162,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem  />
+                <TabItem Visibility="Hidden"  />
 
             </TabControl>
         </Grid>

@@ -99,6 +99,20 @@
                         <DataGridTextColumn Header="Április" Binding="{Binding honapok[4]}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Május" Binding="{Binding honapok[5]}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Június" Binding="{Binding honapok[6]}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Új jegy" Visibility="Hidden">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="Egyes" Content="1" Margin="2" Padding="1"></Button>
+                                        <Button x:Name="Kettes" Content="2" Margin="2" Padding="1"></Button>
+                                        <Button x:Name="Harmas" Content="3" Margin="2" Padding="1"></Button>
+                                        <Button x:Name="Negyes" Content="4" Margin="2" Padding="1"></Button>
+                                        <Button x:Name="Otos" Content="5" Margin="2" Padding="1"></Button>
+                                        <Button x:Name="NemIrt" Content="-" Margin="2" Padding="1"></Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

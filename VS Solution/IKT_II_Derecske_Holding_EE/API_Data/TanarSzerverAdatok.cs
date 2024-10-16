@@ -21,6 +21,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
     {
         public event AdatokLekerdezveD TanulokLekerdezve;
         public event AdatokLekerdezveD OsztalyJegyekLekerdezve;
+        public event AdatokLekerdezveD TantargyakLekerdezve;
 
         /// <summary>
         /// A tanulók teljes listája.
@@ -88,8 +89,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Tanulok.Add(t3);
 
             OsztalyJegyek = new();
-            /*GetTanulok("12.F");
-            GetOsztalyJegyek2("12.F");*/
+            GetTanulok("12.F");
+            GetOsztalyJegyek2("12.F");
+            GetTantargyak();
         }
 
         private async void GetOsszesTanulok()
@@ -97,8 +99,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tanulo");
-                //var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
-                //Tanulok = tanulok;
+                var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
+                Tanulok = tanulok;
                 TanulokLekerdezve.Invoke();
             }
             catch (Exception)
@@ -113,8 +115,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync($"api/Tanulo/{id}");
-                //var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
-                //Tanulok = tanulok;
+                var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
+                Tanulok = tanulok;
                 TanulokLekerdezve?.Invoke();
             }
             catch (Exception)
@@ -131,8 +133,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 OsztalyJegyek.Clear();
                 var response = await client.GetStringAsync($"api/Jegyek/osztalyok/{id}");
                 MessageBox.Show($"{response}");
-                //var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                //OsztalyJegyek = jegyek;
+                var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
+                OsztalyJegyek = jegyek;
                 OsztalyJegyekLekerdezve?.Invoke();
             }
             catch (Exception)
@@ -188,8 +190,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Osztaly");
-                //var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
-                //Osztalyok = osztalyok;
+                var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
+                Osztalyok = osztalyok;
             }
             catch (Exception)
             {
@@ -203,8 +205,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tantargyak");
-                //var tantargyak = JsonConvert.DeserializeObject<ObservableCollection<Tantargy>>(response);
-                //Tantargyak = tantargyak;
+                var tantargyak = JsonConvert.DeserializeObject<ObservableCollection<Tantargy>>(response);
+                Tantargyak = tantargyak;
+                TantargyakLekerdezve?.Invoke();
             }
             catch (Exception)
             {
@@ -218,8 +221,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tanorak");
-                //var tanorak = JsonConvert.DeserializeObject<ObservableCollection<Tanora>>(response);
-                //Tanorak = tanorak;
+                var tanorak = JsonConvert.DeserializeObject<ObservableCollection<Tanora>>(response);
+                Tanorak = tanorak;
             }
             catch (Exception)
             {
@@ -263,8 +266,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             try
             {
                 var response = await client.GetStringAsync("api/Tanarok");
-                //var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
-                //Tanarok = tanarok;
+                var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
+                Tanarok = tanarok;
             }
             catch (Exception)
             {

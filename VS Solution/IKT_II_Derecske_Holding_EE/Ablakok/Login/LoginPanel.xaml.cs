@@ -40,55 +40,6 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
             {
                 jegyekNew.ItemsSource = TanarSzerverAdatok.TesztJegy;
             };
-            /*TanarSzerverAdatok.OsztalyJegyekLekerdezve += () => {
-                List<TanuloJegyek> haviJegyek = new List<TanuloJegyek>();
-
-                foreach (var tanulo in TanarSzerverAdatok.Tanulok)
-                {
-                    TanuloJegyek tanuloJegyek = new TanuloJegyek();
-                    List<ObservableCollection<Jegy>> jegyHavonta = [];
-                    tanuloJegyek.TanuloNev = tanulo.Nev;
-                    tanuloJegyek.Oktober = new(TanarSzerverAdatok.OsztalyJegyek.Where(x => x.Tanulo_ID == tanulo.ID).ToList());
-                    /*jegyHavonta.Add(tanuloJegyek.Januar);
-                    jegyHavonta.Add(tanuloJegyek.Februar);
-                    jegyHavonta.Add(tanuloJegyek.Marcius);
-                    jegyHavonta.Add(tanuloJegyek.Aprilis);
-                    jegyHavonta.Add(tanuloJegyek.Majus);
-                    jegyHavonta.Add(tanuloJegyek.Junius);
-                    jegyHavonta.Add([]);
-                    jegyHavonta.Add([]);
-                    jegyHavonta.Add(tanuloJegyek.Szeptember);
-                    jegyHavonta.Add(tanuloJegyek.Oktober);
-                    jegyHavonta.Add(tanuloJegyek.November);
-                    jegyHavonta.Add(tanuloJegyek.December);
-                    MessageBox.Show($"{jegyHavonta.Count}");
-                    List<Jegy> jegyei = TanarSzerverAdatok.OsztalyJegyek.Where(x => x.Tanulo_ID == tanulo.ID).ToList();
-                    var havonta = jegyei.GroupBy(x => x.Datum.Month).ToDictionary(x => x.Key, g => g.ToList());
-                    MessageBox.Show($"{havonta[10].Count()}");
-                    for ( int i = 9; i < 13; i++ )
-                    {
-                        if (havonta.ContainsKey(i))
-                        {
-                            var now = havonta[i].ToList();
-                            jegyHavonta[i - 1] = new(now);
-                            continue;
-                        }
-                        jegyHavonta[i - 1] = [];
-                    }
-                    for (int i = 1; i < 7; i++)
-                    {
-                        if (havonta.ContainsKey(i))
-                        {
-                            var now = havonta[i].ToList();
-                            jegyHavonta[i - 1] = new(now);
-                            continue;
-                        }
-                        jegyHavonta[i - 1] = [];
-                    }
-                    haviJegyek.Add(tanuloJegyek);
-                }
-                JegyekGrid.ItemsSource = haviJegyek;
-            };*/
         }
 
     }
