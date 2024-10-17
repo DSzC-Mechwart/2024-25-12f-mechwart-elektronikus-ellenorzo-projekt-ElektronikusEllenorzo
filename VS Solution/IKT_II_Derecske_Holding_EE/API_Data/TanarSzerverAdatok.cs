@@ -22,6 +22,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         public event AdatokLekerdezveD TanulokLekerdezve;
         public event AdatokLekerdezveD OsztalyJegyekLekerdezve;
         public event AdatokLekerdezveD TantargyakLekerdezve;
+        public event AdatokLekerdezveD OsztalyokLekerdezve;
 
         /// <summary>
         /// A tanulók teljes listája.
@@ -57,7 +58,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
         HttpClient client = new();
 
-        public TanarSzerverAdatok()
+        public TanarSzerverAdatok(string osztalyID)
         {
             client.BaseAddress = new Uri("https://localhost:7181/");
             client.DefaultRequestHeaders.Accept.Clear();
@@ -72,7 +73,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Tanulok = new();
             Osztalyok = new();
 
-            Osztaly o1 = new() { ID = "12.F", Evfolyam = 12, Ofo_ID = 1, Szak_ID = 1 };
+            /*Osztaly o1 = new() { ID = "12.F", Evfolyam = 12, Ofo_ID = 1, Szak_ID = 1 };
             Osztaly o2 = new() { ID = "12.E", Evfolyam = 12, Ofo_ID = 2, Szak_ID = 1 };
             Osztaly o3 = new() { ID = "12.D", Evfolyam = 12, Ofo_ID = 3, Szak_ID = 2 };
 
@@ -86,12 +87,32 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
             Tanulok.Add(t1);
             Tanulok.Add(t2);
-            Tanulok.Add(t3);
+            Tanulok.Add(t3);*/
 
             OsztalyJegyek = new();
-            GetTanulok("12.F");
-            GetOsztalyJegyek2("12.F");
+            GetTanulok(osztalyID);
+            GetOsztalyJegyek2(osztalyID);
             GetTantargyak();
+        }
+
+        public TanarSzerverAdatok()
+        {
+            client.BaseAddress = new Uri("https://localhost:7181/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
+                );
+
+            Tantargyak = new();
+            Tanarok = new();
+            Szakok = new();
+            Tanorak = new();
+            Orarendek = new();
+            Tanulok = new();
+            Osztalyok = new();
+            OsztalyJegyek = new();
+
+            GetOsztalyok();
         }
 
         private async void GetOsszesTanulok()
@@ -180,7 +201,6 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             catch (Exception)
             {
                 MessageBox.Show("ERROR: Nem található a szerver (Jegyek)");
-                throw;
             }
 
         }
@@ -192,10 +212,12 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var response = await client.GetStringAsync("api/Osztaly");
                 var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
                 Osztalyok = osztalyok;
+                OsztalyokLekerdezve?.Invoke();
             }
             catch (Exception)
             {
                 MessageBox.Show("ERROR: Nem található a szerver");
+                throw ;
             }
 
         }

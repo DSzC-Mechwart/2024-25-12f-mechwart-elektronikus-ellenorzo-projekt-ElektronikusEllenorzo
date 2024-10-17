@@ -39,7 +39,7 @@ namespace DH_EE_IKT_API.Controllers
         {
             var osztalyJegyek = _context.Jegyek.Where(x => x.Osztaly_ID.ToLower() == osztaly.ToLower()).ToList();
             var tanulok = _context.Tanulok.Where(x => x.Osztaly_ID.ToLower() == osztaly.ToLower()).ToList();
-            var joined = tanulok.GroupJoin(osztalyJegyek, x => x.ID, jegyek => jegyek.Tanulo_ID, (x,jegyek) => new { nev = x.Nev, jegyek = jegyek.GroupBy(x => x.Datum.Month).ToDictionary(x => x.Key, x => x.Select(y => new { y.Jegy_Ertek, y.Tema }).ToList()) }).ToList();
+            var joined = tanulok.GroupJoin(osztalyJegyek, x => x.ID, jegyek => jegyek.Tanulo_ID, (x,jegyek) => new { nev = x.Nev, id = x.ID, jegyek = jegyek.GroupBy(x => x.Datum.Month).ToDictionary(x => x.Key, x => x.Select(y => new { y.Jegy_Ertek, y.Tema }).ToList()) }).ToList();
             return joined;
         }
 

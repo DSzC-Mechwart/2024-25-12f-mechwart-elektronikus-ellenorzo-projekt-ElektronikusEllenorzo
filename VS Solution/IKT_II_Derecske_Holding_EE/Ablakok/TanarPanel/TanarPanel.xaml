@@ -54,18 +54,21 @@
                     <Label Name="LiveTimeLabel" Content="%TIME%"  HorizontalAlignment="Center" Margin="0,15,0,0" Width="70"/>
                 </StackPanel>
             </Grid>
-                
-
-            </Grid>
+        </Grid>
         <Grid>
             <TabControl x:Name="TabKonroll" TabStripPlacement="right" Margin="0 0 -15 0" Grid.Row="1">
                 <TabItem Visibility="Hidden">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
                             <RowDefinition Height="100"></RowDefinition>
                             <RowDefinition Height="10*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label Content="Kiválasztott Osztály: "></Label>
+                            <ComboBox x:Name="OsztalyValasztoBox" MinWidth="150" MaxHeight="30" DisplayMemberPath="ID" SelectionChanged="OsztalyValasztas"></ComboBox>
+                        </StackPanel>
+                        <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" MinWidth="50"/>
                                 <ColumnDefinition Width="3*"/>
@@ -76,15 +79,15 @@
 
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <Label Content="12.F" FontSize="26" Width="65"/>
+                                <Label x:Name="OsztalyTxt" FontSize="26" Width="65"/>
                             </StackPanel>
                             <UserControl Grid.Column="1" x:Name="StatisztikaPanel">
                             </UserControl>
 
                             <StackPanel Grid.Column="4">
-                                <DatePicker>
+                                <DatePicker x:Name="JegyDatum">
                                 </DatePicker>
-                                <TextBox TextWrapping="Wrap" Text="" Margin="0,10,0,0" MinHeight="20"/>
+                                <TextBox TextWrapping="Wrap" Text="" Margin="0,10,0,0" MinHeight="20" x:Name="TemaTxt"/>
                                 <ComboBox Height="13" Margin="0,12,0,0" x:Name="TantargyBox" DisplayMemberPath="Nev" MinHeight="20" />
                             </StackPanel>
                             <StackPanel Grid.Column="5">
@@ -99,7 +102,7 @@
                                 <Label Content="Tantárgy" Height="30" FontSize="15"/>
                             </StackPanel>
                         </Grid>
-                        <Grid Grid.Row="1" >
+                        <Grid Grid.Row="2" >
                             <TabControl TabStripPlacement="Bottom">
                                 <TabItem Header="Jegyek Bevitele">
 
@@ -120,12 +123,12 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <Button x:Name="Egyes" Content="1" Margin="2" Padding="4"></Button>
-                                                            <Button x:Name="Kettes" Content="2" Margin="2" Padding="4"></Button>
-                                                            <Button x:Name="Harmas" Content="3" Margin="2" Padding="4"></Button>
-                                                            <Button x:Name="Negyes" Content="4" Margin="2" Padding="4"></Button>
-                                                            <Button x:Name="Otos" Content="5" Margin="2" Padding="4"></Button>
-                                                            <Button x:Name="NemIrt" Content="-" Margin="2" Padding="4"></Button>
+                                                            <Button x:Name="Egyes" Content="1" Margin="2" Padding="4" Click="Egyes_Jegy"></Button>
+                                                            <Button x:Name="Kettes" Content="2" Margin="2" Padding="4" Click="Kettes_Jegy"></Button>
+                                                            <Button x:Name="Harmas" Content="3" Margin="2" Padding="4" Click="Harmas_Jegy"></Button>
+                                                            <Button x:Name="Negyes" Content="4" Margin="2" Padding="4" Click="Negyes_Jegy"></Button>
+                                                            <Button x:Name="Otos" Content="5" Margin="2" Padding="4" Click="Otos_Jegy"></Button>
+                                                            <Button x:Name="NemIrt" Content="-" Margin="2" Padding="4" Click="NemIrt_Jegy"></Button>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>

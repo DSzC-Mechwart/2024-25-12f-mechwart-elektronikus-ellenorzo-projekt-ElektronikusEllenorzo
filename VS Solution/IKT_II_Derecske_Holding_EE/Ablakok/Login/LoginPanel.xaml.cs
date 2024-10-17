@@ -31,7 +31,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
         public LoginPanel()
         {
             SzerverAdatok = new SzerverAdatok();
-            TanarSzerverAdatok = new TanarSzerverAdatok();
+            TanarSzerverAdatok = new TanarSzerverAdatok("12.F");
             InitializeComponent();
             elsoBtn.Click += (s, e) => { tabs.SelectedIndex = 0; };
             masodikBtn.Click += (s, e) => { tabs.SelectedIndex = 1; };
