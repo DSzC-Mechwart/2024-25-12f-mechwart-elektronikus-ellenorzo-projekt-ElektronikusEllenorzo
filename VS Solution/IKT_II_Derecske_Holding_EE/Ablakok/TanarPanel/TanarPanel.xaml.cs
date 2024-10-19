@@ -5,7 +5,9 @@ using IKT_II_Derecske_Holding_EE.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +31,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         TanarSzerverAdatok szerverAdatok;
         Dictionary<int,int> ujJegyek;
         Dictionary<int,Button> ujJegyekBtns;
+        List<int> modosultAdatokIndex = new List<int>();
 
         public TanarPanel()
         {
@@ -243,6 +246,85 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
 
             ujJegyekBtns.Add(id, btn);
             ujJegyek.Add(id, -1);
+        }
+
+        private void AdattipusValaszto(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            if (tabControl.SelectedIndex == 0)
+            {
+                JegyAdatCol.Visibility = Visibility.Visible;
+                JegyGombCol.Visibility = Visibility.Visible;
+                JegyTxtCol.Visibility = Visibility.Visible;
+                AdatModositasCol.Visibility = Visibility.Collapsed;
+                szerverAdatok.Tanulok.CollectionChanged -= Adat_Modosulas;
+            }
+            else
+            {
+                JegyAdatCol.Visibility = Visibility.Collapsed;
+                JegyGombCol.Visibility = Visibility.Collapsed;
+                JegyTxtCol.Visibility = Visibility.Collapsed;
+                AdatModositasCol.Visibility = Visibility.Visible;
+                szerverAdatok.Tanulok.CollectionChanged += Adat_Modosulas;
+            }
+        }
+
+        private void Adat_Modosulas(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            AdatMegseBtn.IsEnabled = true;
+            AdatMentesBtn.IsEnabled = true;
+            if (!modosultAdatokIndex.Contains(e.NewStartingIndex))
+            {
+                modosultAdatokIndex.Add(e.NewStartingIndex);
+
+            }
+        }
+
+        private async void Adatok_Mentese(object sender, RoutedEventArgs e)
+        {
+            bool res = false;
+            adatPOST _adatPOST = new adatPOST();
+            foreach (var ujTanuloInd in modosultAdatokIndex)
+            {
+
+                Tanulo_Obj tanulo = szerverAdatok.Tanulok[ujTanuloInd];
+                var _saltArray = RandomNumberGenerator.GetBytes(8);
+                string _salt = BitConverter.ToString(_saltArray);
+                string bPass = $"{tanulo.Szul_Ido.Year}-{tanulo.Szul_Ido.Month}-{tanulo.Szul_Ido.Day}" + _salt;
+                MessageBox.Show(bPass);
+                byte[] passBytes = Encoding.UTF8.GetBytes(bPass);
+                string test = "";
+                foreach (var item in passBytes)
+                {
+                    test += $"{item}";
+                }
+                MessageBox.Show(test);
+                Rfc2898DeriveBytes rfc2898DeriveBytes = new(passBytes, _saltArray, 25000 , HashAlgorithmName.SHA256);
+                byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
+                string _hash = BitConverter.ToString(hashByte);
+                tanulo.P_Salt = _salt;
+                tanulo.P_Hash = _hash;
+                res = await _adatPOST.TanuloBevitel(tanulo);
+                if (!res) {
+                    MessageBox.Show("Sikertelen mentés!");
+                    break;
+                };
+            }
+            if (res)
+            {
+                AdatMegseBtn.IsEnabled = false;
+                AdatMentesBtn.IsEnabled = false;
+                modosultAdatokIndex.Clear();
+            }
+            
+        }
+
+        private void Adatok_Megse(object sender, RoutedEventArgs e)
+        {
+            AdatMegseBtn.IsEnabled = false;
+            AdatMentesBtn.IsEnabled = false;
+            modosultAdatokIndex.Clear();
+            AdatLekerdezes();
         }
     }
 }

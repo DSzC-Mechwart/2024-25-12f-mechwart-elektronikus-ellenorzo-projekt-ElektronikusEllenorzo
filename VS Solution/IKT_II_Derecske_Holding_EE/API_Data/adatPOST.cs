@@ -1,4 +1,5 @@
 ﻿using IKT_II_Derecske_Holding_EE.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,12 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         {
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/Jegyek", jegy);
             return res.IsSuccessStatusCode;   
+        }
+
+        public async Task<bool> TanuloBevitel(Tanulo_Obj tanulo)
+        {
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Tanulo", tanulo);
+            return res.IsSuccessStatusCode;
         }
     }
 }

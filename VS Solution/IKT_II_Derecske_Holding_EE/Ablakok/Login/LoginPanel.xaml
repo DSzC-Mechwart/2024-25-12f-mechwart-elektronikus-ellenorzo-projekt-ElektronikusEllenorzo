@@ -7,119 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"></ColumnDefinition>
-            <ColumnDefinition Width="5*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <DataGrid Margin="20" x:Name="TestGrid" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Születési hely" Binding="{Binding Szul_Hely}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Születési idő" Binding="{Binding Szul_Ido}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Anyja Neve" Binding="{Binding Anya_Nev}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Lakcím" Binding="{Binding Lakcim}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Osztály" Binding="{Binding Osztaly_ID}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Kollégium" Binding="{Binding Koli}"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Torzslapszam}"></DataGridTextColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button>Törlés</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <TabControl Grid.Column="1" Margin="5" x:Name="tabs">
-            <TabItem>
-                <ListView x:Name="JegyekGrid">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Tanulo">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding TanuloNev}"></TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Oktober">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ItemsControl ItemsSource="{Binding Oktober}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal"></StackPanel>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Jegy_Ertek}" ToolTip="{Binding Tema}" Margin="0 0 2 0"></TextBlock>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                        
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="November">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ItemsControl ItemsSource="{Binding November}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal"></StackPanel>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Jegy_Ertek}" ToolTip="{Binding Tema}" Margin="0 0 2 0"></TextBlock>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Derecske Holding Elektornikus Ellenőrző" FontSize="30" TextWrapping="Wrap" MaxWidth="340" TextAlignment="Right" Margin="0 0 0 15"></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 15">
+                <Label Content="Felhasználónév:"></Label>
+                <TextBox MinWidth="200" x:Name="Felhasznalonev"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Jelszó: "></Label>
+                <PasswordBox MinWidth="200" x:Name="jelszoBox"></PasswordBox>
+            </StackPanel>
+            <Button Content="Belépés" Margin="0 15 0 0" MaxWidth="100" Height="40" Click="Belepes"></Button>
 
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem>
-                <DataGrid x:Name="jegyekNew" AutoGenerateColumns="False" CanUserAddRows="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Név" Binding="{Binding nev}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Szeptember" Binding="{Binding honapok[9]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Október" Binding="{Binding honapok[10]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="November" Binding="{Binding honapok[11]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="December" Binding="{Binding honapok[12]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Január" Binding="{Binding honapok[1]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Február" Binding="{Binding honapok[2]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Március" Binding="{Binding honapok[3]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Április" Binding="{Binding honapok[4]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Május" Binding="{Binding honapok[5]}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Június" Binding="{Binding honapok[6]}"></DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Új jegy" Visibility="Hidden">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="Egyes" Content="1" Margin="2" Padding="1"></Button>
-                                        <Button x:Name="Kettes" Content="2" Margin="2" Padding="1"></Button>
-                                        <Button x:Name="Harmas" Content="3" Margin="2" Padding="1"></Button>
-                                        <Button x:Name="Negyes" Content="4" Margin="2" Padding="1"></Button>
-                                        <Button x:Name="Otos" Content="5" Margin="2" Padding="1"></Button>
-                                        <Button x:Name="NemIrt" Content="-" Margin="2" Padding="1"></Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl>
-        <StackPanel Grid.Column="2">
-            <Button Content="Elso tab" Margin="10" x:Name="elsoBtn"></Button>
-            <Button Content="Masodik tab" Margin="10" x:Name="masodikBtn"></Button>
         </StackPanel>
+
     </Grid>
 </UserControl>

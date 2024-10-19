@@ -84,26 +84,35 @@
                             <UserControl Grid.Column="1" x:Name="StatisztikaPanel">
                             </UserControl>
 
-                            <StackPanel Grid.Column="4">
+                            <StackPanel Grid.Column="4" x:Name="JegyAdatCol">
                                 <DatePicker x:Name="JegyDatum">
                                 </DatePicker>
                                 <TextBox TextWrapping="Wrap" Text="" Margin="0,10,0,0" MinHeight="20" x:Name="TemaTxt"/>
                                 <ComboBox Height="13" Margin="0,12,0,0" x:Name="TantargyBox" DisplayMemberPath="Nev" MinHeight="20" />
                             </StackPanel>
-                            <StackPanel Grid.Column="5">
+
+                            <StackPanel Grid.Column="5" x:Name="JegyGombCol">
                                 <Button Content="Új jegy" x:Name="UjJegyBtn" Width="70" Height="30" Click="UjJegy" Margin="0 0 0 10"/>
                                 <Button Content="Mégse" x:Name="MegseJegyBtn" Width="70" Height="20" Click="MegseJegy" Margin="0 0 0 10" Visibility="Hidden"/>
                                 <Button Content="Mentés" x:Name="JegyekMenteseBtn" Width="70" Height="20" Click="JegyekMentese" Visibility="Hidden"/>
 
                             </StackPanel>
-                            <StackPanel Grid.Column="3">
+
+                            <StackPanel Grid.Column="5" x:Name="AdatModositasCol" Visibility="Collapsed">
+                                <Button x:Name="AdatMentesBtn" Width="70" Height="50" Click="Adatok_Mentese" Margin="0 0 0 10" IsEnabled="False">
+                                    <TextBlock Text="Adatok mentése" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+                                </Button>
+                                <Button x:Name="AdatMegseBtn" Content="Mégse" Width="70" Height="30" Click="Adatok_Megse" IsEnabled="False"></Button>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" x:Name="JegyTxtCol">
                                 <Label Content="Jegy dátum:" Height="30" FontSize="15"/>
                                 <Label Content="Jegy téma" Height="30" FontSize="15"/>
                                 <Label Content="Tantárgy" Height="30" FontSize="15"/>
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Row="2" >
-                            <TabControl TabStripPlacement="Bottom">
+                            <TabControl TabStripPlacement="Bottom" SelectionChanged="AdattipusValaszto">
                                 <TabItem Header="Jegyek Bevitele">
 
                                     <DataGrid x:Name="JegyekGrid" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Margin="5">
@@ -141,13 +150,13 @@
                                         <DataGrid Margin="5" x:Name="TanuloAdatokGrid" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Azonosító" Binding="{Binding ID}"></DataGridTextColumn>
                                                 <DataGridTextColumn Header="Születési hely" Binding="{Binding Szul_Hely}"></DataGridTextColumn>
                                                 <DataGridTextColumn Header="Születési idő" Binding="{Binding Szul_Ido}"></DataGridTextColumn>
                                                 <DataGridTextColumn Header="Anyja Neve" Binding="{Binding Anya_Nev}"></DataGridTextColumn>
-                                                <DataGridTextColumn Header="Lakcím" Binding="{Binding Lakcim}"></DataGridTextColumn>
                                                 <DataGridTextColumn Header="Osztály" Binding="{Binding Osztaly_ID}"></DataGridTextColumn>
                                                 <DataGridTextColumn Header="Kollégium" Binding="{Binding Koli}"></DataGridTextColumn>
-                                                <DataGridTextColumn Binding="{Binding Torzslapszam}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Törzslapszám" Binding="{Binding Torzslapszam}"></DataGridTextColumn>
                                                 <DataGridTemplateColumn>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
