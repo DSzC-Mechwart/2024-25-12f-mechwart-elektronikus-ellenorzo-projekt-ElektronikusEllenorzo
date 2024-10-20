@@ -80,7 +80,7 @@ namespace Chalk
 
             try
             {
-                using (StreamWriter sw = new StreamWriter("Tanulok.txt", true))
+                using (StreamWriter sw = new StreamWriter("Tanulok.csv", true))
                 {
                     sw.WriteLine($"{nev};{szulHely};{szulIdo};{anyja};{lakcim};{beirIdo};{szak};{osztaly};{kollis};{kolliHely}");
                 }
@@ -92,6 +92,17 @@ namespace Chalk
                 MessageBox.Show(ex.Message);
             }
 
+            Nev.Text = "";
+            SzulHely.Text = "";
+            SzulIdo.SelectedDate = null;
+            Anyja.Text = "";
+            Lakcim.Text = "";
+            BeirIdo.SelectedDate = null;
+            Szak.Text = "";
+            Osztaly.Text = "";
+            Kollis.IsChecked = false;
+            KolliHely.Text = "";
+            KolliGrid.Opacity = 0;
 
         }
 

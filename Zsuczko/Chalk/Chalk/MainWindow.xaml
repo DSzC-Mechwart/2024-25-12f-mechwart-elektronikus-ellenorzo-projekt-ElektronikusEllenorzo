@@ -148,14 +148,14 @@
             Grid.Row="11"
             Grid.Column="2"
             Click="Kesz"
-            FontSize="20">
+            FontSize="15">
             Kész
         </Button>
         <Button
             Grid.Row="13"
             Grid.Column="4"
             Click="Adatbazis"
-            FontSize="20">
+            FontSize="15">
             Adatbázis
         </Button>
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -10,7 +11,7 @@ using System.Windows;
 
 namespace Chalk
 {
-    internal class MainVM
+    internal class MainVM : INotifyPropertyChanged
     {
         public ObservableCollection<Tanulo> Tanulok { get; set; }
 
@@ -19,7 +20,7 @@ namespace Chalk
             try
             {
 
-                using (StreamReader sr = new StreamReader("Tanulok.txt"))
+                using (StreamReader sr = new StreamReader("Tanulok.csv"))
                 {
 
                     string line;
@@ -33,6 +34,13 @@ namespace Chalk
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

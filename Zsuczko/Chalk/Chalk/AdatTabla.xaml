@@ -17,14 +17,61 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
 
         <DataGrid
-            Grid.ColumnSpan="2"
+            x:Name="DataTabla"
+            Grid.Column="0"
+            Grid.ColumnSpan="1"
             AutoGenerateColumns="True"
             ItemsSource="{Binding Tanulok}" />
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
 
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                x:Name="Statisztikak"
+                Grid.RowSpan="4"
+                Grid.ColumnSpan="2"
+                Margin="20,0"
+                Text="Kutya" />
+
+            <Button Grid.Row="5" Click="DeleteTanulok">Tanuló törlése.</Button>
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                Click="SaveTanulok">
+                Adatok mentése
+            </Button>
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Width="50"
+                Height="30"
+                Click="Vissza">
+                Vissza
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="50"
+                Height="30"
+                Click="Szakok">
+                Szakok
+            </Button>
+        </Grid>
     </Grid>
 </Window>
