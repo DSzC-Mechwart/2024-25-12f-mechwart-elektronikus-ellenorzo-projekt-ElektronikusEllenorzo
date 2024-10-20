@@ -25,19 +25,37 @@ namespace IKT_II_Derecske_Holding_EE
 
             LoginBtn.Click += (sender,e) => 
             {
-                OurWindow.Content = new LoginPanel();
+                OurWindow.Content = new LoginPanel(this);
             };
 
             TanarBtn.Click += (sender, e) =>
             {
-                OurWindow.Content = new TanarPanel();
+                OurWindow.Content = new TanarPanel(this);
             };
 
             TanuloBtn.Click += (sender, e) =>
             {
-                OurWindow.Content = new TanuloPanel();
+                OurWindow.Content = new TanuloPanel(this);
             };
 
+        }
+
+        public void ChangeTo(int scene)
+        {
+            switch (scene)
+            {
+                case 0:
+                    OurWindow.Content = new LoginPanel(this);
+                    break;
+                case 1:
+                    OurWindow.Content = new TanuloPanel(this);
+                    break;
+                case 2:
+                    OurWindow.Content = new TanarPanel(this);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

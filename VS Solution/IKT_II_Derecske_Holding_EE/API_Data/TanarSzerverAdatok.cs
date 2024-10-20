@@ -36,21 +36,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         /// A tantárgyak listája.
         /// </summary>
         public ObservableCollection<Tantargy> Tantargyak;
-        /// <summary>
-        /// A tanárok listája.
-        /// </summary>
-        public ObservableCollection<Tanar> Tanarok;
-        /// <summary>
-        /// A szakok listája.
-        /// </summary>
-        public ObservableCollection<Szak> Szakok;
-        /// <summary>
-        /// A tanórák listája.
-        /// </summary>
-        public ObservableCollection<Tanora> Tanorak;
-        /// <summary>
-        /// Az osztályonkénti órarendek.
-        /// </summary>
+        
         public ObservableCollection<Orarend> Orarendek;
         public ObservableCollection<Jegy> OsztalyJegyek;
 
@@ -66,9 +52,6 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
                 );
             Tantargyak = new();
-            Tanarok = new();
-            Szakok = new();
-            Tanorak = new();
             Orarendek = new();
             Tanulok = new();
             Osztalyok = new();
@@ -104,9 +87,6 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 );
 
             Tantargyak = new();
-            Tanarok = new();
-            Szakok = new();
-            Tanorak = new();
             Orarendek = new();
             Tanulok = new();
             Osztalyok = new();
@@ -185,7 +165,14 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                             {
                                 foreach (dynamic jegy in tanulo.jegyek[$"{i}"])
                                 {
-                                    honap += $"{jegy.jegy_Ertek} ";
+                                    if ((int)jegy.jegy_Ertek > 0)
+                                    {
+                                        honap += $"{jegy.jegy_Ertek} ";
+                                    }
+                                    else
+                                    {
+                                        honap += $"- ";
+                                    }
                                 }
                             }
                             honapLista[$"{i}"] = honap;
@@ -238,20 +225,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
         }
 
-        private async void GetTanorak()
-        {
-            try
-            {
-                var response = await client.GetStringAsync("api/Tanorak");
-                var tanorak = JsonConvert.DeserializeObject<ObservableCollection<Tanora>>(response);
-                Tanorak = tanorak;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Nem található a szerver");
-            }
 
-        }
 
         private async void GetOrarend()
         {
@@ -260,36 +234,6 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var response = await client.GetStringAsync("api/Orarendek/osszes");
                 //var orarendek = JsonConvert.DeserializeObject<ObservableCollection<Orarend>>(response);
                 //Orarendek = orarendek;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Nem található a szerver");
-            }
-
-        }
-
-        private async void GetSzakok()
-        {
-            try
-            {
-                var response = await client.GetStringAsync("api/Szakok");
-                //var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
-                //Szakok = szakok;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERROR: Nem található a szerver");
-            }
-
-        }
-
-        private async void GetTanarok()
-        {
-            try
-            {
-                var response = await client.GetStringAsync("api/Tanarok");
-                var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
-                Tanarok = tanarok;
             }
             catch (Exception)
             {

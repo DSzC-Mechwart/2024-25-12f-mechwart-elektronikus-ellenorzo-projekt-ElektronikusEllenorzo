@@ -29,11 +29,12 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
     public partial class TanarPanel : UserControl
     {
         TanarSzerverAdatok szerverAdatok;
+        MainWindow _mainWindow;
         Dictionary<int,int> ujJegyek;
         Dictionary<int,Button> ujJegyekBtns;
-        List<int> modosultAdatokIndex = new List<int>();
+        Dictionary<int, int> modosultAdatokIndex = new(); // 1-hozzaad, 2-torol, 3-modosul
 
-        public TanarPanel()
+        public TanarPanel(MainWindow mainWindow)
         {
             InitializeComponent();
             ujJegyek = new();
@@ -49,6 +50,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
             OsztalyokBtn.Background = Szinek.ASPARAGUS;
+            _mainWindow = mainWindow;
         }
 
         private void AdatLekerdezes()
@@ -120,13 +122,11 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             MegseJegyBtn.Visibility = Visibility.Hidden;
             JegyekMenteseBtn.Visibility = Visibility.Hidden;
             adatPOST adatPOST = new adatPOST();
-            int id = 54;
             foreach (var jegy in ujJegyek)
             {
                 var tanulo = szerverAdatok.Tanulok.Where(x => x.ID == jegy.Key).FirstOrDefault();
                 var tantargy = TantargyBox.SelectedItem as Tantargy;
-                bool res = await adatPOST.JegyBevitel(new() { Datum = JegyDatum.DisplayDate, Jegy_Ertek = jegy.Value, Osztaly_ID = tanulo.Osztaly_ID, Tanar_ID = tantargy.Tanar_ID, Tantargy_ID = tantargy.ID, Tema = TemaTxt.Text, Tanulo_ID = jegy.Key, ID = id});
-                id++;
+                bool res = await adatPOST.JegyBevitel(new() { Datum = JegyDatum.DisplayDate, Jegy_Ertek = jegy.Value, Osztaly_ID = tanulo.Osztaly_ID, Tanar_ID = tantargy.Tanar_ID, Tantargy_ID = tantargy.ID, Tema = TemaTxt.Text, Tanulo_ID = jegy.Key, ID = 0});
                 if (!res)
                 {
                     MessageBox.Show("Sikertelen mentés!");
@@ -159,7 +159,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                 ujJegyek.Remove(id);
             }
 
-            ujJegyekBtns.Add(id, btn);
+            ujJegyekBtns.TryAdd(id, btn);
             ujJegyek.Add(id, 1);
         }
 
@@ -176,7 +176,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                 ujJegyek.Remove(id);
             }
 
-            ujJegyekBtns.Add(id, btn);
+            ujJegyekBtns.TryAdd(id, btn);
             ujJegyek.Add(id, 2);
         }
 
@@ -193,7 +193,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                 ujJegyek.Remove(id);
             }
 
-            ujJegyekBtns.Add(id, btn);
+            ujJegyekBtns.TryAdd(id, btn);
             ujJegyek.Add(id, 3);
         }
 
@@ -210,7 +210,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                 ujJegyek.Remove(id);
             }
 
-            ujJegyekBtns.Add(id, btn);
+            ujJegyekBtns.TryAdd(id, btn);
             ujJegyek.Add(id, 4);
         }
 
@@ -227,7 +227,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                 ujJegyek.Remove(id);
             }
 
-            ujJegyekBtns.Add(id, btn);
+            ujJegyekBtns.TryAdd(id, btn);
             ujJegyek.Add(id, 5);
         }
 
@@ -244,7 +244,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                 ujJegyek.Remove(id);
             }
 
-            ujJegyekBtns.Add(id, btn);
+            ujJegyekBtns.TryAdd(id, btn);
             ujJegyek.Add(id, -1);
         }
 
@@ -273,10 +273,13 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         {
             AdatMegseBtn.IsEnabled = true;
             AdatMentesBtn.IsEnabled = true;
-            if (!modosultAdatokIndex.Contains(e.NewStartingIndex))
+            if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                modosultAdatokIndex.Add(e.NewStartingIndex);
-
+                int tanuloID = szerverAdatok.Tanulok[e.NewStartingIndex].ID;
+                if (!modosultAdatokIndex.ContainsKey(tanuloID))
+                {
+                    modosultAdatokIndex.Add(tanuloID, 1);
+                }
             }
         }
 
@@ -284,21 +287,13 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         {
             bool res = false;
             adatPOST _adatPOST = new adatPOST();
-            foreach (var ujTanuloInd in modosultAdatokIndex)
+            foreach (var ujTanuloInd in modosultAdatokIndex.Where(x => x.Value == 1))
             {
-
-                Tanulo_Obj tanulo = szerverAdatok.Tanulok[ujTanuloInd];
+                Tanulo_Obj tanulo = szerverAdatok.Tanulok.Where(x => x.ID == ujTanuloInd.Key).First();
                 var _saltArray = RandomNumberGenerator.GetBytes(8);
                 string _salt = BitConverter.ToString(_saltArray);
-                string bPass = $"{tanulo.Szul_Ido.Year}-{tanulo.Szul_Ido.Month}-{tanulo.Szul_Ido.Day}" + _salt;
-                MessageBox.Show(bPass);
+                string bPass = $"{tanulo.Szul_Ido:yyyy-MM-dd}" + _salt;
                 byte[] passBytes = Encoding.UTF8.GetBytes(bPass);
-                string test = "";
-                foreach (var item in passBytes)
-                {
-                    test += $"{item}";
-                }
-                MessageBox.Show(test);
                 Rfc2898DeriveBytes rfc2898DeriveBytes = new(passBytes, _saltArray, 25000 , HashAlgorithmName.SHA256);
                 byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
                 string _hash = BitConverter.ToString(hashByte);
@@ -310,11 +305,21 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
                     break;
                 };
             }
+            foreach (var ujTanuloInd in modosultAdatokIndex.Where(x => x.Value == 2))
+            {
+                res = await _adatPOST.TanuloTorles(ujTanuloInd.Key);
+                if (!res)
+                {
+                    MessageBox.Show("Sikertelen mentés!");
+                    break;
+                };
+            }
             if (res)
             {
                 AdatMegseBtn.IsEnabled = false;
                 AdatMentesBtn.IsEnabled = false;
                 modosultAdatokIndex.Clear();
+                AdatLekerdezes();
             }
             
         }
@@ -326,5 +331,15 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             modosultAdatokIndex.Clear();
             AdatLekerdezes();
         }
+
+        private void Tanulo_Torlese(object sender, RoutedEventArgs e)
+        {
+            int ind = TanuloAdatokGrid.SelectedIndex;
+            int tanuloID = szerverAdatok.Tanulok[ind].ID;
+            szerverAdatok.Tanulok.RemoveAt(ind);
+            modosultAdatokIndex.Add(tanuloID, 2);
+            MessageBox.Show($"Torles: {tanuloID}");
+        }
+
     }
 }

@@ -29,7 +29,8 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
     public partial class LoginPanel : UserControl
     {
         HttpClient client = new();
-        public LoginPanel()
+        MainWindow _mainWindow;
+        public LoginPanel(MainWindow mainWindow)
         {
             InitializeComponent();
             client.BaseAddress = new Uri("https://localhost:7181/");
@@ -37,13 +38,14 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
                 );
-
+            _mainWindow = mainWindow;
         }
 
         private async void Belepes(object sender, RoutedEventArgs e)
         {
             string res = await client.GetStringAsync($"api/Belepes/tipus?id={Convert.ToInt32(Felhasznalonev.Text)}");
             int tipus = Convert.ToInt32(res);
+            bool match = false;
             switch (tipus)
             {
                 case -1:
@@ -51,11 +53,19 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
                     break;
                 case 1:
                     string tanulo_salt = await client.GetStringAsync($"api/Belepes/salt?id={Convert.ToInt32(Felhasznalonev.Text)}&type=1");
-                    bool match = await JelszoEllenorzes(tanulo_salt, jelszoBox.Password);
-                    MessageBox.Show($"{match}");
+                    match = await JelszoEllenorzes(tanulo_salt, jelszoBox.Password);
+                    if (match)
+                    {
+                        _mainWindow.ChangeTo(1);
+                    }
                     break;
                 case 2:
-                    MessageBox.Show("Tanár");
+                    string tanar_salt = await client.GetStringAsync($"api/Belepes/salt?id={Convert.ToInt32(Felhasznalonev.Text)}&type=2");
+                    match = await JelszoEllenorzes(tanar_salt, jelszoBox.Password);
+                    if (match)
+                    {
+                        _mainWindow.ChangeTo(2);
+                    }
                     break;
                 default:
                     break;
@@ -73,19 +83,10 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
             }
             string _salt = BitConverter.ToString(_saltArray);
             string combinedPass = pass + _salt;
-            MessageBox.Show(combinedPass);
             byte[] passBytes = Encoding.UTF8.GetBytes(combinedPass);
-            string test = "";
-            foreach (var item in passBytes)
-            {
-                test += $"{item}";
-            }
-            MessageBox.Show(test);
             Rfc2898DeriveBytes rfc2898DeriveBytes = new(passBytes, _saltArray, 25000, HashAlgorithmName.SHA256);
             byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
             string _hash = BitConverter.ToString(hashByte);
-            MessageBox.Show(_salt);
-            MessageBox.Show(_hash);
             string reply = await client.GetStringAsync($"api/Belepes/ellenorzes?id={Convert.ToInt32(Felhasznalonev.Text)}&passHash={_hash}&type=1");
             return bool.Parse(reply);
         }

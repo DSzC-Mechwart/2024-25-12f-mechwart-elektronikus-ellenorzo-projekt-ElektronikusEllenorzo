@@ -1,5 +1,4 @@
-﻿using IKT_II_Derecske_Holding_EE.API_Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanulo
+namespace IKT_II_Derecske_Holding_EE.Ablakok.AdminPanel
 {
     /// <summary>
-    /// Interaction logic for TanuloPanel.xaml
+    /// Interaction logic for AdminPanel.xaml
     /// </summary>
-    public partial class TanuloPanel : UserControl
+    public partial class AdminPanel : UserControl
     {
-        SzerverAdatok szerverAdatok = new();
-        MainWindow _mainWindow;
-        public TanuloPanel(MainWindow mainWindow)
+        public AdminPanel()
         {
             InitializeComponent();
-            _mainWindow = mainWindow;
         }
     }
 }

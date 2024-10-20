@@ -34,5 +34,11 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             HttpResponseMessage res = await client.PostAsJsonAsync($"api/Tanulo", tanulo);
             return res.IsSuccessStatusCode;
         }
+
+        public async Task<bool> TanuloTorles(int id)
+        {
+            HttpResponseMessage res = await client.DeleteAsync($"api/Tanulo?id={id}");
+            return res.IsSuccessStatusCode;
+        }
     }
 }

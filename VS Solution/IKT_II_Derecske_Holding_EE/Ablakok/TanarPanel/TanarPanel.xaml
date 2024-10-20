@@ -118,16 +118,77 @@
                                     <DataGrid x:Name="JegyekGrid" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Margin="5">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Név" Binding="{Binding nev}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Szeptember" Binding="{Binding honapok[9]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Október" Binding="{Binding honapok[10]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="November" Binding="{Binding honapok[11]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="December" Binding="{Binding honapok[12]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Január" Binding="{Binding honapok[1]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Február" Binding="{Binding honapok[2]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Március" Binding="{Binding honapok[3]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Április" Binding="{Binding honapok[4]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Május" Binding="{Binding honapok[5]}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Június" Binding="{Binding honapok[6]}"></DataGridTextColumn>
+                                            <DataGridTemplateColumn Header="Szeptember">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[9]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Október">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[10]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="November">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[11]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="December">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[12]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Január">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[1]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Február">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[2]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Március">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[3]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Április">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[4]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Május">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[5]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Június">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[6]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
                                             <DataGridTemplateColumn Header="Új jegy" Visibility="Hidden" x:Name="UjJegyOszlop">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -160,7 +221,7 @@
                                                 <DataGridTemplateColumn>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button>Törlés</Button>
+                                                            <Button Click="Tanulo_Torlese">Törlés</Button>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
