@@ -43,36 +43,45 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
 
         private async void Belepes(object sender, RoutedEventArgs e)
         {
-            string res = await client.GetStringAsync($"api/Belepes/tipus?id={Convert.ToInt32(Felhasznalonev.Text)}");
-            int tipus = Convert.ToInt32(res);
-            bool match = false;
-            switch (tipus)
+            if (Felhasznalonev.Text != "admin" && jelszoBox.Password != "admin")
             {
-                case -1:
-                    MessageBox.Show("Nem létezik ilyen azonosítójú felhasználó!");
-                    break;
-                case 1:
-                    string tanulo_salt = await client.GetStringAsync($"api/Belepes/salt?id={Convert.ToInt32(Felhasznalonev.Text)}&type=1");
-                    match = await JelszoEllenorzes(tanulo_salt, jelszoBox.Password);
-                    if (match)
-                    {
-                        _mainWindow.ChangeTo(1);
-                    }
-                    break;
-                case 2:
-                    string tanar_salt = await client.GetStringAsync($"api/Belepes/salt?id={Convert.ToInt32(Felhasznalonev.Text)}&type=2");
-                    match = await JelszoEllenorzes(tanar_salt, jelszoBox.Password);
-                    if (match)
-                    {
-                        _mainWindow.ChangeTo(2);
-                    }
-                    break;
-                default:
-                    break;
+
+                string res = await client.GetStringAsync($"api/Belepes/tipus?id={Convert.ToInt32(Felhasznalonev.Text)}");
+                int tipus = Convert.ToInt32(res);
+                bool match = false;
+                switch (tipus)
+                {
+                    case -1:
+                        MessageBox.Show("Nem létezik ilyen azonosítójú felhasználó!");
+                        break;
+                    case 1:
+                        string tanulo_salt = await client.GetStringAsync($"api/Belepes/salt?id={Convert.ToInt32(Felhasznalonev.Text)}&type=1");
+                        match = await JelszoEllenorzes(tanulo_salt, jelszoBox.Password,1);
+                        if (match)
+                        {
+                            _mainWindow.ChangeTo(1);
+                        }
+                        break;
+                    case 2:
+                        string tanar_salt = await client.GetStringAsync($"api/Belepes/salt?id={Convert.ToInt32(Felhasznalonev.Text)}&type=2");
+                        match = await JelszoEllenorzes(tanar_salt, jelszoBox.Password,2);
+                        if (match)
+                        {
+                            _mainWindow.ChangeTo(2);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
+            else
+            {
+                _mainWindow.ChangeTo(3);
+            }
+
         }
 
-        private async Task<bool> JelszoEllenorzes(string salt_, string pass)
+        private async Task<bool> JelszoEllenorzes(string salt_, string pass, int type)
         {
             string salt = JsonConvert.DeserializeObject<string>(salt_);
             string[] strArray = salt.Split('-');
@@ -87,8 +96,9 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
             Rfc2898DeriveBytes rfc2898DeriveBytes = new(passBytes, _saltArray, 25000, HashAlgorithmName.SHA256);
             byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
             string _hash = BitConverter.ToString(hashByte);
-            string reply = await client.GetStringAsync($"api/Belepes/ellenorzes?id={Convert.ToInt32(Felhasznalonev.Text)}&passHash={_hash}&type=1");
-            return bool.Parse(reply);
+            string passHashJSON = await client.GetStringAsync($"api/Belepes/ellenorzes?id={Convert.ToInt32(Felhasznalonev.Text)}&type={type}");
+            string passHash = JsonConvert.DeserializeObject<string>(passHashJSON);
+            return _hash.Equals(passHash);
         }
     }
 }

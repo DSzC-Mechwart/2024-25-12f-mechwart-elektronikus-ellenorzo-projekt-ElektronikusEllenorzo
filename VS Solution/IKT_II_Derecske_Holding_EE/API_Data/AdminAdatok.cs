@@ -17,6 +17,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
     {
         public event AdatokLekerdezveD TantargyakLekerdezve;
         public event AdatokLekerdezveD OsztalyokLekerdezve;
+        public event AdatokLekerdezveD SzakokLekerdezve;
+        public event AdatokLekerdezveD TanarokLekerdezve;
+        public event AdatokLekerdezveD TanorakLekerdezve;
 
         public ObservableCollection<Tanar> Tanarok;
         /// <summary>
@@ -47,6 +50,11 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 );
             Tantargyak = new();
             Osztalyok = new();
+            GetOsztalyok();
+            GetTanarok();
+            GetTanorak();
+            GetSzakok();
+            GetTantargyak();
         }
 
         private async void GetTanorak()
@@ -56,6 +64,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var response = await client.GetStringAsync("api/Tanorak");
                 var tanorak = JsonConvert.DeserializeObject<ObservableCollection<Tanora>>(response);
                 Tanorak = tanorak;
+                TanorakLekerdezve?.Invoke();
             }
             catch (Exception)
             {
@@ -71,6 +80,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var response = await client.GetStringAsync("api/Szakok");
                 var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
                 Szakok = szakok;
+                SzakokLekerdezve?.Invoke();
             }
             catch (Exception)
             {
@@ -86,6 +96,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var response = await client.GetStringAsync("api/Tanarok");
                 var tanarok = JsonConvert.DeserializeObject<ObservableCollection<IKT_II_Derecske_Holding_EE.Models.Tanar>>(response);
                 Tanarok = tanarok;
+                TanarokLekerdezve?.Invoke();
             }
             catch (Exception)
             {

@@ -275,11 +275,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             AdatMentesBtn.IsEnabled = true;
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                int tanuloID = szerverAdatok.Tanulok[e.NewStartingIndex].ID;
-                if (!modosultAdatokIndex.ContainsKey(tanuloID))
-                {
-                    modosultAdatokIndex.Add(tanuloID, 1);
-                }
+                modosultAdatokIndex.TryAdd(e.NewStartingIndex, 1);
             }
         }
 
@@ -289,7 +285,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             adatPOST _adatPOST = new adatPOST();
             foreach (var ujTanuloInd in modosultAdatokIndex.Where(x => x.Value == 1))
             {
-                Tanulo_Obj tanulo = szerverAdatok.Tanulok.Where(x => x.ID == ujTanuloInd.Key).First();
+                Tanulo_Obj tanulo = szerverAdatok.Tanulok[ujTanuloInd.Key];
                 var _saltArray = RandomNumberGenerator.GetBytes(8);
                 string _salt = BitConverter.ToString(_saltArray);
                 string bPass = $"{tanulo.Szul_Ido:yyyy-MM-dd}" + _salt;
@@ -338,7 +334,6 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             int tanuloID = szerverAdatok.Tanulok[ind].ID;
             szerverAdatok.Tanulok.RemoveAt(ind);
             modosultAdatokIndex.Add(tanuloID, 2);
-            MessageBox.Show($"Torles: {tanuloID}");
         }
 
     }

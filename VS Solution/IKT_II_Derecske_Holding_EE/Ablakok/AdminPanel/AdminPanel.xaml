@@ -39,12 +39,12 @@
                 </Grid>
             </Grid>
             <StackPanel Grid.Row="1" VerticalAlignment="Center">
-                <Button x:Name="OsztalyokBtn" Content="Osztályok" Height="45" Margin="0 0 15 0" Click="OsztalyFulGomb"></Button>
-                <Button x:Name="TanarokBtn" Content="Tanárok" Height="45" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
-                <Button x:Name="TanorakBtn" Content="Tanórák" Height="45" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
-                <Button x:Name="SzakokBtn" Content="Szakok" Height="45" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
-                <Button x:Name="TantargyakBtn" Content="Tantargyak" Height="45" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
-                <Button x:Name="OrarendekBtn" Content="Órarendek" Height="45" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
+                <Button x:Name="OsztalyokBtn" Content="Osztályok" Height="45" Margin="0 0 15 0" Click="OsztalyokFulGomb"></Button>
+                <Button x:Name="TanarokBtn" Content="Tanárok" Height="45" Margin="0 0 15 0" Click="TanarokFulGomb"></Button>
+                <Button x:Name="TanorakBtn" Content="Tanórák" Height="45" Margin="0 0 15 0" Click="TanorakFulGomb"></Button>
+                <Button x:Name="SzakokBtn" Content="Szakok" Height="45" Margin="0 0 15 0" Click="SzakokFulGomb"></Button>
+                <Button x:Name="TantargyakBtn" Content="Tantargyak" Height="45" Margin="0 0 15 0" Click="TantargyakFulGomb"></Button>
+                <Button x:Name="OrarendekBtn" Content="Órarendek" Height="45" Margin="0 0 15 0" Click="OrarendekFulGomb"></Button>
             </StackPanel>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -52,7 +52,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1">
-                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0" Click="KilepesGomb"/>
+                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0"/>
                 </StackPanel>
                 <StackPanel>
                     <Label Name="LiveTimeLabel" Content=""  HorizontalAlignment="Center" Margin="0,15,0,0" Width="70"/>
@@ -60,12 +60,23 @@
             </Grid>
         </Grid>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" x:Name="AdatModositasCol" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="AdatMentesBtn" Width="100" Height="50" Click="Adatok_Mentese" Margin="0 0 15 0" IsEnabled="False">
+                    <TextBlock Text="Adatok mentése" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+                </Button>
+                <Button x:Name="AdatMegseBtn" Content="Mégse" Width="100" Height="50" Click="Adatok_Megse" IsEnabled="False"></Button>
+            </StackPanel>
             <TabControl x:Name="AdminTabs" TabStripPlacement="right" Margin="0 0 -15 0" Grid.Row="1">
                 <TabItem Visibility="Hidden">
                     <DataGrid Margin="5" x:Name="OsztalyokGrid"></DataGrid>
                 </TabItem>
                 <TabItem Visibility="Hidden">
-                    <DataGrid Margin="5" x:Name="TanarokGrid"></DataGrid>
+
+                    <DataGrid Grid.Row="1" Margin="5" x:Name="TanarokGrid"></DataGrid>
                 </TabItem>
                 <TabItem Visibility="Hidden">
                     <DataGrid Margin="5" x:Name="TanorakGrid"></DataGrid>

@@ -1,4 +1,5 @@
-﻿using IKT_II_Derecske_Holding_EE.Ablakok.Login;
+﻿using IKT_II_Derecske_Holding_EE.Ablakok.AdminPanel;
+using IKT_II_Derecske_Holding_EE.Ablakok.Login;
 using IKT_II_Derecske_Holding_EE.Ablakok.Tanar;
 using IKT_II_Derecske_Holding_EE.Ablakok.Tanulo;
 using System.Text;
@@ -52,6 +53,9 @@ namespace IKT_II_Derecske_Holding_EE
                     break;
                 case 2:
                     OurWindow.Content = new TanarPanel(this);
+                    break;
+                case 3:
+                    OurWindow.Content = new AdminPanel(this);
                     break;
                 default:
                     break;

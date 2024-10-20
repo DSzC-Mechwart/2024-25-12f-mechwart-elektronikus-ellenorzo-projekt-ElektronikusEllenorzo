@@ -29,8 +29,6 @@ namespace DH_EE_IKT_API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTanulo([FromBody] Tanulo tanulo) 
         {
-            string newHash = JelszoHash(tanulo.P_Hash, tanulo.P_Salt);
-            tanulo.P_Hash = newHash;
             _context.Tanulok.Add(tanulo);
             await _context.SaveChangesAsync();
             return Created();
@@ -40,17 +38,12 @@ namespace DH_EE_IKT_API.Controllers
         public async Task<IActionResult> RemoveTanulo(int id)
         {
             var tanulo = _context.Tanulok.Where(x => x.ID == id).First();
-            /*var jegyek = _context.Jegyek.Where(x => x.ID == id);
-            foreach (var jegy in jegyek)
-            {
-                _context.Jegyek.Remove(jegy);
-            }*/
             _context.Tanulok.Remove(tanulo);
             await _context.SaveChangesAsync();
             return Ok();
         }
 
-        private static string JelszoHash(string passHash, string salt)
+        /*private static string JelszoHash(string passHash, string salt)
         {
             byte[] passBytes = Encoding.UTF8.GetBytes(passHash);
             string[] strArray = salt.Split('-');
@@ -63,6 +56,6 @@ namespace DH_EE_IKT_API.Controllers
             byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
             string newPassHash = BitConverter.ToString(hashByte);
             return newPassHash;
-        }
+        }*/
     }
 }
