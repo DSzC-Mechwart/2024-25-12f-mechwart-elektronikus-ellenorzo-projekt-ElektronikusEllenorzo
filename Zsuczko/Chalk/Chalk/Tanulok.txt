@@ -1,0 +1,2 @@
+Baláska;Kuki;10/10/1984;Anya;Holding pince;10/15/2024;1.b;False;
+sasd;sdsdc;10/8/2024;scdc;scscd;10/15/2024;cscscd;scdsdc;True;cssdcsdc

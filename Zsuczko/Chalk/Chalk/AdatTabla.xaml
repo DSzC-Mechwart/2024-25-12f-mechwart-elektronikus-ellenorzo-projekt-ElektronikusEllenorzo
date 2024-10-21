@@ -1,0 +1,85 @@
+﻿<Window
+    x:Class="Chalk.AdatTabla"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Chalk"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AdatTabla"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainVM />
+
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <DataGrid
+            x:Name="DataTabla"
+            Grid.Column="0"
+            Grid.ColumnSpan="1"
+            AutoGenerateColumns="True"
+            ItemsSource="{Binding Tanulok}" />
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                x:Name="Statisztikak"
+                Grid.RowSpan="4"
+                Grid.ColumnSpan="2"
+                Margin="20,0"
+                Text="Kutya" />
+
+            <Button Grid.Row="5" Click="DeleteTanulok">Tanuló törlése.</Button>
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                Click="SaveTanulok">
+                Adatok mentése
+            </Button>
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Width="50"
+                Height="30"
+                Click="Vissza">
+                Vissza
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="50"
+                Height="30"
+                Click="Szakok">
+                Szakok
+            </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="60"
+                Height="30"
+                Click="CreateTorzs">
+                Generálás
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
