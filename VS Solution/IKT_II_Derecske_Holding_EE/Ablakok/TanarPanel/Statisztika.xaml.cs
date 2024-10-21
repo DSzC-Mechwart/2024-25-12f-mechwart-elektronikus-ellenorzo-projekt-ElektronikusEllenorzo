@@ -36,7 +36,11 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.TanarPanel
             int bejarosSz = tanulok.Where(x=>x.Koli!=null).Count();
             BejarosStat.Content = $"Bejárósak: {bejarosSz} ";
 
-            double osztAVG = osztalyJegyek.Where(x=>x.Jegy_Ertek!=-1).Average(x=>x.Jegy_Ertek);
+            double osztAVG = 0;
+            if (osztalyJegyek.Count > 0)
+            {
+                osztAVG = osztalyJegyek.Where(x => x.Jegy_Ertek != -1).Average(x => x.Jegy_Ertek);
+            }
             OsztAtlStat.Content = $"Osztály átlag: {osztAVG:N2}";
         }
     }

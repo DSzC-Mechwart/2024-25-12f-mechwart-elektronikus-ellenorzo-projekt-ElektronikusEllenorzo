@@ -19,6 +19,12 @@ namespace DH_EE_IKT_API.Controllers
             return _context.Tanarok;
         }
 
+        [HttpGet("{id}")]
+        public Tanar? GetTanar(int id)
+        {
+            return _context.Tanarok.Where(x => x.ID == id).FirstOrDefault();
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddTanar([FromBody] Tanar tanar)
         {

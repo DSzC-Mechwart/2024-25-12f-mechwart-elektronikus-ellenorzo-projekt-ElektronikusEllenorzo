@@ -26,6 +26,12 @@ namespace DH_EE_IKT_API.Controllers
             return _context.Tanulok.Where( x => x.Osztaly_ID == osztalyId);
         }
 
+        [HttpGet("tanulo/{tanuloId}")]
+        public Tanulo? GetTanar(int tanuloId)
+        {
+            return _context.Tanulok.Where(x => x.ID == tanuloId).FirstOrDefault();
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddTanulo([FromBody] Tanulo tanulo) 
         {
@@ -42,20 +48,5 @@ namespace DH_EE_IKT_API.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
-
-        /*private static string JelszoHash(string passHash, string salt)
-        {
-            byte[] passBytes = Encoding.UTF8.GetBytes(passHash);
-            string[] strArray = salt.Split('-');
-            byte[] _saltArray = new byte[strArray.Length];
-            for (int i = 0; i < strArray.Length; i++)
-            {
-                _saltArray[i] = Convert.ToByte(strArray[i], 16);
-            }
-            Rfc2898DeriveBytes rfc2898DeriveBytes = new(passBytes, _saltArray, 25000, HashAlgorithmName.SHA256);
-            byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
-            string newPassHash = BitConverter.ToString(hashByte);
-            return newPassHash;
-        }*/
     }
 }

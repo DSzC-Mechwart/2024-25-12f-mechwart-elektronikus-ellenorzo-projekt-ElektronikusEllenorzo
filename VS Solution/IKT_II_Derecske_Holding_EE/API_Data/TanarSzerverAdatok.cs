@@ -62,23 +62,6 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Orarendek = new();
             Tanulok = new();
             Osztalyok = new();
-
-            /*Osztaly o1 = new() { ID = "12.F", Evfolyam = 12, Ofo_ID = 1, Szak_ID = 1 };
-            Osztaly o2 = new() { ID = "12.E", Evfolyam = 12, Ofo_ID = 2, Szak_ID = 1 };
-            Osztaly o3 = new() { ID = "12.D", Evfolyam = 12, Ofo_ID = 3, Szak_ID = 2 };
-
-            Osztalyok.Add(o1);
-            Osztalyok.Add(o2);
-            Osztalyok.Add(o3);
-
-            Tanulo_Obj t1 = new() { ID = 1, Nev = "Szabó Balázs", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Nagy-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.F", Torzslapszam = "58965" };
-            Tanulo_Obj t2 = new() { ID = 2, Nev = "Szabó Balázs2", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Nagy-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.F", Torzslapszam = "58936" };
-            Tanulo_Obj t3 = new() { ID = 3, Nev = "Szabó Balázs3", Szul_Ido = new(2006, 12, 14), Szul_Hely = "Kis-Derecske", Anya_Nev = "Mariann", Koli = null, Osztaly_ID = "12.E", Torzslapszam = "52636" };
-
-            Tanulok.Add(t1);
-            Tanulok.Add(t2);
-            Tanulok.Add(t3);*/
-
             OsztalyJegyek = new();
             GetTanulok(osztalyID);
             GetOsztalyJegyek(osztalyID);
@@ -122,7 +105,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Szakok");
                 var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
-                Szakok = szakok;
+                Szakok = szakok??[];
                 SzakokLekerdezve?.Invoke();
                 statAdatokLekerve--;
                 Lekerdezve();
@@ -140,7 +123,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Tanulo");
                 var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
-                Tanulok = tanulok;
+                Tanulok = tanulok ??[];
                 TanulokLekerdezve.Invoke();
             }
             catch (Exception)
@@ -156,7 +139,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync($"api/Tanulo/{id}");
                 var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
-                Tanulok = tanulok;
+                Tanulok = tanulok??[];
                 TanulokLekerdezve?.Invoke();
                 statAdatokLekerve--;
                 Lekerdezve();
@@ -175,7 +158,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 OsztalyJegyek.Clear();
                 var response = await client.GetStringAsync($"api/Jegyek/osztalyok/{id}");
                 var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                OsztalyJegyek = jegyek;
+                OsztalyJegyek = jegyek??[];
                 OsztalyStatJegyekLekerdezve?.Invoke();
                 statAdatokLekerve--;
                 Lekerdezve();
@@ -240,7 +223,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Osztaly");
                 var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
-                Osztalyok = osztalyok;
+                Osztalyok = osztalyok??[];
                 OsztalyokLekerdezve?.Invoke();
                 statAdatokLekerve--;
                 Lekerdezve();
@@ -259,7 +242,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 var response = await client.GetStringAsync("api/Tantargyak");
                 var tantargyak = JsonConvert.DeserializeObject<ObservableCollection<Tantargy>>(response);
-                Tantargyak = tantargyak;
+                Tantargyak = tantargyak??[];
                 TantargyakLekerdezve?.Invoke();
                 statAdatokLekerve--;
                 Lekerdezve();

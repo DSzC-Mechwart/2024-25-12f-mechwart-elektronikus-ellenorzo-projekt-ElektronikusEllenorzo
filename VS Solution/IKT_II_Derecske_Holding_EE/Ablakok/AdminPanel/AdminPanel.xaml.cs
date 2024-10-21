@@ -1,9 +1,11 @@
 ﻿using IKT_II_Derecske_Holding_EE.Ablakok.Stilus;
 using IKT_II_Derecske_Holding_EE.API_Data;
+using IKT_II_Derecske_Holding_EE.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -142,24 +144,86 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.AdminPanel
             AdatMentesBtn.IsEnabled = false;
         }
 
-        public void Adatok_Mentese(object sender, RoutedEventArgs e)
+        public async void Adatok_Mentese(object sender, RoutedEventArgs e)
         {
             int tablaInd = AdminTabs.SelectedIndex;
+            bool res = false;
+            adatPOST _adatPOST = new adatPOST();
             switch (tablaInd)
             {
+                case 0:
+                    foreach (var ujOsztalyInd in modosultAdatokIndex.Where(x => x.Value == 1))
+                    {
+                        Osztaly osztaly = szerverAdatok.Osztalyok[ujOsztalyInd.Key];
+                        res = await _adatPOST.OsztalyBevitel(osztaly);
+                        if (!res)
+                        {
+                            MessageBox.Show("Sikertelen mentés!");
+                            break;
+                        };
+                    }
+                    break;
                 case 1:
+                    foreach (var ujTanarInd in modosultAdatokIndex.Where(x => x.Value == 1))
+                    {
+                        IKT_II_Derecske_Holding_EE.Models.Tanar tanar = szerverAdatok.Tanarok[ujTanarInd.Key];
+                        var _saltArray = RandomNumberGenerator.GetBytes(8);
+                        string _salt = BitConverter.ToString(_saltArray);
+                        string bPass = $"{tanar.P_Hash}" + _salt;
+                        byte[] passBytes = Encoding.UTF8.GetBytes(bPass);
+                        Rfc2898DeriveBytes rfc2898DeriveBytes = new(passBytes, _saltArray, 25000, HashAlgorithmName.SHA256);
+                        byte[] hashByte = rfc2898DeriveBytes.GetBytes(32);
+                        string _hash = BitConverter.ToString(hashByte);
+                        tanar.P_Salt = _salt;
+                        tanar.P_Hash = _hash;
+                        res = await _adatPOST.TanarBevitel(tanar);
+                        if (!res)
+                        {
+                            MessageBox.Show("Sikertelen mentés!");
+                            break;
+                        };
+                    }
                     break;
                 case 2:
+                    foreach (var ujTanoraInd in modosultAdatokIndex.Where(x => x.Value == 1))
+                    {
+                        Tanora tanora = szerverAdatok.Tanorak[ujTanoraInd.Key];
+                        res = await _adatPOST.TanoraBevitel(tanora);
+                        if (!res)
+                        {
+                            MessageBox.Show("Sikertelen mentés!");
+                            break;
+                        };
+                    }
                     break;
                 case 3:
+                    foreach (var ujSzakInd in modosultAdatokIndex.Where(x => x.Value == 1))
+                    {
+                        Szak szak = szerverAdatok.Szakok[ujSzakInd.Key];
+                        res = await _adatPOST.SzakBevitel(szak);
+                        if (!res)
+                        {
+                            MessageBox.Show("Sikertelen mentés!");
+                            break;
+                        };
+                    }
                     break;
                 case 4:
-                    break;
-                case 5:
+                    foreach (var ujTantargyInd in modosultAdatokIndex.Where(x => x.Value == 1))
+                    {
+                        Tantargy tantargy = szerverAdatok.Tantargyak[ujTantargyInd.Key];
+                        res = await _adatPOST.TantargyakBevitel(tantargy);
+                        if (!res)
+                        {
+                            MessageBox.Show("Sikertelen mentés!");
+                            break;
+                        };
+                    }
                     break;
                 default:
                     break;
             }
+            ModosultVissza();
         }
 
         public void Adatok_Megse(object sender, RoutedEventArgs e)
@@ -181,6 +245,11 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.AdminPanel
                 default:
                     break;
             }
+        }
+
+        private void Kilepes(object sender, RoutedEventArgs e)
+        {
+            _mw.ChangeTo(0, null);
         }
     }
 }

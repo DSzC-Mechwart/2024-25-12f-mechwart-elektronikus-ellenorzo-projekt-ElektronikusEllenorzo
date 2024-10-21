@@ -52,7 +52,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1">
-                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0"/>
+                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0" Click="Kilepes"/>
                 </StackPanel>
                 <StackPanel>
                     <Label Name="LiveTimeLabel" Content=""  HorizontalAlignment="Center" Margin="0,15,0,0" Width="70"/>
@@ -78,7 +78,9 @@
 
                     <DataGrid Grid.Row="1" Margin="5" x:Name="TanarokGrid" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn />
+                            <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Jelszó" Binding="{Binding P_Hash}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>

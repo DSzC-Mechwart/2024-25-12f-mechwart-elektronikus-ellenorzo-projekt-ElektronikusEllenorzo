@@ -59,7 +59,9 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
                         match = await JelszoEllenorzes(tanulo_salt, jelszoBox.Password,1);
                         if (match)
                         {
-                            _mainWindow.ChangeTo(1);
+                            string tanuloJSON = await client.GetStringAsync($"api/Tanulo/tanulo/{Convert.ToInt32(Felhasznalonev.Text)}");
+                            Tanulo_Obj tanulo = JsonConvert.DeserializeObject<Tanulo_Obj>(tanuloJSON);
+                            _mainWindow.ChangeTo(1, null);
                         }
                         break;
                     case 2:
@@ -67,7 +69,9 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
                         match = await JelszoEllenorzes(tanar_salt, jelszoBox.Password,2);
                         if (match)
                         {
-                            _mainWindow.ChangeTo(2);
+                            string tanarJSON = await client.GetStringAsync($"api/Tanarok/{Convert.ToInt32(Felhasznalonev.Text)}");
+                            IKT_II_Derecske_Holding_EE.Models.Tanar tanar = JsonConvert.DeserializeObject<IKT_II_Derecske_Holding_EE.Models.Tanar>(tanarJSON);
+                            _mainWindow.ChangeTo(2, tanar);
                         }
                         break;
                     default:
@@ -76,7 +80,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Login
             }
             else
             {
-                _mainWindow.ChangeTo(3);
+                _mainWindow.ChangeTo(3, null);
             }
 
         }

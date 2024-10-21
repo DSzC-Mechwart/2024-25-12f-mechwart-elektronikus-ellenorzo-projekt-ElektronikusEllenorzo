@@ -35,6 +35,36 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             return res.IsSuccessStatusCode;
         }
 
+        public async Task<bool> TanarBevitel(IKT_II_Derecske_Holding_EE.Models.Tanar tanar)
+        {
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Tanarok", tanar);
+            return res.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> OsztalyBevitel(Osztaly osztaly)
+        {
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Osztaly", osztaly);
+            return res.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> TanoraBevitel(Tanora tanora)
+        {
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Tanorak", tanora);
+            return res.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> SzakBevitel(Szak szak)
+        {
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Szakok", szak);
+            return res.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> TantargyakBevitel(Tantargy tantargy)
+        {
+            HttpResponseMessage res = await client.PostAsJsonAsync($"api/Tantargyak", tantargy);
+            return res.IsSuccessStatusCode;
+        }
+
         public async Task<bool> TanuloTorles(int id)
         {
             HttpResponseMessage res = await client.DeleteAsync($"api/Tanulo?id={id}");

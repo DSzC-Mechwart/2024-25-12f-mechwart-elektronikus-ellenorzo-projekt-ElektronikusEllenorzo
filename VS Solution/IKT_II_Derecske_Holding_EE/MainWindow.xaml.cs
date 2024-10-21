@@ -2,6 +2,7 @@
 using IKT_II_Derecske_Holding_EE.Ablakok.Login;
 using IKT_II_Derecske_Holding_EE.Ablakok.Tanar;
 using IKT_II_Derecske_Holding_EE.Ablakok.Tanulo;
+using IKT_II_Derecske_Holding_EE.Models;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,7 @@ namespace IKT_II_Derecske_Holding_EE
 
             TanarBtn.Click += (sender, e) =>
             {
-                OurWindow.Content = new TanarPanel(this);
+                OurWindow.Content = new TanarPanel(this, new() { Nev="Mátyás", P_Hash="", P_Salt="", ID = 99 } );
             };
 
             TanuloBtn.Click += (sender, e) =>
@@ -41,7 +42,7 @@ namespace IKT_II_Derecske_Holding_EE
 
         }
 
-        public void ChangeTo(int scene)
+        public void ChangeTo(int scene, object? parameter)
         {
             switch (scene)
             {
@@ -52,7 +53,11 @@ namespace IKT_II_Derecske_Holding_EE
                     OurWindow.Content = new TanuloPanel(this);
                     break;
                 case 2:
-                    OurWindow.Content = new TanarPanel(this);
+                    if (parameter != null)
+                    {
+                        var tanar = parameter as Tanar;
+                        OurWindow.Content = new TanarPanel(this, tanar);
+                    }
                     break;
                 case 3:
                     OurWindow.Content = new AdminPanel(this);

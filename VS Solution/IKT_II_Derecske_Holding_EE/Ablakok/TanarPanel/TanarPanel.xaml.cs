@@ -29,15 +29,17 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
     public partial class TanarPanel : UserControl
     {
         TanarSzerverAdatok szerverAdatok;
+        IKT_II_Derecske_Holding_EE.Models.Tanar jelenlegiTanar;
         MainWindow _mainWindow;
         Dictionary<int,int> ujJegyek;
         Dictionary<int,Button> ujJegyekBtns;
         Dictionary<int, int> modosultAdatokIndex = new(); // 1-hozzaad, 2-torol, 3-modosul
         string osztalyID;
 
-        public TanarPanel(MainWindow mainWindow, string falhaszNev)
+        public TanarPanel(MainWindow mainWindow, IKT_II_Derecske_Holding_EE.Models.Tanar tanar)
         {
             InitializeComponent();
+            jelenlegiTanar = tanar;
             ujJegyek = new();
             ujJegyekBtns = new();
             szerverAdatok = new();
@@ -51,7 +53,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             LiveTime.Start();
             OsztalyokBtn.Background = Szinek.ASPARAGUS;
             _mainWindow = mainWindow;
-            FelhasznaloNev.Content = falhaszNev;
+            FelhasznaloNev.Content = jelenlegiTanar.Nev;
         }
 
         private void AdatLekerdezes()
@@ -67,6 +69,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         private void SzerverAdatok_MindenLekerdezve()
         {
             TanuloAdatokGrid.ItemsSource = szerverAdatok.Tanulok;
+            szerverAdatok.Tantargyak = new(szerverAdatok.Tantargyak.Where(x => x.Tanar_ID == jelenlegiTanar.ID).ToList());
             TantargyBox.ItemsSource = szerverAdatok.Tantargyak;
             JegyekGrid.ItemsSource = szerverAdatok.TesztJegy;
             int szakID = szerverAdatok.Osztalyok.Where(x => x.ID == osztalyID).Select(x => x.Szak_ID).First();
@@ -96,7 +99,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
 
         private void KilepesGomb(object sender, RoutedEventArgs e)
         {
-
+            _mainWindow.ChangeTo(0, null);
         }
 
         private void UjJegy(object sender, RoutedEventArgs e)
@@ -331,9 +334,12 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         private void Tanulo_Torlese(object sender, RoutedEventArgs e)
         {
             int ind = TanuloAdatokGrid.SelectedIndex;
-            int tanuloID = szerverAdatok.Tanulok[ind].ID;
-            szerverAdatok.Tanulok.RemoveAt(ind);
-            modosultAdatokIndex.Add(tanuloID, 2);
+            if (ind < szerverAdatok.Tanulok.Count)
+            {
+                int tanuloID = szerverAdatok.Tanulok[ind].ID;
+                szerverAdatok.Tanulok.RemoveAt(ind);
+                modosultAdatokIndex.Add(tanuloID, 2);
+            }
         }
 
     }
