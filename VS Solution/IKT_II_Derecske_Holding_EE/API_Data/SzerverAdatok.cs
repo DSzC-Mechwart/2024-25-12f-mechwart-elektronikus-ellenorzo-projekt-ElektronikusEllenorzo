@@ -65,7 +65,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
             Tanulok.Add(t1);
             Tanulok.Add(t2);
-            Tanulok.Add(t3);*/
+            Tanulok.Add(t3);
 
             Tanar tr1 = new() { ID = 1, Nev = "Jancsika" };
             Tanar tr2 = new() { ID = 2, Nev = "Pista" };
@@ -73,7 +73,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
             Tanarok.Add(tr1);
             Tanarok.Add(tr2);
-            Tanarok.Add(tr3);
+            Tanarok.Add(tr3);*/
 
             Szak s1 = new() { ID = 1, Szak_Nev = "Szoftverfejlesztő" };
             Szak s2 = new() { ID = 2, Szak_Nev = "Vezérkari tiszt" };
