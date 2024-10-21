@@ -25,511 +25,93 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Margin="10">
-            <Grid Background="White">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tantárgy" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="Szeptember" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="Október" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="November" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="4" Text="December" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="5" Text="Január" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="6" Text="Február" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="7" Text="Március" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="8" Text="Április" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="9" Text="Május" FontWeight="Bold" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="10" Text="Június" FontWeight="Bold" HorizontalAlignment="Center" />
-
-                <Grid Grid.Row="1" Grid.Column="1" x:Name="sor1Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="2" x:Name="sor1Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="3" x:Name="sor1Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="4" x:Name="sor1Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="5" x:Name="sor1Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="6" x:Name="sor1Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="7" x:Name="sor1Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="8" x:Name="sor1Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="9" x:Name="sor1May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="10" x:Name="sor1Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="2" Grid.Column="1" x:Name="sor2Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="2" x:Name="sor2Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="3" x:Name="sor2Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="4" x:Name="sor2Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="5" x:Name="sor2Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="6" x:Name="sor2Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="7" x:Name="sor2Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="8" x:Name="sor2Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="9" x:Name="sor2May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="10" x:Name="sor2Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="3" Grid.Column="1" x:Name="sor3Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="2" x:Name="sor3Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="3" x:Name="sor3Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="4" x:Name="sor3Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="5" x:Name="sor3Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="6" x:Name="sor3Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="7" x:Name="sor3Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="8" x:Name="sor3Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="9" x:Name="sor3May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="3" Grid.Column="10" x:Name="sor3Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="4" Grid.Column="1" x:Name="sor4Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="2" x:Name="sor4Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="3" x:Name="sor4Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="4" x:Name="sor4Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="5" x:Name="sor4Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="6" x:Name="sor4Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="7" x:Name="sor4Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="8" x:Name="sor4Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="9" x:Name="sor4May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="10" x:Name="sor4Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="5" Grid.Column="1" x:Name="sor5Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="2" x:Name="sor5Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="3" x:Name="sor5Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="4" x:Name="sor5Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="5" x:Name="sor5Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="6" x:Name="sor5Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="7" x:Name="sor5Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="8" x:Name="sor5Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="9" x:Name="sor5May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="5" Grid.Column="10" x:Name="sor5Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="6" Grid.Column="1" x:Name="sor6Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="2" x:Name="sor6Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="3" x:Name="sor6Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="4" x:Name="sor6Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="5" x:Name="sor6Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="6" x:Name="sor6Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="7" x:Name="sor6Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="8" x:Name="sor6Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="9" x:Name="sor6May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="10" x:Name="sor6Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="7" Grid.Column="1" x:Name="sor7Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="2" x:Name="sor7Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="3" x:Name="sor7Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="4" x:Name="sor7Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="5" x:Name="sor7Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="6" x:Name="sor7Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="7" x:Name="sor7Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="8" x:Name="sor7Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="9" x:Name="sor7May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="7" Grid.Column="10" x:Name="sor7Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="8" Grid.Column="1" x:Name="sor8Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="2" x:Name="sor8Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="3" x:Name="sor8Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="4" x:Name="sor8Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="5" x:Name="sor8Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="6" x:Name="sor8Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="7" x:Name="sor8Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="8" x:Name="sor8Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="9" x:Name="sor8May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="8" Grid.Column="10" x:Name="sor8Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="9" Grid.Column="1" x:Name="sor9Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="2" x:Name="sor9Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="3" x:Name="sor9Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="4" x:Name="sor9Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="5" x:Name="sor9Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="6" x:Name="sor9Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="7" x:Name="sor9Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="8" x:Name="sor9Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="9" x:Name="sor9May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="9" Grid.Column="10" x:Name="sor9Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="10" Grid.Column="1" x:Name="sor10Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="2" x:Name="sor10Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="3" x:Name="sor10Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="4" x:Name="sor10Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="5" x:Name="sor10Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="6" x:Name="sor10Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="7" x:Name="sor10Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="8" x:Name="sor10Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="9" x:Name="sor10May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="10" Grid.Column="10" x:Name="sor10Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-
-                <Grid Grid.Row="11" Grid.Column="1" x:Name="sor11Sept" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="2" x:Name="sor11Oct" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="3" x:Name="sor11Nov" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="4" x:Name="sor11Dec" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="5" x:Name="sor11Jan" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="6" x:Name="sor11Feb" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="7" x:Name="sor11Mar" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="8" x:Name="sor11Apr" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="9" x:Name="sor11May" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-                <Grid Grid.Row="11" Grid.Column="10" x:Name="sor11Jun" Margin="1">
-                    <TextBlock Text=" " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Rectangle Stroke="Black" StrokeThickness="1"/>
-                </Grid>
-            </Grid>
-        </ScrollViewer>
+        <DataGrid x:Name="JegyekGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" 
+                  ItemsSource="{Binding}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tantárgy" Binding="{Binding tantargy}"/>
+                <DataGridTemplateColumn Header="Szeptember">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[8]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Október">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[9]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="November">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[10]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="December">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[11]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Január">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[0]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Február">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[1]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Március">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[2]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Április">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[3]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Május">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[4]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Június">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding honapok[5]}" MaxWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <StackPanel Grid.Column="1" Background="White" VerticalAlignment="Center" Margin="10,0,10,0" Height="414">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10">
-                <TextBlock FontSize="16" Foreground="#6A7152" Height="25" Width="110" x:Name="felhasznaloNev"/>
+                <TextBlock FontSize="16" Foreground="#6A7152" Height="25" x:Name="felhasznaloNev"/>
                 <Ellipse Width="55" Height="55" Fill="Gray" Stroke="#32292F"/>
             </StackPanel>
 
             <Button Content="Jegyek" Style="{StaticResource ButtonStyle}" Width="170" HorizontalAlignment="Stretch"/>
             <Button Content="Tantárgyak" Style="{StaticResource ButtonStyle}" Width="170" HorizontalAlignment="Stretch"/>
             <Button Content="Órarend" Style="{StaticResource ButtonStyle}" Width="170" HorizontalAlignment="Stretch"/>
+            <Button Content="Adatok" Style="{StaticResource ButtonStyle}" Width="170" HorizontalAlignment="Stretch"/>
 
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,10,10,10">
                 <Button Content="Kilépés" Width="85" Height="40" 
