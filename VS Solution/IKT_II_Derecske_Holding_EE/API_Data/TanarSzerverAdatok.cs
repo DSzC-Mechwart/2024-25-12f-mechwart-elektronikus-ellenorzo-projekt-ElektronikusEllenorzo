@@ -21,8 +21,10 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
     {
         public event AdatokLekerdezveD TanulokLekerdezve;
         public event AdatokLekerdezveD OsztalyJegyekLekerdezve;
+        public event AdatokLekerdezveD OsztalyStatJegyekLekerdezve;
         public event AdatokLekerdezveD TantargyakLekerdezve;
         public event AdatokLekerdezveD OsztalyokLekerdezve;
+        public event AdatokLekerdezveD SzakokLekerdezve;
 
         /// <summary>
         /// A tanulók teljes listája.
@@ -36,7 +38,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         /// A tantárgyak listája.
         /// </summary>
         public ObservableCollection<Tantargy> Tantargyak;
-        
+
+        public ObservableCollection<Szak> Szakok;
+
         public ObservableCollection<Orarend> Orarendek;
         public ObservableCollection<Jegy> OsztalyJegyek;
 
@@ -74,6 +78,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
 
             OsztalyJegyek = new();
             GetTanulok(osztalyID);
+            GetOsztalyJegyek(osztalyID);
             GetOsztalyJegyek2(osztalyID);
             GetTantargyak();
         }
@@ -93,6 +98,24 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             OsztalyJegyek = new();
 
             GetOsztalyok();
+            GetSzakok();
+        }
+
+
+        private async void GetSzakok()
+        {
+            try
+            {
+                var response = await client.GetStringAsync("api/Szakok");
+                var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
+                Szakok = szakok;
+                SzakokLekerdezve?.Invoke();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR: Nem található a szerver");
+            }
+
         }
 
         private async void GetOsszesTanulok()
@@ -136,7 +159,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 MessageBox.Show($"{response}");
                 var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
                 OsztalyJegyek = jegyek;
-                OsztalyJegyekLekerdezve?.Invoke();
+                OsztalyStatJegyekLekerdezve?.Invoke();
             }
             catch (Exception)
             {

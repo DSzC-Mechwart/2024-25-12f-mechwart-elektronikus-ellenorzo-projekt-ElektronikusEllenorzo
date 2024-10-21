@@ -44,7 +44,6 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             {
                 OsztalyValasztoBox.ItemsSource = szerverAdatok.Osztalyok;
             };
-            StatisztikaPanel.Content = new Statisztika();
             DispatcherTimer LiveTime = new DispatcherTimer();
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
@@ -71,6 +70,9 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             {
                 TantargyBox.ItemsSource = szerverAdatok.Tantargyak;
             };
+            int szakID = szerverAdatok.Osztalyok.Where(x => x.ID == osztalyID).Select(x => x.Szak_ID).First();
+            string szakNev = szerverAdatok.Szakok.Where(x => x.ID == szakID).Select(x => x.Szak_Nev).First();
+            StatisztikaPanel.Content = new Statisztika(szakNev, szerverAdatok.OsztalyJegyek.ToList(), szerverAdatok.Tanulok.ToList());
 
         }
 

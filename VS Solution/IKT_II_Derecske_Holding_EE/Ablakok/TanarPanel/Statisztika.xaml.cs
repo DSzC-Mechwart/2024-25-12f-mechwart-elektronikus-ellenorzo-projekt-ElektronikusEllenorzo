@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IKT_II_Derecske_Holding_EE.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,17 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.TanarPanel
     /// </summary>
     public partial class Statisztika : UserControl
     {
-        public Statisztika()
+        List<Tanulo_Obj> tanulok;
+        string szak;
+        List<Jegy> osztalyJegyek;
+        public Statisztika(string szak, List<Jegy> osztalyJegyek, List<Tanulo_Obj> _tanulok)
         {
             InitializeComponent();
+            this.szak = szak;
+            this.osztalyJegyek = osztalyJegyek; // Where jegy.Jegy_Ertek != -1
+            tanulok = _tanulok;
+
+
         }
     }
 }
