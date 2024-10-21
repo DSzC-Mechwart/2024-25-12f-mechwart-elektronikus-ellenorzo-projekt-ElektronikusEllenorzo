@@ -1,0 +1,79 @@
+﻿<Window x:Class="ElektronikusEllenőrzőProjekt.HBWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElektronikusEllenőrzőProjekt"
+        mc:Ignorable="d"
+        Title="HBWindow" Height="445" Width="795">
+    <Grid Background="#FFBFF7F7">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Label x:Name="HNameDisplay" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22" Width="316" Background="Black" Foreground="White" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Height="38" Margin="237,0,0,0"/>
+        <ComboBox x:Name="HSelectedTantargy" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Width="120" Margin="0,10,0,0">
+            <ComboBoxItem Content="Matematika"></ComboBoxItem>
+            <ComboBoxItem Content="Történelem"></ComboBoxItem>
+            <ComboBoxItem Content="Nyelvtan"></ComboBoxItem>
+            <ComboBoxItem Content="Irodalom"></ComboBoxItem>
+            <ComboBoxItem Content="Idegen nyelv"></ComboBoxItem>
+            <ComboBoxItem Content="Szakma"></ComboBoxItem>
+            <ComboBoxItem Content="Tesi"></ComboBoxItem>
+            <ComboBoxItem Content="Fizika"></ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="120" Margin="80,10,0,0" Grid.Column="1">
+            <ComboBoxItem Content="Matematika"></ComboBoxItem>
+            <ComboBoxItem Content="Történelem"></ComboBoxItem>
+            <ComboBoxItem Content="Nyelvtan"></ComboBoxItem>
+            <ComboBoxItem Content="Irodalom"></ComboBoxItem>
+            <ComboBoxItem Content="Idegen nyelv"></ComboBoxItem>
+            <ComboBoxItem Content="Szakma"></ComboBoxItem>
+        </ComboBox>
+        <Rectangle Grid.ColumnSpan="1" HorizontalAlignment="Center" Height="40"  Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5" Margin="0,50,0,0"/>
+
+
+        <Label Content="1&#x9;2&#x9;3&#x9;4&#x9;5" HorizontalAlignment="Left" Margin="53,70,0,0" Grid.Row="1" VerticalAlignment="Top" Width="178" Height="20" FontSize="9"/>
+        <TextBox x:Name="HHozzafuzes" HorizontalAlignment="Left" Margin="38,235,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="195" Height="41" FontFamily="Comic Sans MS"/>
+        <Label Content="Számonkérés Típusa:" HorizontalAlignment="Center" Margin="0,106,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.617,-0.259" Width="247" Height="41" FontSize="22" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center"/>
+        <Label Content="Hozzáfüzés:" HorizontalAlignment="Center" Margin="0,185,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="38" Width="247" FontSize="22" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button Content="Hozzáadás" HorizontalAlignment="Center" Margin="0,286,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="195" FontSize="24" FontWeight="Bold" Click="Button_Click"/>
+        <ComboBox x:Name="HSelectedTipus" HorizontalAlignment="Center" Margin="0,152,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Szóbeli Felelés"></ComboBoxItem>
+            <ComboBoxItem Content="Írásbeli felelés"></ComboBoxItem>
+            <ComboBoxItem Content="Témazáró"></ComboBoxItem>
+            <ComboBoxItem Content="Órai munka"></ComboBoxItem>
+            <ComboBoxItem Content="Verseny"></ComboBoxItem>
+        </ComboBox>
+
+        <RadioButton x:Name="H1" GroupName="Jegyek"  HorizontalAlignment="Left" Margin="53,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <RadioButton x:Name="H5" GroupName="Jegyek"   HorizontalAlignment="Left" Margin="199,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <RadioButton x:Name="H4" GroupName="Jegyek"  HorizontalAlignment="Left" Margin="162,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <RadioButton x:Name="H3" GroupName="Jegyek"  HorizontalAlignment="Center" Margin="0,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <RadioButton x:Name="H2" GroupName="Jegyek"  HorizontalAlignment="Left" Margin="91,56,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <Button Grid.Column="2" Content="Admin" HorizontalAlignment="Left" Margin="220,0,0,0" VerticalAlignment="Center"/>
+        <Label Grid.Column="2" Content="Össz Átlag:" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center"/>
+        <Label Grid.Column="1" Content="Lemorzsolódás" HorizontalAlignment="Left" Margin="177,6,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.505,1.409"/>
+        <Label Grid.Column="1" Content="Átlag: " HorizontalAlignment="Left" Margin="7,2,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.443,0.464"/>
+        <CheckBox Grid.Column="1" Content="" HorizontalAlignment="Left" Margin="152,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.517,0.764"/>
+        <Image HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="55" OpacityMask="#FFF01717"/>
+        <Rectangle HorizontalAlignment="Left" Height="447" Stroke="Black" VerticalAlignment="Top" Width="10" Fill="Black" RenderTransformOrigin="-2.058,0.696" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="257,0,0,0"/>
+        <Rectangle HorizontalAlignment="Left" Height="447" Stroke="Black" VerticalAlignment="Top" Width="10" Fill="Black" RenderTransformOrigin="-2.058,0.696" Grid.ColumnSpan="2" Grid.RowSpan="3" Grid.Column="1" Margin="266,0,0,0"/>
+        <Rectangle HorizontalAlignment="Left" Height="9" Margin="0,35,0,0" Stroke="Black" VerticalAlignment="Top" Width="810" Fill="Black" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <Rectangle HorizontalAlignment="Left" Height="9" Margin="-10,348,0,0" Stroke="Black" VerticalAlignment="Top" Width="810" Fill="Black" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <ListBox x:Name="HListBox" Grid.Column="2" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="11,5,0,0"/>
+
+
+
+    </Grid>
+</Window>
