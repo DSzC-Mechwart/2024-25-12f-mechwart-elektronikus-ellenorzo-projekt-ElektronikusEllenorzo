@@ -65,7 +65,7 @@ namespace Chalk
                 {
                     foreach (var item in Tanulok.Tanulok)
                     {
-                        writer.WriteLine($"{item.Nev};{item.SzulHely};{item.SzulIdo};{item.Anyja};{item.Lakcim};{item.BeiratIdo};{item.Szak};{item.Osztaly};{item.Kolis};{item.KoliHely}"); // Format as needed
+                        writer.WriteLine($"{item.Torzs};{item.Nev};{item.SzulHely};{item.SzulIdo};{item.Anyja};{item.Lakcim};{item.BeiratIdo};{item.Szak};{item.Osztaly};{item.Kolis};{item.KoliHely}"); // Format as needed
                     }
                 }
                 Statics();
@@ -120,5 +120,33 @@ namespace Chalk
             MessageBox.Show(szak);
 
         }
+
+
+        public void CreateTorzs(object sender, RoutedEventArgs s)
+        {
+            Dictionary<string, List<Tanulo>> osztalyok = new Dictionary<string, List<Tanulo>>();
+
+            foreach (var item in Tanulok.Tanulok)
+            {
+                if (!osztalyok.ContainsKey(item.Osztaly)) osztalyok[item.Osztaly] = new List<Tanulo>();
+                osztalyok[item.Osztaly].Add(item);
+            }
+
+            foreach (var item in osztalyok)
+            {
+                osztalyok[item.Key] = item.Value.OrderBy(x => x.Nev).ToList();
+                for (var i = 0; i < osztalyok[item.Key].Count(); i++)
+                {
+                    //osztalyok[item.Key][i].Torzs = $"{item.Key}/{osztalyok[item.Key][i].BeiratIdo.Year}{i+1}";
+                    Tanulok.Tanulok.FirstOrDefault(x =>
+                        x.Nev == osztalyok[item.Key][i].Nev &&
+                        x.Osztaly == item.Key).Torzs=$"{item.Key}/{osztalyok[item.Key][i].BeiratIdo.Year}/{i + 1}";
+
+                }
+            }
+
+            
+        }
+
     }
 }

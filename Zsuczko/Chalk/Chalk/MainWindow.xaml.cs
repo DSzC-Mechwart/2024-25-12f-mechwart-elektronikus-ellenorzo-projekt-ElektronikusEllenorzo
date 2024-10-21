@@ -74,7 +74,7 @@ namespace Chalk
             }
 
 
-            Tanulok.Add(new Tanulo( nev, szulHely, szulIdo, anyja, lakcim, beirIdo, szak, osztaly, kollis, kolliHely));
+            Tanulok.Add(new Tanulo("Null", nev, szulHely, szulIdo, anyja, lakcim, beirIdo, szak, osztaly, kollis, kolliHely));
 
 
 
@@ -82,7 +82,7 @@ namespace Chalk
             {
                 using (StreamWriter sw = new StreamWriter("Tanulok.csv", true))
                 {
-                    sw.WriteLine($"{nev};{szulHely};{szulIdo};{anyja};{lakcim};{beirIdo};{szak};{osztaly};{kollis};{kolliHely}");
+                    sw.WriteLine($"Null;{nev};{szulHely};{szulIdo};{anyja};{lakcim};{beirIdo};{szak};{osztaly};{kollis};{kolliHely}");
                 }
                 MessageBox.Show("Sikeres adat bevitel");
 

@@ -72,6 +72,14 @@
                 Click="Szakok">
                 Szakok
             </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="60"
+                Height="30"
+                Click="CreateTorzs">
+                Generálás
+            </Button>
         </Grid>
     </Grid>
 </Window>
