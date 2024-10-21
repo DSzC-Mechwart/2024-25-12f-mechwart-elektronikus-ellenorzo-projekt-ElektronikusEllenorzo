@@ -34,7 +34,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
-                        <Label Content="Label" Height="29" Width="150" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label Content="" x:Name="FelhasznaloNev" Height="29" Width="150" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </Grid>

@@ -51,6 +51,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
             LiveTime.Start();
             OsztalyokBtn.Background = Szinek.ASPARAGUS;
             _mainWindow = mainWindow;
+            FelhasznaloNev.Content = falhaszNev;
         }
 
         private void AdatLekerdezes()
