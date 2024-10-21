@@ -30,8 +30,14 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.TanarPanel
             this.szak = szak;
             this.osztalyJegyek = osztalyJegyek; // Where jegy.Jegy_Ertek != -1
             tanulok = _tanulok;
+            TanuloSzStat.Content = $"Tanulók száma: {tanulok.Count()} ";
+            TanSzakStat.Content = $"Szak: {szak}";
 
+            int bejarosSz = tanulok.Where(x=>x.Koli!=null).Count();
+            TanSzakStat.Content = $"Bejárósak: {bejarosSz} ";
 
+            double osztAVG = osztalyJegyek.Where(x=>x.Jegy_Ertek!=-1).Average(x=>x.Jegy_Ertek);
+            OsztAtlStat.Content = $"Osztály átlag: {osztAVG:N2}";
         }
     }
 }

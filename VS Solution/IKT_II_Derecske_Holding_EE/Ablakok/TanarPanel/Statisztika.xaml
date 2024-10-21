@@ -8,7 +8,7 @@
              d:DesignHeight="120" d:DesignWidth="200">
     <Grid>
         <StackPanel>
-            <Label Content="Ta" x:Name="TanuloSzStat"/>
+            <Label Content="" x:Name="TanuloSzStat"/>
             <Label Content="" x:Name="TanSzakStat"/>
             <Label Content="" x:Name="BejarosStat"/>
             <Label Content="" x:Name="OsztAtlStat"/>
