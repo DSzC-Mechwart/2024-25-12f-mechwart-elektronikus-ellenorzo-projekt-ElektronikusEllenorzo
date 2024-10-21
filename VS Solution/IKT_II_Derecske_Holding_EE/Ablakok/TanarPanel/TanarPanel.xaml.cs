@@ -33,8 +33,9 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         Dictionary<int,int> ujJegyek;
         Dictionary<int,Button> ujJegyekBtns;
         Dictionary<int, int> modosultAdatokIndex = new(); // 1-hozzaad, 2-torol, 3-modosul
+        string osztalyID;
 
-        public TanarPanel(MainWindow mainWindow)
+        public TanarPanel(MainWindow mainWindow, string falhaszNev)
         {
             InitializeComponent();
             ujJegyek = new();
@@ -55,25 +56,21 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.Tanar
         private void AdatLekerdezes()
         {
             var osztaly = OsztalyValasztoBox.SelectedItem as Osztaly;
-            string osztalyID = osztaly.ID;
+            osztalyID = osztaly.ID;
             szerverAdatok = new(osztalyID);
+            szerverAdatok.MindenLekerdezve += SzerverAdatok_MindenLekerdezve;
             OsztalyTxt.Content = osztalyID;
-            szerverAdatok.TanulokLekerdezve += () =>
-            {
-                TanuloAdatokGrid.ItemsSource = szerverAdatok.Tanulok;
-            };
-            szerverAdatok.OsztalyJegyekLekerdezve += () =>
-            {
-                JegyekGrid.ItemsSource = szerverAdatok.TesztJegy;
-            };
-            szerverAdatok.TantargyakLekerdezve += () =>
-            {
-                TantargyBox.ItemsSource = szerverAdatok.Tantargyak;
-            };
+
+        }
+
+        private void SzerverAdatok_MindenLekerdezve()
+        {
+            TanuloAdatokGrid.ItemsSource = szerverAdatok.Tanulok;
+            TantargyBox.ItemsSource = szerverAdatok.Tantargyak;
+            JegyekGrid.ItemsSource = szerverAdatok.TesztJegy;
             int szakID = szerverAdatok.Osztalyok.Where(x => x.ID == osztalyID).Select(x => x.Szak_ID).First();
             string szakNev = szerverAdatok.Szakok.Where(x => x.ID == szakID).Select(x => x.Szak_Nev).First();
             StatisztikaPanel.Content = new Statisztika(szakNev, szerverAdatok.OsztalyJegyek.ToList(), szerverAdatok.Tanulok.ToList());
-
         }
 
         private void OsztalyFulGomb(object sender, RoutedEventArgs e)

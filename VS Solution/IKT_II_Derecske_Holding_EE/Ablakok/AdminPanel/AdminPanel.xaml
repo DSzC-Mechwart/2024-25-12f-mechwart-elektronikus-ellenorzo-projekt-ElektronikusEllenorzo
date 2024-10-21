@@ -76,7 +76,11 @@
                 </TabItem>
                 <TabItem Visibility="Hidden">
 
-                    <DataGrid Grid.Row="1" Margin="5" x:Name="TanarokGrid"></DataGrid>
+                    <DataGrid Grid.Row="1" Margin="5" x:Name="TanarokGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn />
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </TabItem>
                 <TabItem Visibility="Hidden">
                     <DataGrid Margin="5" x:Name="TanorakGrid"></DataGrid>

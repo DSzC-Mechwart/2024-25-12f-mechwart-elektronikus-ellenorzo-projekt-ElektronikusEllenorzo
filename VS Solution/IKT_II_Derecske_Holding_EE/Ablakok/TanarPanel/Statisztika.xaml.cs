@@ -34,7 +34,7 @@ namespace IKT_II_Derecske_Holding_EE.Ablakok.TanarPanel
             TanSzakStat.Content = $"Szak: {szak}";
 
             int bejarosSz = tanulok.Where(x=>x.Koli!=null).Count();
-            TanSzakStat.Content = $"Bejárósak: {bejarosSz} ";
+            BejarosStat.Content = $"Bejárósak: {bejarosSz} ";
 
             double osztAVG = osztalyJegyek.Where(x=>x.Jegy_Ertek!=-1).Average(x=>x.Jegy_Ertek);
             OsztAtlStat.Content = $"Osztály átlag: {osztAVG:N2}";

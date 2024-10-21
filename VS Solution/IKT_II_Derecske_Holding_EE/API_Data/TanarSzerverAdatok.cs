@@ -25,6 +25,7 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         public event AdatokLekerdezveD TantargyakLekerdezve;
         public event AdatokLekerdezveD OsztalyokLekerdezve;
         public event AdatokLekerdezveD SzakokLekerdezve;
+        public event AdatokLekerdezveD MindenLekerdezve;
 
         /// <summary>
         /// A tanulók teljes listája.
@@ -45,6 +46,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
         public ObservableCollection<Jegy> OsztalyJegyek;
 
         public dynamic TesztJegy { get; set; }
+
+        private int statAdatokLekerve;
 
         HttpClient client = new();
 
@@ -81,6 +84,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             GetOsztalyJegyek(osztalyID);
             GetOsztalyJegyek2(osztalyID);
             GetTantargyak();
+            GetOsztalyok();
+            GetSzakok();
+            statAdatokLekerve = 6;
         }
 
         public TanarSzerverAdatok()
@@ -96,9 +102,17 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             Tanulok = new();
             Osztalyok = new();
             OsztalyJegyek = new();
-
+            statAdatokLekerve = -1;
             GetOsztalyok();
             GetSzakok();
+        }
+
+        private void Lekerdezve()
+        {
+            if (statAdatokLekerve == 0)
+            {
+                MindenLekerdezve?.Invoke();
+            }
         }
 
 
@@ -110,6 +124,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var szakok = JsonConvert.DeserializeObject<ObservableCollection<Szak>>(response);
                 Szakok = szakok;
                 SzakokLekerdezve?.Invoke();
+                statAdatokLekerve--;
+                Lekerdezve();
             }
             catch (Exception)
             {
@@ -142,6 +158,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var tanulok = JsonConvert.DeserializeObject<ObservableCollection<Tanulo_Obj>>(response);
                 Tanulok = tanulok;
                 TanulokLekerdezve?.Invoke();
+                statAdatokLekerve--;
+                Lekerdezve();
             }
             catch (Exception)
             {
@@ -156,10 +174,11 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
             {
                 OsztalyJegyek.Clear();
                 var response = await client.GetStringAsync($"api/Jegyek/osztalyok/{id}");
-                MessageBox.Show($"{response}");
                 var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
                 OsztalyJegyek = jegyek;
                 OsztalyStatJegyekLekerdezve?.Invoke();
+                statAdatokLekerve--;
+                Lekerdezve();
             }
             catch (Exception)
             {
@@ -204,9 +223,9 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                     tanulo.honapok = honapLista;
                 }
                 TesztJegy = des;
-                /*var jegyek = JsonConvert.DeserializeObject<ObservableCollection<Jegy>>(response);
-                OsztalyJegyek = jegyek;*/
+                statAdatokLekerve--;
                 OsztalyJegyekLekerdezve?.Invoke();
+                Lekerdezve();
             }
             catch (Exception)
             {
@@ -223,6 +242,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var osztalyok = JsonConvert.DeserializeObject<ObservableCollection<Osztaly>>(response);
                 Osztalyok = osztalyok;
                 OsztalyokLekerdezve?.Invoke();
+                statAdatokLekerve--;
+                Lekerdezve();
             }
             catch (Exception)
             {
@@ -240,6 +261,8 @@ namespace IKT_II_Derecske_Holding_EE.API_Data
                 var tantargyak = JsonConvert.DeserializeObject<ObservableCollection<Tantargy>>(response);
                 Tantargyak = tantargyak;
                 TantargyakLekerdezve?.Invoke();
+                statAdatokLekerve--;
+                Lekerdezve();
             }
             catch (Exception)
             {
