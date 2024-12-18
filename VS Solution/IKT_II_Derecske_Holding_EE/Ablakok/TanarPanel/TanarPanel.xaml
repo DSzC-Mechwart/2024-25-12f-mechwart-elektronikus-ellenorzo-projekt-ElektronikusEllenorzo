@@ -1,0 +1,246 @@
+﻿<UserControl x:Class="IKT_II_Derecske_Holding_EE.Ablakok.Tanar.TanarPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IKT_II_Derecske_Holding_EE.Ablakok.Tanar"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1">
+                    <Ellipse Height="50" Stroke="Black" Width="48"/>
+                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <Label Content="" x:Name="FelhasznaloNev" Height="29" Width="150" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Button x:Name="OsztalyokBtn" Content="Osztályok" Height="50" Margin="0 0 15 0" Click="OsztalyFulGomb"></Button>
+                <Button x:Name="OrarendBtn" Content="Órarend" Height="50" Margin="0 0 15 0" Click="OrarendFulGomb"></Button>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1">
+                    <Button Content="Kilépés" Width="60" Height="35" Margin="0,13,0,0" Click="KilepesGomb"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Name="LiveTimeLabel" Content="%TIME%"  HorizontalAlignment="Center" Margin="0,15,0,0" Width="70"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid>
+            <TabControl x:Name="TabKonroll" TabStripPlacement="right" Margin="0 0 -15 0" Grid.Row="1">
+                <TabItem Visibility="Hidden">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label Content="Kiválasztott Osztály: "></Label>
+                            <ComboBox x:Name="OsztalyValasztoBox" MinWidth="150" MaxHeight="30" DisplayMemberPath="ID" SelectionChanged="OsztalyValasztas"></ComboBox>
+                        </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" MinWidth="50"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <Label x:Name="OsztalyTxt" FontSize="26" Width="65"/>
+                            </StackPanel>
+                            <UserControl Grid.Column="1" x:Name="StatisztikaPanel">
+                            </UserControl>
+
+                            <StackPanel Grid.Column="4" x:Name="JegyAdatCol">
+                                <DatePicker x:Name="JegyDatum">
+                                </DatePicker>
+                                <TextBox TextWrapping="Wrap" Text="" Margin="0,10,0,0" MinHeight="20" x:Name="TemaTxt"/>
+                                <ComboBox Height="13" Margin="0,12,0,0" x:Name="TantargyBox" DisplayMemberPath="Nev" MinHeight="20" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="5" x:Name="JegyGombCol">
+                                <Button Content="Új jegy" x:Name="UjJegyBtn" Width="70" Height="30" Click="UjJegy" Margin="0 0 0 10"/>
+                                <Button Content="Mégse" x:Name="MegseJegyBtn" Width="70" Height="20" Click="MegseJegy" Margin="0 0 0 10" Visibility="Hidden"/>
+                                <Button Content="Mentés" x:Name="JegyekMenteseBtn" Width="70" Height="20" Click="JegyekMentese" Visibility="Hidden"/>
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="5" x:Name="AdatModositasCol" Visibility="Collapsed">
+                                <Button x:Name="AdatMentesBtn" Width="70" Height="50" Click="Adatok_Mentese" Margin="0 0 0 10" IsEnabled="False">
+                                    <TextBlock Text="Adatok mentése" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+                                </Button>
+                                <Button x:Name="AdatMegseBtn" Content="Mégse" Width="70" Height="30" Click="Adatok_Megse" IsEnabled="False"></Button>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" x:Name="JegyTxtCol">
+                                <Label Content="Jegy dátum:" Height="30" FontSize="15"/>
+                                <Label Content="Jegy téma" Height="30" FontSize="15"/>
+                                <Label Content="Tantárgy" Height="30" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="2" >
+                            <TabControl TabStripPlacement="Bottom" SelectionChanged="AdattipusValaszto">
+                                <TabItem Header="Jegyek Bevitele">
+
+                                    <DataGrid x:Name="JegyekGrid" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Margin="5">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Név" Binding="{Binding nev}"></DataGridTextColumn>
+                                            <DataGridTemplateColumn Header="Szeptember">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[9]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Október">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[10]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="November">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[11]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="December">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[12]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Január">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[1]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Február">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[2]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Március">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[3]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Április">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[4]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Május">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[5]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Június">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock TextWrapping="Wrap" Text="{Binding honapok[6]}" MaxWidth="50"></TextBlock>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Header="Új jegy" Visibility="Hidden" x:Name="UjJegyOszlop">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Button x:Name="Egyes" Content="1" Margin="2" Padding="4" Click="Egyes_Jegy"></Button>
+                                                            <Button x:Name="Kettes" Content="2" Margin="2" Padding="4" Click="Kettes_Jegy"></Button>
+                                                            <Button x:Name="Harmas" Content="3" Margin="2" Padding="4" Click="Harmas_Jegy"></Button>
+                                                            <Button x:Name="Negyes" Content="4" Margin="2" Padding="4" Click="Negyes_Jegy"></Button>
+                                                            <Button x:Name="Otos" Content="5" Margin="2" Padding="4" Click="Otos_Jegy"></Button>
+                                                            <Button x:Name="NemIrt" Content="-" Margin="2" Padding="4" Click="NemIrt_Jegy"></Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <TabItem Header="Összes Adat">
+                                    <Grid>
+                                        <DataGrid Margin="5" x:Name="TanuloAdatokGrid" AutoGenerateColumns="False">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Név" Binding="{Binding Nev}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Azonosító" Binding="{Binding ID}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Születési hely" Binding="{Binding Szul_Hely}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Születési idő" Binding="{Binding Szul_Ido}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Anyja Neve" Binding="{Binding Anya_Nev}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Osztály" Binding="{Binding Osztaly_ID}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Kollégium" Binding="{Binding Koli}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Törzslapszám" Binding="{Binding Torzslapszam}"></DataGridTextColumn>
+                                                <DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Button Click="Tanulo_Torlese">Törlés</Button>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
+                                </TabItem>
+
+                            </TabControl>
+                        </Grid>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Visibility="Hidden"  />
+
+            </TabControl>
+        </Grid>
+
+
+
+    </Grid>
+</UserControl>
